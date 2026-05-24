@@ -1,0 +1,492 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+
+  <data name="App.Title" xml:space="preserve"><value>Test Otomasyon</value></data>
+  <data name="App.Language" xml:space="preserve"><value>Dil</value></data>
+  <data name="App.Turkish" xml:space="preserve"><value>Türkçe</value></data>
+  <data name="App.English" xml:space="preserve"><value>İngilizce</value></data>
+
+  <data name="Menu.Home" xml:space="preserve"><value>Anasayfa</value></data>
+  <data name="Menu.Management" xml:space="preserve"><value>Yönetim</value></data>
+  <data name="Menu.Users" xml:space="preserve"><value>Kullanıcılar</value></data>
+  <data name="Menu.Roles" xml:space="preserve"><value>Roller ve Yetkiler</value></data>
+  <data name="Menu.Departments" xml:space="preserve"><value>Departmanlar</value></data>
+  <data name="Menu.Tasks" xml:space="preserve"><value>Görevler</value></data>
+  <data name="Menu.AllTasks" xml:space="preserve"><value>Tüm Görevler</value></data>
+  <data name="Menu.MyTasks" xml:space="preserve"><value>Görevlerim</value></data>
+  <data name="Menu.Propose" xml:space="preserve"><value>İş Bildir</value></data>
+  <data name="Menu.AssignedByMe" xml:space="preserve"><value>Atadığım Görevler</value></data>
+  <data name="Menu.NewTask" xml:space="preserve"><value>Yeni Görev</value></data>
+  <data name="Menu.PendingApprovals" xml:space="preserve"><value>Onay Bekleyenler</value></data>
+  <data name="Menu.TeamTasks" xml:space="preserve"><value>Ekip Görevleri</value></data>
+  <data name="Menu.General" xml:space="preserve"><value>Genel</value></data>
+  <data name="Menu.OrgChart" xml:space="preserve"><value>Organizasyon Şeması</value></data>
+  <data name="Menu.Contact" xml:space="preserve"><value>İletişim</value></data>
+  <data name="Menu.Account" xml:space="preserve"><value>Hesap</value></data>
+  <data name="Menu.Profile" xml:space="preserve"><value>Profilim</value></data>
+
+  <data name="Common.Logout" xml:space="preserve"><value>Çıkış</value></data>
+  <data name="Common.Inbox" xml:space="preserve"><value>Gelen Mesajlar</value></data>
+  <data name="Common.Save" xml:space="preserve"><value>Kaydet</value></data>
+  <data name="Common.Cancel" xml:space="preserve"><value>İptal</value></data>
+  <data name="Common.Delete" xml:space="preserve"><value>Sil</value></data>
+  <data name="Common.Edit" xml:space="preserve"><value>Düzenle</value></data>
+  <data name="Common.Back" xml:space="preserve"><value>Geri</value></data>
+  <data name="Common.BackTo" xml:space="preserve"><value>Geri Dön</value></data>
+  <data name="Common.Total" xml:space="preserve"><value>Toplam</value></data>
+  <data name="Common.Task" xml:space="preserve"><value>görev</value></data>
+  <data name="Common.Update" xml:space="preserve"><value>Güncelle</value></data>
+  <data name="Common.Add" xml:space="preserve"><value>Ekle</value></data>
+  <data name="Common.Actions" xml:space="preserve"><value>İşlemler</value></data>
+  <data name="Common.Date" xml:space="preserve"><value>Tarih</value></data>
+  <data name="Common.CreatedOn" xml:space="preserve"><value>Oluşturma Tarihi</value></data>
+  <data name="Common.None" xml:space="preserve"><value>—</value></data>
+  <data name="Common.NoDepartment" xml:space="preserve"><value>Departmansız</value></data>
+  <data name="Common.Select" xml:space="preserve"><value>seçin</value></data>
+  <data name="Common.Details" xml:space="preserve"><value>Detay</value></data>
+  <data name="Common.Confirm" xml:space="preserve"><value>Emin misiniz?</value></data>
+  <data name="Common.Other" xml:space="preserve"><value>Diğer</value></data>
+  <data name="Common.Unknown" xml:space="preserve"><value>Bilinmiyor</value></data>
+
+  <data name="Field.UserName" xml:space="preserve"><value>Kullanıcı Adı</value></data>
+  <data name="Field.Password" xml:space="preserve"><value>Şifre</value></data>
+  <data name="Field.NewPassword" xml:space="preserve"><value>Yeni Şifre</value></data>
+  <data name="Field.ConfirmPassword" xml:space="preserve"><value>Yeni Şifre (Tekrar)</value></data>
+  <data name="Field.CurrentPassword" xml:space="preserve"><value>Mevcut Şifre</value></data>
+  <data name="Field.FirstName" xml:space="preserve"><value>Ad</value></data>
+  <data name="Field.LastName" xml:space="preserve"><value>Soyad</value></data>
+  <data name="Field.Department" xml:space="preserve"><value>Departman</value></data>
+  <data name="Field.Parent" xml:space="preserve"><value>Üst Yönetici</value></data>
+  <data name="Field.Phone" xml:space="preserve"><value>Telefon</value></data>
+  <data name="Field.Email" xml:space="preserve"><value>E-Posta</value></data>
+  <data name="Field.AccountingCode" xml:space="preserve"><value>Muhasebe Kodu</value></data>
+  <data name="Field.Roles" xml:space="preserve"><value>Roller</value></data>
+  <data name="Field.TaskTitle" xml:space="preserve"><value>Görev Başlığı</value></data>
+  <data name="Field.TaskDescription" xml:space="preserve"><value>Açıklama</value></data>
+  <data name="Field.Assignee" xml:space="preserve"><value>Atanan Personel</value></data>
+  <data name="Field.ProposeTitle" xml:space="preserve"><value>İş Konusu</value></data>
+  <data name="Field.ProposeDescription" xml:space="preserve"><value>Detaylı Açıklama</value></data>
+
+  <data name="Validation.UserNameRequired" xml:space="preserve"><value>Kullanıcı adı zorunludur.</value></data>
+  <data name="Validation.PasswordRequired" xml:space="preserve"><value>Şifre zorunludur.</value></data>
+  <data name="Validation.NewPasswordRequired" xml:space="preserve"><value>Yeni şifre zorunludur.</value></data>
+  <data name="Validation.CurrentPasswordRequired" xml:space="preserve"><value>Mevcut şifrenizi girin.</value></data>
+  <data name="Validation.ConfirmPasswordRequired" xml:space="preserve"><value>Şifreyi tekrar girin.</value></data>
+  <data name="Validation.PasswordMinLength" xml:space="preserve"><value>Şifreniz en az 6 karakter olmalı.</value></data>
+  <data name="Validation.PasswordsMustMatch" xml:space="preserve"><value>Şifreler eşleşmiyor.</value></data>
+  <data name="Validation.FirstNameRequired" xml:space="preserve"><value>Ad zorunludur.</value></data>
+  <data name="Validation.LastNameRequired" xml:space="preserve"><value>Soyad zorunludur.</value></data>
+  <data name="Validation.PhoneInvalid" xml:space="preserve"><value>Geçerli bir telefon numarası girin.</value></data>
+  <data name="Validation.EmailInvalid" xml:space="preserve"><value>Geçerli bir e-posta adresi girin.</value></data>
+  <data name="Validation.TitleRequired" xml:space="preserve"><value>Başlık zorunludur.</value></data>
+  <data name="Validation.AssigneeRequired" xml:space="preserve"><value>Bir personel seçmelisiniz.</value></data>
+  <data name="Validation.ProposeTitleRequired" xml:space="preserve"><value>Konu zorunludur.</value></data>
+  <data name="Validation.ProposeDescRequired" xml:space="preserve"><value>Açıklama zorunludur.</value></data>
+
+  <data name="Login.PageTitle" xml:space="preserve"><value>Giriş Yap</value></data>
+  <data name="Login.Heading" xml:space="preserve"><value>Sisteme Giriş</value></data>
+  <data name="Login.UserName" xml:space="preserve"><value>Kullanıcı Adı</value></data>
+  <data name="Login.Password" xml:space="preserve"><value>Şifre</value></data>
+  <data name="Login.Submit" xml:space="preserve"><value>Giriş Yap</value></data>
+  <data name="Login.TestAccount" xml:space="preserve"><value>Test hesabı</value></data>
+  <data name="Login.InvalidCredentials" xml:space="preserve"><value>Kullanıcı adı veya şifre hatalı.</value></data>
+  <data name="Login.UserNotFound" xml:space="preserve"><value>Kullanıcı bulunamadı.</value></data>
+
+  <data name="Home.PageTitle" xml:space="preserve"><value>Anasayfa</value></data>
+  <data name="Home.Welcome" xml:space="preserve"><value>Hoş geldiniz</value></data>
+  <data name="Home.OpenGmail" xml:space="preserve"><value>Gmail'i Aç</value></data>
+  <data name="Home.MyTaskSummary" xml:space="preserve"><value>Görev Özetim</value></data>
+  <data name="Home.NewlyAssigned" xml:space="preserve"><value>Yeni Atanan</value></data>
+  <data name="Home.AwaitingStart" xml:space="preserve"><value>başlamayı bekliyor</value></data>
+  <data name="Home.InProgress" xml:space="preserve"><value>Devam Eden</value></data>
+  <data name="Home.BeingWorkedOn" xml:space="preserve"><value>üzerinde çalışılıyor</value></data>
+  <data name="Home.Completed" xml:space="preserve"><value>Tamamlanan</value></data>
+  <data name="Home.Successfully" xml:space="preserve"><value>başarıyla bitirildi</value></data>
+  <data name="Home.Cancelled" xml:space="preserve"><value>İptal Edilen</value></data>
+  <data name="Home.History" xml:space="preserve"><value>geçmiş</value></data>
+  <data name="Home.OverallProgress" xml:space="preserve"><value>Genel İlerleme</value></data>
+  <data name="Home.NoTasksAssigned" xml:space="preserve"><value>Henüz sana atanmış görev bulunmuyor.</value></data>
+  <data name="Home.TeamManagement" xml:space="preserve"><value>Ekip Yönetimim</value></data>
+  <data name="Home.MyTeam" xml:space="preserve"><value>Ekibim</value></data>
+  <data name="Home.SubordinateCount" xml:space="preserve"><value>altında çalışan kişi</value></data>
+  <data name="Home.AssignedByMe" xml:space="preserve"><value>Atadığım Görevler</value></data>
+  <data name="Home.TotalTask" xml:space="preserve"><value>toplam görev</value></data>
+  <data name="Home.TeamActiveTask" xml:space="preserve"><value>Ekibin Aktif Görevi</value></data>
+  <data name="Home.Ongoing" xml:space="preserve"><value>devam ediyor</value></data>
+  <data name="Home.SystemOverview" xml:space="preserve"><value>Sistem Geneli</value></data>
+  <data name="Home.TotalUsers" xml:space="preserve"><value>Toplam Kullanıcı</value></data>
+  <data name="Home.ActiveRecord" xml:space="preserve"><value>aktif kayıt</value></data>
+  <data name="Home.TotalDepartments" xml:space="preserve"><value>Toplam Departman</value></data>
+  <data name="Home.OrgUnit" xml:space="preserve"><value>organizasyon birimi</value></data>
+  <data name="Home.TotalTasks" xml:space="preserve"><value>Toplam Görev</value></data>
+  <data name="Home.InSystem" xml:space="preserve"><value>sistemde</value></data>
+  <data name="Home.Authorities" xml:space="preserve"><value>Yetkilerim</value></data>
+  <data name="Home.ActiveAuthority" xml:space="preserve"><value>aktif yetki</value></data>
+  <data name="Home.SystemTaskDistribution" xml:space="preserve"><value>Sistem Görev Dağılımı</value></data>
+  <data name="Home.NoPermissionInfo" xml:space="preserve"><value>Sol menüden yetkili olduğunuz alanlara erişebilirsiniz. Yardıma ihtiyacın olursa sağ alt köşedeki 🤖 butonuna tıklayabilirsin.</value></data>
+  <data name="Home.Tip" xml:space="preserve"><value>İpucu: Sol menüden yetkili olduğun alanlara erişebilir, sağ alttaki asistandan yardım alabilirsin.</value></data>
+  <data name="Home.AssistantName" xml:space="preserve"><value>Yardımcı Asistan</value></data>
+  <data name="Home.AssistantOnline" xml:space="preserve"><value>Çevrimiçi</value></data>
+  <data name="Home.AssistantPlaceholder" xml:space="preserve"><value>Bir şey sor...</value></data>
+
+  <data name="Status.Assigned" xml:space="preserve"><value>Atandı</value></data>
+  <data name="Status.Started" xml:space="preserve"><value>Başladı</value></data>
+  <data name="Status.InProgress" xml:space="preserve"><value>Devam Ediyor</value></data>
+  <data name="Status.Completed" xml:space="preserve"><value>Tamamlandı</value></data>
+  <data name="Status.Cancelled" xml:space="preserve"><value>İptal Edildi</value></data>
+  <data name="Status.PendingApproval" xml:space="preserve"><value>Onay Bekliyor</value></data>
+  <data name="Status.Rejected" xml:space="preserve"><value>Reddedildi</value></data>
+
+  <data name="Kanban.PageTitle" xml:space="preserve"><value>Sistem Görev Dağılımı</value></data>
+  <data name="Kanban.ColPendingApproval" xml:space="preserve"><value>Onay Bekleyen</value></data>
+  <data name="Kanban.ColAssigned" xml:space="preserve"><value>Aktif (Atandı)</value></data>
+  <data name="Kanban.ColInProgress" xml:space="preserve"><value>Devam Eden</value></data>
+  <data name="Kanban.ColCompleted" xml:space="preserve"><value>Tamamlanan</value></data>
+  <data name="Kanban.ColHistory" xml:space="preserve"><value>Geçmiş</value></data>
+  <data name="Kanban.NoTasks" xml:space="preserve"><value>Hiç görev yok</value></data>
+  <data name="Kanban.RejectedLabel" xml:space="preserve"><value>Reddedildi</value></data>
+  <data name="Kanban.ScopeAll" xml:space="preserve"><value>Sistemdeki tüm görevler</value></data>
+  <data name="Kanban.ScopeTeam" xml:space="preserve"><value>Ekibinizin ({0} kişi) görevleri</value></data>
+  <data name="Kanban.ScopeMine" xml:space="preserve"><value>Görevleriniz</value></data>
+
+  <data name="Task.PageTitleCreate" xml:space="preserve"><value>Yeni Görev</value></data>
+  <data name="Task.HeadingCreate" xml:space="preserve"><value>Yeni Görev Oluştur</value></data>
+  <data name="Task.PageTitleEdit" xml:space="preserve"><value>Görevi Düzenle</value></data>
+  <data name="Task.HeadingEdit" xml:space="preserve"><value>Görevi Düzenle</value></data>
+  <data name="Task.PageTitleDetail" xml:space="preserve"><value>Görev Detayı</value></data>
+  <data name="Task.SelectStaff" xml:space="preserve"><value>-- Personel seçin --</value></data>
+  <data name="Task.CreateButton" xml:space="preserve"><value>Görevi Oluştur</value></data>
+  <data name="Task.Assigner" xml:space="preserve"><value>Atayan</value></data>
+  <data name="Task.Assignee" xml:space="preserve"><value>Atanan</value></data>
+  <data name="Task.Description" xml:space="preserve"><value>Açıklama</value></data>
+  <data name="Task.NoDescription" xml:space="preserve"><value>Açıklama yok</value></data>
+  <data name="Task.UpdateStatus" xml:space="preserve"><value>Durum Güncelle</value></data>
+  <data name="Task.UpdateStatusInfo" xml:space="preserve"><value>Görevin durumunu sen güncelleyebilirsin.</value></data>
+  <data name="Task.Start" xml:space="preserve"><value>Başla</value></data>
+  <data name="Task.Complete" xml:space="preserve"><value>Tamamla</value></data>
+  <data name="Task.CancelTask" xml:space="preserve"><value>İptal Et</value></data>
+  <data name="Task.Management" xml:space="preserve"><value>Yönetim</value></data>
+  <data name="Task.NoTasksInCategory" xml:space="preserve"><value>Henüz bu kategoride görev bulunmuyor.</value></data>
+  <data name="Task.ConfirmCancel" xml:space="preserve"><value>Görevi iptal etmek istediğine emin misin?</value></data>
+  <data name="Task.ConfirmDelete" xml:space="preserve"><value>Bu görevi silmek istediğine emin misin?</value></data>
+  <data name="Task.PageTitlePropose" xml:space="preserve"><value>İş Bildir</value></data>
+  <data name="Task.HeadingPropose" xml:space="preserve"><value>Yeni İş Bildir</value></data>
+  <data name="Task.ProposeInfo" xml:space="preserve"><value>Yapılması gereken bir iş varsa üst yöneticine bildirebilirsin. Onaylandıktan sonra senin aktif görevlerine eklenecek.</value></data>
+  <data name="Task.ProposeTitlePh" xml:space="preserve"><value>Örn: Otopark zemin temizliği gerekiyor</value></data>
+  <data name="Task.ProposeDescPh" xml:space="preserve"><value>Detayları açıkla: ne, neden, ne zaman, nasıl...</value></data>
+  <data name="Task.ProposeNote" xml:space="preserve"><value>Bu iş bildirimin üst yöneticine iletilecek. Onayladığında aktif görevlerine eklenecek, reddederse sebep belirtecek.</value></data>
+  <data name="Task.SubmitApproval" xml:space="preserve"><value>Onaya Gönder</value></data>
+  <data name="Task.PageTitlePending" xml:space="preserve"><value>Onay Bekleyen İşler</value></data>
+  <data name="Task.PendingInfo" xml:space="preserve"><value>Ekibindeki kişilerin bildirdiği iş talepleri. Onaylayınca aktif görev olur.</value></data>
+  <data name="Task.PendingEmptyTitle" xml:space="preserve"><value>Onay bekleyen iş yok</value></data>
+  <data name="Task.PendingEmptyDesc" xml:space="preserve"><value>Ekibinden gelen iş bildirimleri burada görünecek.</value></data>
+  <data name="Task.Reporter" xml:space="preserve"><value>Bildiren</value></data>
+  <data name="Task.Approve" xml:space="preserve"><value>Onayla</value></data>
+  <data name="Task.Reject" xml:space="preserve"><value>Reddet</value></data>
+  <data name="Task.ConfirmApprove" xml:space="preserve"><value>Bu işi onaylamak istediğine emin misin?</value></data>
+  <data name="Task.RejectModalTitle" xml:space="preserve"><value>İşi Reddet</value></data>
+  <data name="Task.TaskLabel" xml:space="preserve"><value>İş</value></data>
+  <data name="Task.RejectReason" xml:space="preserve"><value>Red Sebebi</value></data>
+  <data name="Task.RejectReasonPh" xml:space="preserve"><value>Neden reddedildiğini açıkla...</value></data>
+  <data name="Task.PendingCount" xml:space="preserve"><value>onay bekleyen iş</value></data>
+
+  <data name="User.PageTitleIndex" xml:space="preserve"><value>Kullanıcılar</value></data>
+  <data name="User.NewUser" xml:space="preserve"><value>Yeni Kullanıcı</value></data>
+  <data name="User.PageTitleCreate" xml:space="preserve"><value>Yeni Kullanıcı</value></data>
+  <data name="User.HeadingCreate" xml:space="preserve"><value>Yeni Kullanıcı Ekle</value></data>
+  <data name="User.PageTitleEdit" xml:space="preserve"><value>Kullanıcıyı Düzenle</value></data>
+  <data name="User.HeadingEdit" xml:space="preserve"><value>Kullanıcıyı Düzenle</value></data>
+  <data name="User.FullName" xml:space="preserve"><value>Ad Soyad</value></data>
+  <data name="User.UserName" xml:space="preserve"><value>Kullanıcı Adı</value></data>
+  <data name="User.Phone" xml:space="preserve"><value>Telefon</value></data>
+  <data name="User.Department" xml:space="preserve"><value>Departman</value></data>
+  <data name="User.Parent" xml:space="preserve"><value>Üst Yönetici</value></data>
+  <data name="User.Roles" xml:space="preserve"><value>Roller</value></data>
+  <data name="User.NoUsers" xml:space="preserve"><value>Henüz kullanıcı bulunmuyor.</value></data>
+  <data name="User.NoParent" xml:space="preserve"><value>— Üst yok —</value></data>
+  <data name="User.Count" xml:space="preserve"><value>kullanıcı</value></data>
+  <data name="User.ConfirmDelete" xml:space="preserve"><value>Bu kullanıcıyı silmek istediğinize emin misiniz?</value></data>
+  <data name="User.PersonalInfo" xml:space="preserve"><value>Kişisel Bilgiler</value></data>
+  <data name="User.AccountInfo" xml:space="preserve"><value>Hesap Bilgileri</value></data>
+  <data name="User.Organization" xml:space="preserve"><value>Organizasyon</value></data>
+  <data name="User.SelectDepartment" xml:space="preserve"><value>-- Departman seçin --</value></data>
+  <data name="User.SelectParent" xml:space="preserve"><value>-- Üst yönetici (opsiyonel) --</value></data>
+  <data name="User.ParentHint" xml:space="preserve"><value>Bu kullanıcının kime bağlı çalışacağı.</value></data>
+  <data name="User.UserNameUnchangeable" xml:space="preserve"><value>(değiştirilemez)</value></data>
+  <data name="User.PageTitleReset" xml:space="preserve"><value>Şifre Sıfırla</value></data>
+  <data name="User.HeadingReset" xml:space="preserve"><value>Şifre Sıfırla</value></data>
+  <data name="User.ResetSubmit" xml:space="preserve"><value>Şifreyi Sıfırla</value></data>
+  <data name="User.ResetUserLabel" xml:space="preserve"><value>Kullanıcı</value></data>
+
+  <data name="Role.PageTitleIndex" xml:space="preserve"><value>Roller</value></data>
+  <data name="Role.Heading" xml:space="preserve"><value>Roller ve Yetkiler</value></data>
+  <data name="Role.NewRole" xml:space="preserve"><value>Yeni Rol</value></data>
+  <data name="Role.PageTitleCreate" xml:space="preserve"><value>Yeni Rol</value></data>
+  <data name="Role.HeadingCreate" xml:space="preserve"><value>Yeni Rol Ekle</value></data>
+  <data name="Role.PageTitleEdit" xml:space="preserve"><value>Rolü Düzenle</value></data>
+  <data name="Role.HeadingEdit" xml:space="preserve"><value>Rolü Düzenle</value></data>
+  <data name="Role.Name" xml:space="preserve"><value>Rol Adı</value></data>
+  <data name="Role.NoRoles" xml:space="preserve"><value>Henüz rol bulunmuyor.</value></data>
+  <data name="Role.Count" xml:space="preserve"><value>rol</value></data>
+  <data name="Role.ConfirmDelete" xml:space="preserve"><value>Bu rolü silmek istediğinize emin misiniz?</value></data>
+  <data name="Role.AuthoritiesBtn" xml:space="preserve"><value>Yetkiler</value></data>
+  <data name="Role.PageTitleAuth" xml:space="preserve"><value>Rol Yetkileri</value></data>
+  <data name="Role.AuthHeading" xml:space="preserve"><value>Yetkiler</value></data>
+  <data name="Role.AuthIntro" xml:space="preserve"><value>Bu role atanacak yetkileri seçin. Tikleri kaldırarak yetkiyi geri alabilirsiniz.</value></data>
+  <data name="Role.SelectAll" xml:space="preserve"><value>Tümünü Seç</value></data>
+  <data name="Role.DeselectAll" xml:space="preserve"><value>Tümünü Kaldır</value></data>
+  <data name="Role.CreateInfo" xml:space="preserve"><value>Rolü oluşturduktan sonra Yetkiler butonu ile bu role hangi yetkileri vereceğini seçebilirsin.</value></data>
+
+  <data name="Dept.PageTitleIndex" xml:space="preserve"><value>Departmanlar</value></data>
+  <data name="Dept.NewDept" xml:space="preserve"><value>Yeni Departman</value></data>
+  <data name="Dept.PageTitleCreate" xml:space="preserve"><value>Yeni Departman</value></data>
+  <data name="Dept.HeadingCreate" xml:space="preserve"><value>Yeni Departman Ekle</value></data>
+  <data name="Dept.PageTitleEdit" xml:space="preserve"><value>Departmanı Düzenle</value></data>
+  <data name="Dept.HeadingEdit" xml:space="preserve"><value>Departmanı Düzenle</value></data>
+  <data name="Dept.Name" xml:space="preserve"><value>Departman Adı</value></data>
+  <data name="Dept.NoDepts" xml:space="preserve"><value>Henüz departman bulunmuyor.</value></data>
+  <data name="Dept.Count" xml:space="preserve"><value>departman</value></data>
+  <data name="Dept.ConfirmDelete" xml:space="preserve"><value>Bu departmanı silmek istediğinize emin misiniz?</value></data>
+
+  <data name="Contact.Messages" xml:space="preserve"><value>Mesajlar</value></data>
+  <data name="Contact.PageTitleIndex" xml:space="preserve"><value>Yeni Mesaj</value></data>
+  <data name="Contact.PageTitleInbox" xml:space="preserve"><value>Gelen Kutusu</value></data>
+  <data name="Contact.PageTitleSent" xml:space="preserve"><value>Gönderilenler</value></data>
+  <data name="Contact.PageTitleRead" xml:space="preserve"><value>Mesaj</value></data>
+  <data name="Contact.TabInbox" xml:space="preserve"><value>Gelen Kutusu</value></data>
+  <data name="Contact.TabSent" xml:space="preserve"><value>Gönderilenler</value></data>
+  <data name="Contact.TabNew" xml:space="preserve"><value>Yeni Mesaj</value></data>
+  <data name="Contact.Recipient" xml:space="preserve"><value>Alıcı</value></data>
+  <data name="Contact.Subject" xml:space="preserve"><value>Konu</value></data>
+  <data name="Contact.SelectRecipient" xml:space="preserve"><value>-- Bir alıcı seçin --</value></data>
+  <data name="Contact.SubjectPh" xml:space="preserve"><value>Konu yazın...</value></data>
+  <data name="Contact.MessagePh" xml:space="preserve"><value>Mesajınızı yazın...</value></data>
+  <data name="Contact.Send" xml:space="preserve"><value>Gönder</value></data>
+  <data name="Contact.EmptyInbox" xml:space="preserve"><value>Gelen kutunuz boş</value></data>
+  <data name="Contact.EmptyInboxSub" xml:space="preserve"><value>Yeni mesajlar burada görünecek.</value></data>
+  <data name="Contact.EmptySent" xml:space="preserve"><value>Henüz gönderdiğiniz mesaj yok</value></data>
+  <data name="Contact.EmptySentSub" xml:space="preserve"><value>Gönderdiğiniz mesajlar burada görünecek.</value></data>
+  <data name="Contact.MsgCount" xml:space="preserve"><value>mesaj</value></data>
+  <data name="Contact.Unread" xml:space="preserve"><value>okunmamış</value></data>
+  <data name="Contact.New" xml:space="preserve"><value>YENİ</value></data>
+  <data name="Contact.To" xml:space="preserve"><value>Kime</value></data>
+  <data name="Contact.From" xml:space="preserve"><value>Gönderen</value></data>
+  <data name="Contact.Yesterday" xml:space="preserve"><value>Dün</value></data>
+  <data name="Contact.BackToInbox" xml:space="preserve"><value>Gelen kutusuna dön</value></data>
+  <data name="Contact.BackToSent" xml:space="preserve"><value>Gönderilenlere dön</value></data>
+  <data name="Contact.SentTotal" xml:space="preserve"><value>gönderilmiş mesaj</value></data>
+  <data name="Contact.Reply" xml:space="preserve"><value>Cevapla</value></data>
+  <data name="Contact.ConfirmDelete" xml:space="preserve"><value>Bu mesajı silmek istediğine emin misin?</value></data>
+  <data name="Contact.Delete" xml:space="preserve"><value>Sil</value></data>
+  <data name="Contact.EmailHeading" xml:space="preserve"><value>Yeni Mesaj</value></data>
+  <data name="Contact.ReplyOn" xml:space="preserve"><value>tarihinde yazdı</value></data>
+
+  <data name="Org.PageTitle" xml:space="preserve"><value>Organizasyon Şeması</value></data>
+  <data name="Org.TotalEmployees" xml:space="preserve"><value>Toplam Çalışan</value></data>
+  <data name="Org.TopManagement" xml:space="preserve"><value>Üst Yönetim</value></data>
+  <data name="Org.ViewedAt" xml:space="preserve"><value>Görüntülenme</value></data>
+  <data name="Org.EmptyTitle" xml:space="preserve"><value>Henüz organizasyon yapısı oluşturulmamış</value></data>
+  <data name="Org.EmptyDesc" xml:space="preserve"><value>Kullanıcılara üst yönetici atayın, hiyerarşi burada görünecek.</value></data>
+  <data name="Org.Info" xml:space="preserve"><value>Bilgi:</value></data>
+  <data name="Org.InfoDesc" xml:space="preserve"><value>Bu şema, sistemdeki tüm kullanıcıların ve aralarındaki yönetici-çalışan ilişkilerinin görsel temsilidir.</value></data>
+  <data name="Org.Level" xml:space="preserve"><value>Seviye</value></data>
+  <data name="Org.DirectReports" xml:space="preserve"><value>kişi</value></data>
+  <data name="Org.SearchPh" xml:space="preserve"><value>İsim, kullanıcı adı, departman ara...</value></data>
+  <data name="Org.ExpandAll" xml:space="preserve"><value>Tümünü Aç</value></data>
+  <data name="Org.CollapseAll" xml:space="preserve"><value>Tümünü Kapat</value></data>
+
+  <data name="Profile.PageTitle" xml:space="preserve"><value>Profilim</value></data>
+  <data name="Profile.PersonalInfo" xml:space="preserve"><value>Kişisel Bilgiler</value></data>
+  <data name="Profile.FullName" xml:space="preserve"><value>Ad Soyad</value></data>
+  <data name="Profile.UserName" xml:space="preserve"><value>Kullanıcı Adı</value></data>
+  <data name="Profile.Department" xml:space="preserve"><value>Departman</value></data>
+  <data name="Profile.Parent" xml:space="preserve"><value>Üst Yönetici</value></data>
+  <data name="Profile.StartDate" xml:space="preserve"><value>İşe Başlama</value></data>
+  <data name="Profile.ContactInfo" xml:space="preserve"><value>İletişim Bilgileri (düzenleyebilirsin)</value></data>
+  <data name="Profile.UpdateInfo" xml:space="preserve"><value>Bilgilerimi Güncelle</value></data>
+  <data name="Profile.PasswordMgmt" xml:space="preserve"><value>Şifre Yönetimi</value></data>
+  <data name="Profile.PasswordHint" xml:space="preserve"><value>Hesap güvenliğiniz için şifrenizi düzenli olarak değiştirmeniz önerilir.</value></data>
+  <data name="Profile.ChangeMyPwd" xml:space="preserve"><value>Şifremi Değiştir</value></data>
+  <data name="Profile.MyRoles" xml:space="preserve"><value>Rollerim</value></data>
+  <data name="Profile.MyAuthorities" xml:space="preserve"><value>Yetkilerim</value></data>
+  <data name="Profile.NoRole" xml:space="preserve"><value>Henüz rol atanmamış.</value></data>
+  <data name="Profile.NoAuthority" xml:space="preserve"><value>Henüz yetki yok.</value></data>
+
+  <data name="ChangePwd.PageTitle" xml:space="preserve"><value>Şifre Değiştir</value></data>
+  <data name="ChangePwd.Heading" xml:space="preserve"><value>Şifre Değiştir</value></data>
+  <data name="ChangePwd.Hint" xml:space="preserve"><value>Hesap güvenliğiniz için yeni şifreniz en az 6 karakter olmalı.</value></data>
+  <data name="ChangePwd.Submit" xml:space="preserve"><value>Şifreyi Değiştir</value></data>
+
+  <data name="Access.PageTitle" xml:space="preserve"><value>Yetkiniz yok</value></data>
+  <data name="Access.Heading" xml:space="preserve"><value>Erişiminiz Reddedildi</value></data>
+  <data name="Access.Description" xml:space="preserve"><value>Bu sayfayı görüntülemek için yetkiniz bulunmuyor.</value></data>
+  <data name="Access.BackHome" xml:space="preserve"><value>Anasayfaya Dön</value></data>
+
+  <data name="Authority.User-Manage" xml:space="preserve"><value>Kullanıcı Yönetimi</value></data>
+  <data name="Authority.Role-Manage" xml:space="preserve"><value>Rol Yönetimi</value></data>
+  <data name="Authority.Department-Manage" xml:space="preserve"><value>Departman Yönetimi</value></data>
+  <data name="Authority.Authority-Manage" xml:space="preserve"><value>Yetki Yönetimi</value></data>
+  <data name="Authority.Task-Create" xml:space="preserve"><value>Görev Oluşturma</value></data>
+  <data name="Authority.Task-Assign" xml:space="preserve"><value>Görev Atama</value></data>
+  <data name="Authority.Task-View" xml:space="preserve"><value>Görev Görüntüleme</value></data>
+  <data name="Authority.Task-Update" xml:space="preserve"><value>Görev Güncelleme</value></data>
+  <data name="Authority.Task-ViewAll" xml:space="preserve"><value>Tüm Görevleri Görüntüleme</value></data>
+  <data name="Authority.Dashboard-View" xml:space="preserve"><value>Anasayfa Görüntüleme</value></data>
+  <data name="Authority.Organization-View" xml:space="preserve"><value>Organizasyon Görüntüleme</value></data>
+  <data name="Authority.Task-Propose" xml:space="preserve"><value>İş Bildirme</value></data>
+  <data name="Authority.Task-Approve" xml:space="preserve"><value>İş Onaylama</value></data>
+  <data name="Authority.Task-SystemView" xml:space="preserve"><value>Sistem Görev Dağılımı</value></data>
+
+  <data name="AuthCat.Management" xml:space="preserve"><value>Yönetim</value></data>
+  <data name="AuthCat.TaskOps" xml:space="preserve"><value>Görev İşlemleri</value></data>
+  <data name="AuthCat.General" xml:space="preserve"><value>Genel</value></data>
+
+  <data name="Msg.TaskCreated" xml:space="preserve"><value>Görev başarıyla oluşturuldu.</value></data>
+  <data name="Msg.TaskUpdated" xml:space="preserve"><value>Görev güncellendi.</value></data>
+  <data name="Msg.TaskDeleted" xml:space="preserve"><value>Görev silindi.</value></data>
+  <data name="Msg.TaskStatusUpdated" xml:space="preserve"><value>Görev durumu güncellendi: {0}</value></data>
+  <data name="Msg.TaskApproved" xml:space="preserve"><value>Görev onaylandı ve aktif görevlere eklendi.</value></data>
+  <data name="Msg.TaskRejected" xml:space="preserve"><value>Görev reddedildi.</value></data>
+  <data name="Msg.TaskProposed" xml:space="preserve"><value>İş bildiriminiz üst yöneticinizin onayına sunuldu.</value></data>
+  <data name="Msg.OnlyAssigneeUpdate" xml:space="preserve"><value>Bu görevin durumunu sadece atanan kişi değiştirebilir.</value></data>
+  <data name="Msg.InvalidStatus" xml:space="preserve"><value>Geçersiz durum.</value></data>
+  <data name="Msg.OnlyAssignerEdit" xml:space="preserve"><value>Sadece görevi atayan kişi düzenleyebilir.</value></data>
+  <data name="Msg.NoDeletePermission" xml:space="preserve"><value>Bu görevi silme yetkiniz yok.</value></data>
+  <data name="Msg.RejectReasonRequired" xml:space="preserve"><value>Red sebebi belirtmelisiniz.</value></data>
+  <data name="Msg.CannotAssignTeam" xml:space="preserve"><value>Bu kişiye görev atayamazsınız. Sadece kendi ekibinizdekilere atayabilirsiniz.</value></data>
+  <data name="Msg.CannotAssign" xml:space="preserve"><value>Bu kişiye görev atayamazsınız.</value></data>
+
+  <data name="Msg.UserCreated" xml:space="preserve"><value>Kullanıcı başarıyla oluşturuldu.</value></data>
+  <data name="Msg.UserUpdated" xml:space="preserve"><value>Kullanıcı güncellendi.</value></data>
+  <data name="Msg.UserDeleted" xml:space="preserve"><value>Kullanıcı silindi.</value></data>
+  <data name="Msg.UserNameExists" xml:space="preserve"><value>Bu kullanıcı adı zaten kullanılıyor.</value></data>
+  <data name="Msg.PasswordReset" xml:space="preserve"><value>{0} kullanıcısının şifresi sıfırlandı.</value></data>
+  <data name="Msg.CannotDeleteSelf" xml:space="preserve"><value>Kendi hesabınızı silemezsiniz.</value></data>
+  <data name="Msg.SelfManager" xml:space="preserve"><value>Bir kullanıcı kendi yöneticisi olamaz.</value></data>
+  <data name="Msg.ProfileUpdated" xml:space="preserve"><value>Profiliniz güncellendi.</value></data>
+  <data name="Msg.OnlyOwnProfile" xml:space="preserve"><value>Sadece kendi profilinizi güncelleyebilirsiniz.</value></data>
+  <data name="Msg.PasswordChanged" xml:space="preserve"><value>Şifreniz başarıyla değiştirildi.</value></data>
+  <data name="Msg.CurrentPasswordWrong" xml:space="preserve"><value>Mevcut şifre yanlış.</value></data>
+
+  <data name="Msg.RoleCreated" xml:space="preserve"><value>Rol başarıyla oluşturuldu.</value></data>
+  <data name="Msg.RoleUpdated" xml:space="preserve"><value>Rol güncellendi.</value></data>
+  <data name="Msg.RoleDeleted" xml:space="preserve"><value>Rol silindi.</value></data>
+  <data name="Msg.RoleAuthsUpdated" xml:space="preserve"><value>Rolün yetkileri güncellendi.</value></data>
+
+  <data name="Msg.DeptCreated" xml:space="preserve"><value>Departman başarıyla oluşturuldu.</value></data>
+  <data name="Msg.DeptUpdated" xml:space="preserve"><value>Departman güncellendi.</value></data>
+  <data name="Msg.DeptDeleted" xml:space="preserve"><value>Departman silindi.</value></data>
+
+  <data name="Msg.RecipientNotFound" xml:space="preserve"><value>Alıcı bulunamadı.</value></data>
+  <data name="Msg.SenderNotFound" xml:space="preserve"><value>Gönderen kullanıcı bulunamadı. Lütfen tekrar giriş yapın.</value></data>
+  <data name="Msg.MessageNotFound" xml:space="preserve"><value>Mesaj bulunamadı.</value></data>
+  <data name="Msg.MessageNoPermission" xml:space="preserve"><value>Bu mesajı görüntüleme yetkiniz yok.</value></data>
+  <data name="Msg.MessageDeleted" xml:space="preserve"><value>Mesaj silindi.</value></data>
+  <data name="Msg.MessageSentAppEmail" xml:space="preserve"><value>✓ Mesaj gönderildi: {0} (uygulama içi + e-posta)</value></data>
+  <data name="Msg.MessageSentApp" xml:space="preserve"><value>✓ Mesaj gönderildi: {0} (uygulama içi)</value></data>
+
+  <data name="Assist.Hello" xml:space="preserve"><value>Merhaba</value></data>
+  <data name="Assist.Greeting" xml:space="preserve"><value>Merhaba {0}! 👋 Sana nasıl yardımcı olabilirim?</value></data>
+  <data name="Assist.NotUnderstood" xml:space="preserve"><value>Üzgünüm, bunu anlayamadım 🤔</value></data>
+
+  <data name="Assist.Q.MyTasks" xml:space="preserve"><value>Görevlerimi nerede görürüm?</value></data>
+  <data name="Assist.A.MyTasks" xml:space="preserve"><value>Sana atanan tüm görevleri sol menüdeki &lt;strong&gt;📋 Görevlerim&lt;/strong&gt; sayfasından takip edebilirsin.</value></data>
+  <data name="Assist.L.MyTasks" xml:space="preserve"><value>Görevlerime git</value></data>
+
+  <data name="Assist.Q.NewTask" xml:space="preserve"><value>Yeni görev nasıl oluştururum?</value></data>
+  <data name="Assist.A.NewTask" xml:space="preserve"><value>Yeni bir görev için sol menüdeki &lt;strong&gt;➕ Yeni Görev&lt;/strong&gt; sayfasına git. Sadece kendi altındaki kişilere görev atayabilirsin.</value></data>
+  <data name="Assist.L.NewTask" xml:space="preserve"><value>Yeni görev oluştur</value></data>
+
+  <data name="Assist.Q.AssignedByMe" xml:space="preserve"><value>Atadığım görevleri nasıl takip ederim?</value></data>
+  <data name="Assist.A.AssignedByMe" xml:space="preserve"><value>Atadığın görevleri &lt;strong&gt;📝 Atadığım Görevler&lt;/strong&gt; sayfasından görebilirsin.</value></data>
+  <data name="Assist.L.AssignedByMe" xml:space="preserve"><value>Atadığım görevleri gör</value></data>
+
+  <data name="Assist.Q.Password" xml:space="preserve"><value>Şifremi nasıl değiştiririm?</value></data>
+  <data name="Assist.A.Password" xml:space="preserve"><value>&lt;strong&gt;Hesap → Profilim → Şifremi Değiştir&lt;/strong&gt;. Mevcut şifren ile yeni şifreni girmen gerekiyor.</value></data>
+  <data name="Assist.L.Password" xml:space="preserve"><value>Şifre değiştir</value></data>
+
+  <data name="Assist.Q.Profile" xml:space="preserve"><value>Profilimi nasıl güncellerim?</value></data>
+  <data name="Assist.A.Profile" xml:space="preserve"><value>Profilinden telefon ve muhasebe kodu gibi bilgileri güncelleyebilirsin. &lt;strong&gt;Hesap → Profilim&lt;/strong&gt;.</value></data>
+  <data name="Assist.L.Profile" xml:space="preserve"><value>Profilime git</value></data>
+
+  <data name="Assist.Q.NewUser" xml:space="preserve"><value>Yeni kullanıcı nasıl eklerim?</value></data>
+  <data name="Assist.A.NewUser" xml:space="preserve"><value>&lt;strong&gt;Yönetim → Kullanıcılar → ➕ Yeni Kullanıcı&lt;/strong&gt;. Üst yönetici alanı hiyerarşi için önemli.</value></data>
+  <data name="Assist.L.NewUser" xml:space="preserve"><value>Yeni kullanıcı ekle</value></data>
+
+  <data name="Assist.Q.Roles" xml:space="preserve"><value>Rol ve yetki nasıl atanır?</value></data>
+  <data name="Assist.A.Roles" xml:space="preserve"><value>&lt;strong&gt;Yönetim → Roller ve Yetkiler&lt;/strong&gt;. Bir rolün yanındaki ⚡ Yetkiler butonu ile yetki atayabilirsin.</value></data>
+  <data name="Assist.L.Roles" xml:space="preserve"><value>Roller sayfasına git</value></data>
+
+  <data name="Assist.Q.Departments" xml:space="preserve"><value>Departman nasıl eklenir?</value></data>
+  <data name="Assist.A.Departments" xml:space="preserve"><value>&lt;strong&gt;Yönetim → Departmanlar → ➕ Yeni Departman&lt;/strong&gt;'dan ekleyebilirsin.</value></data>
+  <data name="Assist.L.Departments" xml:space="preserve"><value>Yeni departman ekle</value></data>
+
+  <data name="Assist.Q.OrgChart" xml:space="preserve"><value>Organizasyon şemasını nasıl görürüm?</value></data>
+  <data name="Assist.A.OrgChart" xml:space="preserve"><value>&lt;strong&gt;Genel → Organizasyon Şeması&lt;/strong&gt; sayfasından ağaç görünümünde inceleyebilirsin.</value></data>
+  <data name="Assist.L.OrgChart" xml:space="preserve"><value>Şemayı gör</value></data>
+
+  <data name="Assist.Q.Gmail" xml:space="preserve"><value>Gmail'imi nasıl açarım?</value></data>
+  <data name="Assist.A.Gmail" xml:space="preserve"><value>Anasayfada sağ üstteki kırmızı &lt;strong&gt;📩 Gmail'i Aç&lt;/strong&gt; butonuna tıklayarak Gmail hesabını yeni sekmede açabilirsin.</value></data>
+  <data name="Assist.L.Gmail" xml:space="preserve"><value>Gmail'i şimdi aç</value></data>
+
+  <data name="Assist.Q.Propose" xml:space="preserve"><value>İş bildirimi nasıl yaparım?</value></data>
+  <data name="Assist.A.Propose" xml:space="preserve"><value>Yapılması gereken bir iş varsa &lt;strong&gt;📩 İş Bildir&lt;/strong&gt; sayfasından üst yöneticine bildirebilirsin. Onayladıktan sonra senin aktif görevlerine eklenir.</value></data>
+  <data name="Assist.L.Propose" xml:space="preserve"><value>İş bildirimi yap</value></data>
+
+  <data name="Assist.Q.Pending" xml:space="preserve"><value>Onay bekleyen işleri nasıl görürüm?</value></data>
+  <data name="Assist.A.Pending" xml:space="preserve"><value>Ekibinden sana gelen iş bildirimlerini &lt;strong&gt;⏳ Onay Bekleyenler&lt;/strong&gt; sayfasından görebilirsin. Her birini ayrı ayrı onaylayabilir veya gerekçe belirterek reddedebilirsin.</value></data>
+  <data name="Assist.L.Pending" xml:space="preserve"><value>Onay bekleyenleri gör</value></data>
+
+  <data name="Assist.Q.Logout" xml:space="preserve"><value>Sistemden nasıl çıkış yaparım?</value></data>
+  <data name="Assist.A.Logout" xml:space="preserve"><value>Sağ üst köşedeki &lt;strong&gt;🚪 Çıkış&lt;/strong&gt; butonuna tıklayarak güvenli şekilde çıkabilirsin.</value></data>
+</root>

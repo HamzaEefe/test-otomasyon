@@ -1,0 +1,332 @@
+@model TestOtomasyon.Models.LoginViewModel
+
+@{
+    ViewData["Title"] = L["Login.PageTitle"].Value;
+    Layout = "_Layout";
+    var currentCulture = System.Globalization.CultureInfo.CurrentUICulture.Name;
+    var returnUrl = Context.Request.Path + Context.Request.QueryString;
+}
+
+<style>
+    /* Sayfayı tamamen kaplayan arka plan */
+    body.login-page {
+        background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 50%, #1e40af 100%) !important;
+        min-height: 100vh;
+        position: relative;
+        overflow-x: hidden;
+    }
+
+    /* Layout'un container'ını tam ekrana genişlet */
+    body.login-page > .container {
+        max-width: none !important;
+        width: 100% !important;
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+
+    /* Hareketli arka plan şekilleri */
+    body.login-page::before,
+    body.login-page::after {
+        content: "";
+        position: fixed;
+        border-radius: 50%;
+        filter: blur(80px);
+        opacity: 0.5;
+        pointer-events: none;
+        z-index: 0;
+    }
+
+    body.login-page::before {
+        width: 500px;
+        height: 500px;
+        background: radial-gradient(circle, #3b82f6, transparent);
+        top: -150px;
+        left: -100px;
+        animation: float1 18s ease-in-out infinite;
+    }
+
+    body.login-page::after {
+        width: 450px;
+        height: 450px;
+        background: radial-gradient(circle, #8b5cf6, transparent);
+        bottom: -100px;
+        right: -100px;
+        animation: float2 22s ease-in-out infinite;
+    }
+
+    @@keyframes float1 {
+        0%, 100% { transform: translate(0, 0); }
+        50% { transform: translate(80px, 60px); }
+    }
+
+    @@keyframes float2 {
+        0%, 100% { transform: translate(0, 0); }
+        50% { transform: translate(-60px, -80px); }
+    }
+
+    /* Sol-üst marka */
+    .login-brand {
+        position: absolute;
+        top: 24px;
+        left: 28px;
+        color: #fff;
+        font-weight: 700;
+        font-size: 1.05rem;
+        letter-spacing: 0.4px;
+        z-index: 10;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        text-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+
+    .login-brand .dot {
+        width: 8px; height: 8px; border-radius: 50%;
+        background: #22d3ee;
+        box-shadow: 0 0 12px #22d3ee;
+    }
+
+    /* Dil switcher */
+    .lang-switch {
+        position: absolute;
+        top: 20px;
+        right: 24px;
+        display: flex;
+        gap: 4px;
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        padding: 4px;
+        border-radius: 8px;
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        z-index: 10;
+    }
+
+    .lang-switch a {
+        padding: 6px 12px;
+        border-radius: 6px;
+        text-decoration: none;
+        font-size: 0.82rem;
+        font-weight: 600;
+        color: rgba(255, 255, 255, 0.75);
+        transition: all 0.2s;
+    }
+
+    .lang-switch a:hover {
+        color: #fff;
+        background: rgba(255, 255, 255, 0.1);
+    }
+
+    .lang-switch a.active {
+        background: #fff;
+        color: #1e40af;
+    }
+
+    /* Login kart */
+    .login-wrap {
+        position: relative;
+        z-index: 5;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 60px 20px;
+    }
+
+    .login-card {
+        width: 100%;
+        max-width: 440px;
+        background: rgba(255, 255, 255, 0.97);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border-radius: 16px;
+        padding: 44px 38px;
+        box-shadow: 0 30px 80px rgba(0, 0, 0, 0.25), 0 8px 24px rgba(0, 0, 0, 0.12);
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        position: relative;
+        animation: cardIn 0.6s ease-out;
+    }
+
+    @@keyframes cardIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    .login-card .logo-circle {
+        width: 64px;
+        height: 64px;
+        border-radius: 16px;
+        background: linear-gradient(135deg, #3b82f6, #1e40af);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.8rem;
+        margin: 0 auto 18px;
+        box-shadow: 0 8px 20px rgba(59, 130, 246, 0.35);
+        color: #fff;
+    }
+
+    .login-card h2 {
+        text-align: center;
+        font-weight: 700;
+        color: #0f172a;
+        font-size: 1.5rem;
+        margin: 0 0 6px;
+    }
+
+    .login-card .subtitle {
+        text-align: center;
+        color: #64748b;
+        font-size: 0.9rem;
+        margin-bottom: 28px;
+    }
+
+    .login-card .form-label {
+        font-size: 0.82rem;
+        font-weight: 600;
+        color: #475569;
+        margin-bottom: 6px;
+        text-transform: uppercase;
+        letter-spacing: 0.4px;
+    }
+
+    .login-card .form-control {
+        border: 1.5px solid #e2e8f0;
+        border-radius: 10px;
+        padding: 12px 14px;
+        font-size: 0.95rem;
+        transition: all 0.2s;
+        background: #f8fafc;
+    }
+
+    .login-card .form-control:focus {
+        border-color: #3b82f6;
+        background: #fff;
+        box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+    }
+
+    .login-card .btn-login {
+        width: 100%;
+        padding: 12px;
+        border: none;
+        border-radius: 10px;
+        background: linear-gradient(135deg, #3b82f6, #1e40af);
+        color: #fff;
+        font-weight: 600;
+        font-size: 0.95rem;
+        cursor: pointer;
+        transition: all 0.2s;
+        box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+        margin-top: 6px;
+    }
+
+    .login-card .btn-login:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 6px 18px rgba(59, 130, 246, 0.45);
+    }
+
+    .login-card .btn-login:active {
+        transform: translateY(0);
+    }
+
+    .login-card .divider {
+        display: flex;
+        align-items: center;
+        margin: 22px 0 16px;
+        color: #94a3b8;
+        font-size: 0.75rem;
+    }
+
+    .login-card .divider::before,
+    .login-card .divider::after {
+        content: "";
+        flex: 1;
+        height: 1px;
+        background: #e2e8f0;
+    }
+
+    .login-card .divider span {
+        padding: 0 12px;
+    }
+
+    .test-account-info {
+        text-align: center;
+        font-size: 0.82rem;
+        color: #64748b;
+        background: #f1f5f9;
+        padding: 10px 12px;
+        border-radius: 8px;
+    }
+
+    .test-account-info code {
+        background: #fff;
+        padding: 2px 7px;
+        border-radius: 4px;
+        color: #1e40af;
+        font-weight: 600;
+        font-size: 0.8rem;
+    }
+
+    .login-footer {
+        position: absolute;
+        bottom: 18px;
+        left: 0;
+        right: 0;
+        text-align: center;
+        color: rgba(255,255,255,0.55);
+        font-size: 0.78rem;
+        z-index: 5;
+    }
+</style>
+
+<script>
+    document.body.classList.add('login-page');
+</script>
+
+<div class="login-brand">
+    <span class="dot"></span>
+    ⚙️ @L["App.Title"]
+</div>
+
+<div class="lang-switch">
+    <a href="@Url.Action("SetLanguage", "Culture", new { culture = "tr-TR", returnUrl })"
+       class="@(currentCulture == "tr-TR" ? "active" : "")">TR</a>
+    <a href="@Url.Action("SetLanguage", "Culture", new { culture = "en-US", returnUrl })"
+       class="@(currentCulture == "en-US" ? "active" : "")">EN</a>
+</div>
+
+<div class="login-wrap">
+    <div class="login-card">
+        <div class="logo-circle">🔐</div>
+        <h2>@L["App.Title"]</h2>
+        <div class="subtitle">@L["Login.Heading"]</div>
+
+        <form asp-action="Login" method="post">
+            @Html.AntiForgeryToken()
+            <div asp-validation-summary="All" class="text-danger small mb-3"></div>
+
+            <div class="mb-3">
+                <label asp-for="UserName" class="form-label">@L["Login.UserName"]</label>
+                <input asp-for="UserName" class="form-control" autofocus autocomplete="username" />
+                <span asp-validation-for="UserName" class="text-danger small"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Password" class="form-label">@L["Login.Password"]</label>
+                <input asp-for="Password" type="password" class="form-control" autocomplete="current-password" />
+                <span asp-validation-for="Password" class="text-danger small"></span>
+            </div>
+
+            <button type="submit" class="btn-login">@L["Login.Submit"]</button>
+        </form>
+
+        <div class="divider"><span>@L["Login.TestAccount"]</span></div>
+        <div class="test-account-info">
+            <code>admin</code> / <code>Admin123!</code>
+        </div>
+    </div>
+</div>
+
+<div class="login-footer">
+    © @DateTime.Now.Year · @L["App.Title"]
+</div>

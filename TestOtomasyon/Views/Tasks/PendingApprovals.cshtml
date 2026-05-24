@@ -1,0 +1,109 @@
+@model IEnumerable<TestOtomasyon.Entities.WorkTask>
+@using TestOtomasyon.Helpers
+
+@{
+    ViewData["Title"] = L["Task.PageTitlePending"].Value;
+}
+
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show">
+        ✓ @TempData["Success"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+}
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger alert-dismissible fade show">
+        ✗ @TempData["Error"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+}
+
+<h4>⏳ @L["Task.PageTitlePending"]</h4>
+<p class="text-muted">@L["Task.PendingInfo"]</p>
+<hr />
+
+@if (!Model.Any())
+{
+    <div class="alert alert-light text-center py-4">
+        <h5>📭 @L["Task.PendingEmptyTitle"]</h5>
+        <p class="mb-0 text-muted">@L["Task.PendingEmptyDesc"]</p>
+    </div>
+}
+else
+{
+    <div class="row">
+        @foreach (var task in Model)
+        {
+            <div class="col-md-6 mb-3">
+                <div class="card shadow-sm border-info">
+                    <div class="card-header bg-info text-white">
+                        <strong>@task.Title</strong>
+                        <span class="badge bg-light text-dark float-end">@task.CreatedOn.ToString("dd.MM.yyyy HH:mm")</span>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text" style="white-space: pre-wrap;">@task.Description</p>
+
+                        <hr class="my-2" />
+
+                        <div class="small text-muted mb-2">
+                            <strong>@L["Task.Reporter"]:</strong> @task.AssigneeName
+                            @if (!string.IsNullOrEmpty(task.AssigneeDepartment))
+                            {
+                                <span> · @task.AssigneeDepartment</span>
+                            }
+                        </div>
+
+                        <div class="d-flex gap-2 mt-3">
+                            <form asp-action="Approve" method="post" class="flex-grow-1"
+                                  onsubmit="return confirm('@L["Task.ConfirmApprove"]');">
+                                @Html.AntiForgeryToken()
+                                <input type="hidden" name="id" value="@task.Id" />
+                                <button type="submit" class="btn btn-success w-100">✅ @L["Task.Approve"]</button>
+                            </form>
+                            <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                    data-bs-target="#rejectModal-@task.Id">
+                                ❌ @L["Task.Reject"]
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Red modal -->
+                <div class="modal fade" id="rejectModal-@task.Id" tabindex="-1">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <form asp-action="Reject" method="post">
+                                @Html.AntiForgeryToken()
+                                <input type="hidden" name="id" value="@task.Id" />
+                                <div class="modal-header bg-danger text-white">
+                                    <h5 class="modal-title">❌ @L["Task.RejectModalTitle"]</h5>
+                                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <p><strong>@L["Task.TaskLabel"]:</strong> @task.Title</p>
+                                    <p><strong>@L["Task.Reporter"]:</strong> @task.AssigneeName</p>
+
+                                    <div class="mb-3">
+                                        <label class="form-label">@L["Task.RejectReason"] <span class="text-danger">*</span></label>
+                                        <textarea name="rejectReason" class="form-control" rows="3" required
+                                          placeholder="@L["Task.RejectReasonPh"]"></textarea>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">@L["Common.Cancel"]</button>
+                                    <button type="submit" class="btn btn-danger">@L["Task.Reject"]</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+    <div class="text-muted small mt-3">
+        @L["Common.Total"]: <strong>@Model.Count()</strong> @L["Task.PendingCount"]
+    </div>
+}

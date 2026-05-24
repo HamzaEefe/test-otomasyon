@@ -1,0 +1,68 @@
+@model IEnumerable<TestOtomasyon.Entities.Department>
+
+@{
+    ViewData["Title"] = L["Dept.PageTitleIndex"].Value;
+}
+
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        ✓ @TempData["Success"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+}
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h4>🏢 @L["Menu.Departments"]</h4>
+    <a asp-action="Create" class="btn btn-primary">
+        ➕ @L["Dept.NewDept"]
+    </a>
+</div>
+
+<div class="table-responsive">
+    <table class="table table-hover table-striped">
+        <thead class="table-dark">
+            <tr>
+                <th>@L["Dept.Name"]</th>
+                <th>@L["Common.CreatedOn"]</th>
+                <th style="width: 200px;">@L["Common.Actions"]</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (!Model.Any())
+            {
+                <tr>
+                    <td colspan="3" class="text-center text-muted py-4">
+                        @L["Dept.NoDepts"]
+                    </td>
+                </tr>
+            }
+            else
+            {
+                @foreach (var dept in Model)
+                {
+                    <tr>
+                        <td><strong>@dept.Name</strong></td>
+                        <td>@dept.CreatedOn.ToString("dd.MM.yyyy HH:mm")</td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@dept.Id" class="btn btn-sm btn-outline-primary">
+                                ✏️ @L["Common.Edit"]
+                            </a>
+                            <form asp-action="Delete" asp-route-id="@dept.Id" method="post" style="display:inline;"
+                                  onsubmit="return confirm('@L["Dept.ConfirmDelete"]');">
+                                @Html.AntiForgeryToken()
+                                <button type="submit" class="btn btn-sm btn-outline-danger">
+                                    🗑️ @L["Common.Delete"]
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>
+
+<div class="text-muted small mt-3">
+    @L["Common.Total"]: <strong>@Model.Count()</strong> @L["Dept.Count"]
+</div>

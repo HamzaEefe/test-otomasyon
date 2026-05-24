@@ -1,0 +1,492 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+
+  <data name="App.Title" xml:space="preserve"><value>Test Automation</value></data>
+  <data name="App.Language" xml:space="preserve"><value>Language</value></data>
+  <data name="App.Turkish" xml:space="preserve"><value>Turkish</value></data>
+  <data name="App.English" xml:space="preserve"><value>English</value></data>
+
+  <data name="Menu.Home" xml:space="preserve"><value>Home</value></data>
+  <data name="Menu.Management" xml:space="preserve"><value>Management</value></data>
+  <data name="Menu.Users" xml:space="preserve"><value>Users</value></data>
+  <data name="Menu.Roles" xml:space="preserve"><value>Roles and Authorities</value></data>
+  <data name="Menu.Departments" xml:space="preserve"><value>Departments</value></data>
+  <data name="Menu.Tasks" xml:space="preserve"><value>Tasks</value></data>
+  <data name="Menu.AllTasks" xml:space="preserve"><value>All Tasks</value></data>
+  <data name="Menu.MyTasks" xml:space="preserve"><value>My Tasks</value></data>
+  <data name="Menu.Propose" xml:space="preserve"><value>Report Work</value></data>
+  <data name="Menu.AssignedByMe" xml:space="preserve"><value>Tasks I Assigned</value></data>
+  <data name="Menu.NewTask" xml:space="preserve"><value>New Task</value></data>
+  <data name="Menu.PendingApprovals" xml:space="preserve"><value>Pending Approvals</value></data>
+  <data name="Menu.TeamTasks" xml:space="preserve"><value>Team Tasks</value></data>
+  <data name="Menu.General" xml:space="preserve"><value>General</value></data>
+  <data name="Menu.OrgChart" xml:space="preserve"><value>Organization Chart</value></data>
+  <data name="Menu.Contact" xml:space="preserve"><value>Contact</value></data>
+  <data name="Menu.Account" xml:space="preserve"><value>Account</value></data>
+  <data name="Menu.Profile" xml:space="preserve"><value>My Profile</value></data>
+
+  <data name="Common.Logout" xml:space="preserve"><value>Logout</value></data>
+  <data name="Common.Inbox" xml:space="preserve"><value>Inbox</value></data>
+  <data name="Common.Save" xml:space="preserve"><value>Save</value></data>
+  <data name="Common.Cancel" xml:space="preserve"><value>Cancel</value></data>
+  <data name="Common.Delete" xml:space="preserve"><value>Delete</value></data>
+  <data name="Common.Edit" xml:space="preserve"><value>Edit</value></data>
+  <data name="Common.Back" xml:space="preserve"><value>Back</value></data>
+  <data name="Common.BackTo" xml:space="preserve"><value>Go Back</value></data>
+  <data name="Common.Total" xml:space="preserve"><value>Total</value></data>
+  <data name="Common.Task" xml:space="preserve"><value>tasks</value></data>
+  <data name="Common.Update" xml:space="preserve"><value>Update</value></data>
+  <data name="Common.Add" xml:space="preserve"><value>Add</value></data>
+  <data name="Common.Actions" xml:space="preserve"><value>Actions</value></data>
+  <data name="Common.Date" xml:space="preserve"><value>Date</value></data>
+  <data name="Common.CreatedOn" xml:space="preserve"><value>Created On</value></data>
+  <data name="Common.None" xml:space="preserve"><value>—</value></data>
+  <data name="Common.NoDepartment" xml:space="preserve"><value>No Department</value></data>
+  <data name="Common.Select" xml:space="preserve"><value>select</value></data>
+  <data name="Common.Details" xml:space="preserve"><value>Details</value></data>
+  <data name="Common.Confirm" xml:space="preserve"><value>Are you sure?</value></data>
+  <data name="Common.Other" xml:space="preserve"><value>Other</value></data>
+  <data name="Common.Unknown" xml:space="preserve"><value>Unknown</value></data>
+
+  <data name="Field.UserName" xml:space="preserve"><value>Username</value></data>
+  <data name="Field.Password" xml:space="preserve"><value>Password</value></data>
+  <data name="Field.NewPassword" xml:space="preserve"><value>New Password</value></data>
+  <data name="Field.ConfirmPassword" xml:space="preserve"><value>Confirm New Password</value></data>
+  <data name="Field.CurrentPassword" xml:space="preserve"><value>Current Password</value></data>
+  <data name="Field.FirstName" xml:space="preserve"><value>First Name</value></data>
+  <data name="Field.LastName" xml:space="preserve"><value>Last Name</value></data>
+  <data name="Field.Department" xml:space="preserve"><value>Department</value></data>
+  <data name="Field.Parent" xml:space="preserve"><value>Manager</value></data>
+  <data name="Field.Phone" xml:space="preserve"><value>Phone</value></data>
+  <data name="Field.Email" xml:space="preserve"><value>Email</value></data>
+  <data name="Field.AccountingCode" xml:space="preserve"><value>Accounting Code</value></data>
+  <data name="Field.Roles" xml:space="preserve"><value>Roles</value></data>
+  <data name="Field.TaskTitle" xml:space="preserve"><value>Task Title</value></data>
+  <data name="Field.TaskDescription" xml:space="preserve"><value>Description</value></data>
+  <data name="Field.Assignee" xml:space="preserve"><value>Assignee</value></data>
+  <data name="Field.ProposeTitle" xml:space="preserve"><value>Work Subject</value></data>
+  <data name="Field.ProposeDescription" xml:space="preserve"><value>Detailed Description</value></data>
+
+  <data name="Validation.UserNameRequired" xml:space="preserve"><value>Username is required.</value></data>
+  <data name="Validation.PasswordRequired" xml:space="preserve"><value>Password is required.</value></data>
+  <data name="Validation.NewPasswordRequired" xml:space="preserve"><value>New password is required.</value></data>
+  <data name="Validation.CurrentPasswordRequired" xml:space="preserve"><value>Enter your current password.</value></data>
+  <data name="Validation.ConfirmPasswordRequired" xml:space="preserve"><value>Re-enter the password.</value></data>
+  <data name="Validation.PasswordMinLength" xml:space="preserve"><value>Password must be at least 6 characters.</value></data>
+  <data name="Validation.PasswordsMustMatch" xml:space="preserve"><value>Passwords do not match.</value></data>
+  <data name="Validation.FirstNameRequired" xml:space="preserve"><value>First name is required.</value></data>
+  <data name="Validation.LastNameRequired" xml:space="preserve"><value>Last name is required.</value></data>
+  <data name="Validation.PhoneInvalid" xml:space="preserve"><value>Enter a valid phone number.</value></data>
+  <data name="Validation.EmailInvalid" xml:space="preserve"><value>Enter a valid email address.</value></data>
+  <data name="Validation.TitleRequired" xml:space="preserve"><value>Title is required.</value></data>
+  <data name="Validation.AssigneeRequired" xml:space="preserve"><value>You must select a staff member.</value></data>
+  <data name="Validation.ProposeTitleRequired" xml:space="preserve"><value>Subject is required.</value></data>
+  <data name="Validation.ProposeDescRequired" xml:space="preserve"><value>Description is required.</value></data>
+
+  <data name="Login.PageTitle" xml:space="preserve"><value>Sign In</value></data>
+  <data name="Login.Heading" xml:space="preserve"><value>Sign In to the System</value></data>
+  <data name="Login.UserName" xml:space="preserve"><value>Username</value></data>
+  <data name="Login.Password" xml:space="preserve"><value>Password</value></data>
+  <data name="Login.Submit" xml:space="preserve"><value>Sign In</value></data>
+  <data name="Login.TestAccount" xml:space="preserve"><value>Test account</value></data>
+  <data name="Login.InvalidCredentials" xml:space="preserve"><value>Username or password is incorrect.</value></data>
+  <data name="Login.UserNotFound" xml:space="preserve"><value>User not found.</value></data>
+
+  <data name="Home.PageTitle" xml:space="preserve"><value>Home</value></data>
+  <data name="Home.Welcome" xml:space="preserve"><value>Welcome</value></data>
+  <data name="Home.OpenGmail" xml:space="preserve"><value>Open Gmail</value></data>
+  <data name="Home.MyTaskSummary" xml:space="preserve"><value>My Task Summary</value></data>
+  <data name="Home.NewlyAssigned" xml:space="preserve"><value>Newly Assigned</value></data>
+  <data name="Home.AwaitingStart" xml:space="preserve"><value>awaiting start</value></data>
+  <data name="Home.InProgress" xml:space="preserve"><value>In Progress</value></data>
+  <data name="Home.BeingWorkedOn" xml:space="preserve"><value>being worked on</value></data>
+  <data name="Home.Completed" xml:space="preserve"><value>Completed</value></data>
+  <data name="Home.Successfully" xml:space="preserve"><value>successfully finished</value></data>
+  <data name="Home.Cancelled" xml:space="preserve"><value>Cancelled</value></data>
+  <data name="Home.History" xml:space="preserve"><value>history</value></data>
+  <data name="Home.OverallProgress" xml:space="preserve"><value>Overall Progress</value></data>
+  <data name="Home.NoTasksAssigned" xml:space="preserve"><value>No tasks have been assigned to you yet.</value></data>
+  <data name="Home.TeamManagement" xml:space="preserve"><value>My Team Management</value></data>
+  <data name="Home.MyTeam" xml:space="preserve"><value>My Team</value></data>
+  <data name="Home.SubordinateCount" xml:space="preserve"><value>subordinates</value></data>
+  <data name="Home.AssignedByMe" xml:space="preserve"><value>Tasks I Assigned</value></data>
+  <data name="Home.TotalTask" xml:space="preserve"><value>total tasks</value></data>
+  <data name="Home.TeamActiveTask" xml:space="preserve"><value>Team's Active Tasks</value></data>
+  <data name="Home.Ongoing" xml:space="preserve"><value>ongoing</value></data>
+  <data name="Home.SystemOverview" xml:space="preserve"><value>System Overview</value></data>
+  <data name="Home.TotalUsers" xml:space="preserve"><value>Total Users</value></data>
+  <data name="Home.ActiveRecord" xml:space="preserve"><value>active records</value></data>
+  <data name="Home.TotalDepartments" xml:space="preserve"><value>Total Departments</value></data>
+  <data name="Home.OrgUnit" xml:space="preserve"><value>organization units</value></data>
+  <data name="Home.TotalTasks" xml:space="preserve"><value>Total Tasks</value></data>
+  <data name="Home.InSystem" xml:space="preserve"><value>in system</value></data>
+  <data name="Home.Authorities" xml:space="preserve"><value>My Authorities</value></data>
+  <data name="Home.ActiveAuthority" xml:space="preserve"><value>active authorities</value></data>
+  <data name="Home.SystemTaskDistribution" xml:space="preserve"><value>System Task Distribution</value></data>
+  <data name="Home.NoPermissionInfo" xml:space="preserve"><value>You can access the areas you are authorized for from the left menu. If you need help, click the 🤖 button at the bottom right.</value></data>
+  <data name="Home.Tip" xml:space="preserve"><value>Tip: You can access your authorized areas from the left menu and get help from the assistant at the bottom right.</value></data>
+  <data name="Home.AssistantName" xml:space="preserve"><value>Helper Assistant</value></data>
+  <data name="Home.AssistantOnline" xml:space="preserve"><value>Online</value></data>
+  <data name="Home.AssistantPlaceholder" xml:space="preserve"><value>Ask something...</value></data>
+
+  <data name="Status.Assigned" xml:space="preserve"><value>Assigned</value></data>
+  <data name="Status.Started" xml:space="preserve"><value>Started</value></data>
+  <data name="Status.InProgress" xml:space="preserve"><value>In Progress</value></data>
+  <data name="Status.Completed" xml:space="preserve"><value>Completed</value></data>
+  <data name="Status.Cancelled" xml:space="preserve"><value>Cancelled</value></data>
+  <data name="Status.PendingApproval" xml:space="preserve"><value>Pending Approval</value></data>
+  <data name="Status.Rejected" xml:space="preserve"><value>Rejected</value></data>
+
+  <data name="Kanban.PageTitle" xml:space="preserve"><value>System Task Distribution</value></data>
+  <data name="Kanban.ColPendingApproval" xml:space="preserve"><value>Pending Approval</value></data>
+  <data name="Kanban.ColAssigned" xml:space="preserve"><value>Active (Assigned)</value></data>
+  <data name="Kanban.ColInProgress" xml:space="preserve"><value>In Progress</value></data>
+  <data name="Kanban.ColCompleted" xml:space="preserve"><value>Completed</value></data>
+  <data name="Kanban.ColHistory" xml:space="preserve"><value>History</value></data>
+  <data name="Kanban.NoTasks" xml:space="preserve"><value>No tasks</value></data>
+  <data name="Kanban.RejectedLabel" xml:space="preserve"><value>Rejected</value></data>
+  <data name="Kanban.ScopeAll" xml:space="preserve"><value>All tasks in the system</value></data>
+  <data name="Kanban.ScopeTeam" xml:space="preserve"><value>Your team's ({0} people) tasks</value></data>
+  <data name="Kanban.ScopeMine" xml:space="preserve"><value>Your tasks</value></data>
+
+  <data name="Task.PageTitleCreate" xml:space="preserve"><value>New Task</value></data>
+  <data name="Task.HeadingCreate" xml:space="preserve"><value>Create New Task</value></data>
+  <data name="Task.PageTitleEdit" xml:space="preserve"><value>Edit Task</value></data>
+  <data name="Task.HeadingEdit" xml:space="preserve"><value>Edit Task</value></data>
+  <data name="Task.PageTitleDetail" xml:space="preserve"><value>Task Detail</value></data>
+  <data name="Task.SelectStaff" xml:space="preserve"><value>-- Select staff --</value></data>
+  <data name="Task.CreateButton" xml:space="preserve"><value>Create Task</value></data>
+  <data name="Task.Assigner" xml:space="preserve"><value>Assigner</value></data>
+  <data name="Task.Assignee" xml:space="preserve"><value>Assignee</value></data>
+  <data name="Task.Description" xml:space="preserve"><value>Description</value></data>
+  <data name="Task.NoDescription" xml:space="preserve"><value>No description</value></data>
+  <data name="Task.UpdateStatus" xml:space="preserve"><value>Update Status</value></data>
+  <data name="Task.UpdateStatusInfo" xml:space="preserve"><value>You can update the status of the task.</value></data>
+  <data name="Task.Start" xml:space="preserve"><value>Start</value></data>
+  <data name="Task.Complete" xml:space="preserve"><value>Complete</value></data>
+  <data name="Task.CancelTask" xml:space="preserve"><value>Cancel</value></data>
+  <data name="Task.Management" xml:space="preserve"><value>Management</value></data>
+  <data name="Task.NoTasksInCategory" xml:space="preserve"><value>No tasks in this category yet.</value></data>
+  <data name="Task.ConfirmCancel" xml:space="preserve"><value>Are you sure you want to cancel this task?</value></data>
+  <data name="Task.ConfirmDelete" xml:space="preserve"><value>Are you sure you want to delete this task?</value></data>
+  <data name="Task.PageTitlePropose" xml:space="preserve"><value>Report Work</value></data>
+  <data name="Task.HeadingPropose" xml:space="preserve"><value>Report New Work</value></data>
+  <data name="Task.ProposeInfo" xml:space="preserve"><value>You can report work that needs to be done to your manager. After approval, it will be added to your active tasks.</value></data>
+  <data name="Task.ProposeTitlePh" xml:space="preserve"><value>e.g.: Parking lot floor needs cleaning</value></data>
+  <data name="Task.ProposeDescPh" xml:space="preserve"><value>Explain details: what, why, when, how...</value></data>
+  <data name="Task.ProposeNote" xml:space="preserve"><value>Your report will be sent to your manager. If approved it will be added to your active tasks; if rejected they will state a reason.</value></data>
+  <data name="Task.SubmitApproval" xml:space="preserve"><value>Submit for Approval</value></data>
+  <data name="Task.PageTitlePending" xml:space="preserve"><value>Tasks Awaiting Approval</value></data>
+  <data name="Task.PendingInfo" xml:space="preserve"><value>Work requests reported by your team. Once approved they become active tasks.</value></data>
+  <data name="Task.PendingEmptyTitle" xml:space="preserve"><value>No tasks awaiting approval</value></data>
+  <data name="Task.PendingEmptyDesc" xml:space="preserve"><value>Reports from your team will appear here.</value></data>
+  <data name="Task.Reporter" xml:space="preserve"><value>Reporter</value></data>
+  <data name="Task.Approve" xml:space="preserve"><value>Approve</value></data>
+  <data name="Task.Reject" xml:space="preserve"><value>Reject</value></data>
+  <data name="Task.ConfirmApprove" xml:space="preserve"><value>Are you sure you want to approve this work?</value></data>
+  <data name="Task.RejectModalTitle" xml:space="preserve"><value>Reject Work</value></data>
+  <data name="Task.TaskLabel" xml:space="preserve"><value>Task</value></data>
+  <data name="Task.RejectReason" xml:space="preserve"><value>Reject Reason</value></data>
+  <data name="Task.RejectReasonPh" xml:space="preserve"><value>Explain why it is rejected...</value></data>
+  <data name="Task.PendingCount" xml:space="preserve"><value>tasks awaiting approval</value></data>
+
+  <data name="User.PageTitleIndex" xml:space="preserve"><value>Users</value></data>
+  <data name="User.NewUser" xml:space="preserve"><value>New User</value></data>
+  <data name="User.PageTitleCreate" xml:space="preserve"><value>New User</value></data>
+  <data name="User.HeadingCreate" xml:space="preserve"><value>Add New User</value></data>
+  <data name="User.PageTitleEdit" xml:space="preserve"><value>Edit User</value></data>
+  <data name="User.HeadingEdit" xml:space="preserve"><value>Edit User</value></data>
+  <data name="User.FullName" xml:space="preserve"><value>Full Name</value></data>
+  <data name="User.UserName" xml:space="preserve"><value>Username</value></data>
+  <data name="User.Phone" xml:space="preserve"><value>Phone</value></data>
+  <data name="User.Department" xml:space="preserve"><value>Department</value></data>
+  <data name="User.Parent" xml:space="preserve"><value>Manager</value></data>
+  <data name="User.Roles" xml:space="preserve"><value>Roles</value></data>
+  <data name="User.NoUsers" xml:space="preserve"><value>No users yet.</value></data>
+  <data name="User.NoParent" xml:space="preserve"><value>— No manager —</value></data>
+  <data name="User.Count" xml:space="preserve"><value>users</value></data>
+  <data name="User.ConfirmDelete" xml:space="preserve"><value>Are you sure you want to delete this user?</value></data>
+  <data name="User.PersonalInfo" xml:space="preserve"><value>Personal Information</value></data>
+  <data name="User.AccountInfo" xml:space="preserve"><value>Account Information</value></data>
+  <data name="User.Organization" xml:space="preserve"><value>Organization</value></data>
+  <data name="User.SelectDepartment" xml:space="preserve"><value>-- Select department --</value></data>
+  <data name="User.SelectParent" xml:space="preserve"><value>-- Manager (optional) --</value></data>
+  <data name="User.ParentHint" xml:space="preserve"><value>Who this user will report to.</value></data>
+  <data name="User.UserNameUnchangeable" xml:space="preserve"><value>(cannot be changed)</value></data>
+  <data name="User.PageTitleReset" xml:space="preserve"><value>Reset Password</value></data>
+  <data name="User.HeadingReset" xml:space="preserve"><value>Reset Password</value></data>
+  <data name="User.ResetSubmit" xml:space="preserve"><value>Reset Password</value></data>
+  <data name="User.ResetUserLabel" xml:space="preserve"><value>User</value></data>
+
+  <data name="Role.PageTitleIndex" xml:space="preserve"><value>Roles</value></data>
+  <data name="Role.Heading" xml:space="preserve"><value>Roles and Authorities</value></data>
+  <data name="Role.NewRole" xml:space="preserve"><value>New Role</value></data>
+  <data name="Role.PageTitleCreate" xml:space="preserve"><value>New Role</value></data>
+  <data name="Role.HeadingCreate" xml:space="preserve"><value>Add New Role</value></data>
+  <data name="Role.PageTitleEdit" xml:space="preserve"><value>Edit Role</value></data>
+  <data name="Role.HeadingEdit" xml:space="preserve"><value>Edit Role</value></data>
+  <data name="Role.Name" xml:space="preserve"><value>Role Name</value></data>
+  <data name="Role.NoRoles" xml:space="preserve"><value>No roles yet.</value></data>
+  <data name="Role.Count" xml:space="preserve"><value>roles</value></data>
+  <data name="Role.ConfirmDelete" xml:space="preserve"><value>Are you sure you want to delete this role?</value></data>
+  <data name="Role.AuthoritiesBtn" xml:space="preserve"><value>Authorities</value></data>
+  <data name="Role.PageTitleAuth" xml:space="preserve"><value>Role Authorities</value></data>
+  <data name="Role.AuthHeading" xml:space="preserve"><value>Authorities</value></data>
+  <data name="Role.AuthIntro" xml:space="preserve"><value>Select the authorities to assign to this role. Uncheck to revoke.</value></data>
+  <data name="Role.SelectAll" xml:space="preserve"><value>Select All</value></data>
+  <data name="Role.DeselectAll" xml:space="preserve"><value>Deselect All</value></data>
+  <data name="Role.CreateInfo" xml:space="preserve"><value>After creating the role, use the Authorities button to choose which authorities to assign.</value></data>
+
+  <data name="Dept.PageTitleIndex" xml:space="preserve"><value>Departments</value></data>
+  <data name="Dept.NewDept" xml:space="preserve"><value>New Department</value></data>
+  <data name="Dept.PageTitleCreate" xml:space="preserve"><value>New Department</value></data>
+  <data name="Dept.HeadingCreate" xml:space="preserve"><value>Add New Department</value></data>
+  <data name="Dept.PageTitleEdit" xml:space="preserve"><value>Edit Department</value></data>
+  <data name="Dept.HeadingEdit" xml:space="preserve"><value>Edit Department</value></data>
+  <data name="Dept.Name" xml:space="preserve"><value>Department Name</value></data>
+  <data name="Dept.NoDepts" xml:space="preserve"><value>No departments yet.</value></data>
+  <data name="Dept.Count" xml:space="preserve"><value>departments</value></data>
+  <data name="Dept.ConfirmDelete" xml:space="preserve"><value>Are you sure you want to delete this department?</value></data>
+
+  <data name="Contact.Messages" xml:space="preserve"><value>Messages</value></data>
+  <data name="Contact.PageTitleIndex" xml:space="preserve"><value>New Message</value></data>
+  <data name="Contact.PageTitleInbox" xml:space="preserve"><value>Inbox</value></data>
+  <data name="Contact.PageTitleSent" xml:space="preserve"><value>Sent</value></data>
+  <data name="Contact.PageTitleRead" xml:space="preserve"><value>Message</value></data>
+  <data name="Contact.TabInbox" xml:space="preserve"><value>Inbox</value></data>
+  <data name="Contact.TabSent" xml:space="preserve"><value>Sent</value></data>
+  <data name="Contact.TabNew" xml:space="preserve"><value>New Message</value></data>
+  <data name="Contact.Recipient" xml:space="preserve"><value>Recipient</value></data>
+  <data name="Contact.Subject" xml:space="preserve"><value>Subject</value></data>
+  <data name="Contact.SelectRecipient" xml:space="preserve"><value>-- Select a recipient --</value></data>
+  <data name="Contact.SubjectPh" xml:space="preserve"><value>Enter subject...</value></data>
+  <data name="Contact.MessagePh" xml:space="preserve"><value>Type your message...</value></data>
+  <data name="Contact.Send" xml:space="preserve"><value>Send</value></data>
+  <data name="Contact.EmptyInbox" xml:space="preserve"><value>Your inbox is empty</value></data>
+  <data name="Contact.EmptyInboxSub" xml:space="preserve"><value>New messages will appear here.</value></data>
+  <data name="Contact.EmptySent" xml:space="preserve"><value>No sent messages yet</value></data>
+  <data name="Contact.EmptySentSub" xml:space="preserve"><value>Sent messages will appear here.</value></data>
+  <data name="Contact.MsgCount" xml:space="preserve"><value>messages</value></data>
+  <data name="Contact.Unread" xml:space="preserve"><value>unread</value></data>
+  <data name="Contact.New" xml:space="preserve"><value>NEW</value></data>
+  <data name="Contact.To" xml:space="preserve"><value>To</value></data>
+  <data name="Contact.From" xml:space="preserve"><value>From</value></data>
+  <data name="Contact.Yesterday" xml:space="preserve"><value>Yesterday</value></data>
+  <data name="Contact.BackToInbox" xml:space="preserve"><value>Back to inbox</value></data>
+  <data name="Contact.BackToSent" xml:space="preserve"><value>Back to sent</value></data>
+  <data name="Contact.SentTotal" xml:space="preserve"><value>sent messages</value></data>
+  <data name="Contact.Reply" xml:space="preserve"><value>Reply</value></data>
+  <data name="Contact.ConfirmDelete" xml:space="preserve"><value>Are you sure you want to delete this message?</value></data>
+  <data name="Contact.Delete" xml:space="preserve"><value>Delete</value></data>
+  <data name="Contact.EmailHeading" xml:space="preserve"><value>New Message</value></data>
+  <data name="Contact.ReplyOn" xml:space="preserve"><value>wrote on</value></data>
+
+  <data name="Org.PageTitle" xml:space="preserve"><value>Organization Chart</value></data>
+  <data name="Org.TotalEmployees" xml:space="preserve"><value>Total Employees</value></data>
+  <data name="Org.TopManagement" xml:space="preserve"><value>Top Management</value></data>
+  <data name="Org.ViewedAt" xml:space="preserve"><value>Viewed at</value></data>
+  <data name="Org.EmptyTitle" xml:space="preserve"><value>Organization structure not created yet</value></data>
+  <data name="Org.EmptyDesc" xml:space="preserve"><value>Assign managers to users; the hierarchy will appear here.</value></data>
+  <data name="Org.Info" xml:space="preserve"><value>Info:</value></data>
+  <data name="Org.InfoDesc" xml:space="preserve"><value>This chart is a visual representation of all users and their manager-employee relationships.</value></data>
+  <data name="Org.Level" xml:space="preserve"><value>Level</value></data>
+  <data name="Org.DirectReports" xml:space="preserve"><value>people</value></data>
+  <data name="Org.SearchPh" xml:space="preserve"><value>Search name, username, department...</value></data>
+  <data name="Org.ExpandAll" xml:space="preserve"><value>Expand All</value></data>
+  <data name="Org.CollapseAll" xml:space="preserve"><value>Collapse All</value></data>
+
+  <data name="Profile.PageTitle" xml:space="preserve"><value>My Profile</value></data>
+  <data name="Profile.PersonalInfo" xml:space="preserve"><value>Personal Information</value></data>
+  <data name="Profile.FullName" xml:space="preserve"><value>Full Name</value></data>
+  <data name="Profile.UserName" xml:space="preserve"><value>Username</value></data>
+  <data name="Profile.Department" xml:space="preserve"><value>Department</value></data>
+  <data name="Profile.Parent" xml:space="preserve"><value>Manager</value></data>
+  <data name="Profile.StartDate" xml:space="preserve"><value>Start Date</value></data>
+  <data name="Profile.ContactInfo" xml:space="preserve"><value>Contact Information (editable)</value></data>
+  <data name="Profile.UpdateInfo" xml:space="preserve"><value>Update My Information</value></data>
+  <data name="Profile.PasswordMgmt" xml:space="preserve"><value>Password Management</value></data>
+  <data name="Profile.PasswordHint" xml:space="preserve"><value>For your account security, change your password regularly.</value></data>
+  <data name="Profile.ChangeMyPwd" xml:space="preserve"><value>Change My Password</value></data>
+  <data name="Profile.MyRoles" xml:space="preserve"><value>My Roles</value></data>
+  <data name="Profile.MyAuthorities" xml:space="preserve"><value>My Authorities</value></data>
+  <data name="Profile.NoRole" xml:space="preserve"><value>No role assigned yet.</value></data>
+  <data name="Profile.NoAuthority" xml:space="preserve"><value>No authority yet.</value></data>
+
+  <data name="ChangePwd.PageTitle" xml:space="preserve"><value>Change Password</value></data>
+  <data name="ChangePwd.Heading" xml:space="preserve"><value>Change Password</value></data>
+  <data name="ChangePwd.Hint" xml:space="preserve"><value>For account security, your new password must be at least 6 characters.</value></data>
+  <data name="ChangePwd.Submit" xml:space="preserve"><value>Change Password</value></data>
+
+  <data name="Access.PageTitle" xml:space="preserve"><value>Access denied</value></data>
+  <data name="Access.Heading" xml:space="preserve"><value>Access Denied</value></data>
+  <data name="Access.Description" xml:space="preserve"><value>You do not have permission to view this page.</value></data>
+  <data name="Access.BackHome" xml:space="preserve"><value>Back to Home</value></data>
+
+  <data name="Authority.User-Manage" xml:space="preserve"><value>User Management</value></data>
+  <data name="Authority.Role-Manage" xml:space="preserve"><value>Role Management</value></data>
+  <data name="Authority.Department-Manage" xml:space="preserve"><value>Department Management</value></data>
+  <data name="Authority.Authority-Manage" xml:space="preserve"><value>Authority Management</value></data>
+  <data name="Authority.Task-Create" xml:space="preserve"><value>Create Task</value></data>
+  <data name="Authority.Task-Assign" xml:space="preserve"><value>Assign Task</value></data>
+  <data name="Authority.Task-View" xml:space="preserve"><value>View Task</value></data>
+  <data name="Authority.Task-Update" xml:space="preserve"><value>Update Task</value></data>
+  <data name="Authority.Task-ViewAll" xml:space="preserve"><value>View All Tasks</value></data>
+  <data name="Authority.Dashboard-View" xml:space="preserve"><value>View Dashboard</value></data>
+  <data name="Authority.Organization-View" xml:space="preserve"><value>View Organization</value></data>
+  <data name="Authority.Task-Propose" xml:space="preserve"><value>Report Work</value></data>
+  <data name="Authority.Task-Approve" xml:space="preserve"><value>Approve Work</value></data>
+  <data name="Authority.Task-SystemView" xml:space="preserve"><value>System Task Distribution</value></data>
+
+  <data name="AuthCat.Management" xml:space="preserve"><value>Management</value></data>
+  <data name="AuthCat.TaskOps" xml:space="preserve"><value>Task Operations</value></data>
+  <data name="AuthCat.General" xml:space="preserve"><value>General</value></data>
+
+  <data name="Msg.TaskCreated" xml:space="preserve"><value>Task created successfully.</value></data>
+  <data name="Msg.TaskUpdated" xml:space="preserve"><value>Task updated.</value></data>
+  <data name="Msg.TaskDeleted" xml:space="preserve"><value>Task deleted.</value></data>
+  <data name="Msg.TaskStatusUpdated" xml:space="preserve"><value>Task status updated: {0}</value></data>
+  <data name="Msg.TaskApproved" xml:space="preserve"><value>Task approved and added to active tasks.</value></data>
+  <data name="Msg.TaskRejected" xml:space="preserve"><value>Task rejected.</value></data>
+  <data name="Msg.TaskProposed" xml:space="preserve"><value>Your work report has been submitted to your manager for approval.</value></data>
+  <data name="Msg.OnlyAssigneeUpdate" xml:space="preserve"><value>Only the assignee can change this task's status.</value></data>
+  <data name="Msg.InvalidStatus" xml:space="preserve"><value>Invalid status.</value></data>
+  <data name="Msg.OnlyAssignerEdit" xml:space="preserve"><value>Only the assigner can edit the task.</value></data>
+  <data name="Msg.NoDeletePermission" xml:space="preserve"><value>You don't have permission to delete this task.</value></data>
+  <data name="Msg.RejectReasonRequired" xml:space="preserve"><value>You must provide a rejection reason.</value></data>
+  <data name="Msg.CannotAssignTeam" xml:space="preserve"><value>You can't assign tasks to this person. You can only assign to your own team.</value></data>
+  <data name="Msg.CannotAssign" xml:space="preserve"><value>You can't assign tasks to this person.</value></data>
+
+  <data name="Msg.UserCreated" xml:space="preserve"><value>User created successfully.</value></data>
+  <data name="Msg.UserUpdated" xml:space="preserve"><value>User updated.</value></data>
+  <data name="Msg.UserDeleted" xml:space="preserve"><value>User deleted.</value></data>
+  <data name="Msg.UserNameExists" xml:space="preserve"><value>This username is already in use.</value></data>
+  <data name="Msg.PasswordReset" xml:space="preserve"><value>Password reset for user {0}.</value></data>
+  <data name="Msg.CannotDeleteSelf" xml:space="preserve"><value>You cannot delete your own account.</value></data>
+  <data name="Msg.SelfManager" xml:space="preserve"><value>A user cannot be their own manager.</value></data>
+  <data name="Msg.ProfileUpdated" xml:space="preserve"><value>Your profile has been updated.</value></data>
+  <data name="Msg.OnlyOwnProfile" xml:space="preserve"><value>You can only update your own profile.</value></data>
+  <data name="Msg.PasswordChanged" xml:space="preserve"><value>Your password has been changed successfully.</value></data>
+  <data name="Msg.CurrentPasswordWrong" xml:space="preserve"><value>Current password is incorrect.</value></data>
+
+  <data name="Msg.RoleCreated" xml:space="preserve"><value>Role created successfully.</value></data>
+  <data name="Msg.RoleUpdated" xml:space="preserve"><value>Role updated.</value></data>
+  <data name="Msg.RoleDeleted" xml:space="preserve"><value>Role deleted.</value></data>
+  <data name="Msg.RoleAuthsUpdated" xml:space="preserve"><value>Role authorities updated.</value></data>
+
+  <data name="Msg.DeptCreated" xml:space="preserve"><value>Department created successfully.</value></data>
+  <data name="Msg.DeptUpdated" xml:space="preserve"><value>Department updated.</value></data>
+  <data name="Msg.DeptDeleted" xml:space="preserve"><value>Department deleted.</value></data>
+
+  <data name="Msg.RecipientNotFound" xml:space="preserve"><value>Recipient not found.</value></data>
+  <data name="Msg.SenderNotFound" xml:space="preserve"><value>Sender not found. Please log in again.</value></data>
+  <data name="Msg.MessageNotFound" xml:space="preserve"><value>Message not found.</value></data>
+  <data name="Msg.MessageNoPermission" xml:space="preserve"><value>You don't have permission to view this message.</value></data>
+  <data name="Msg.MessageDeleted" xml:space="preserve"><value>Message deleted.</value></data>
+  <data name="Msg.MessageSentAppEmail" xml:space="preserve"><value>✓ Message sent: {0} (in-app + email)</value></data>
+  <data name="Msg.MessageSentApp" xml:space="preserve"><value>✓ Message sent: {0} (in-app)</value></data>
+
+  <data name="Assist.Hello" xml:space="preserve"><value>Hello</value></data>
+  <data name="Assist.Greeting" xml:space="preserve"><value>Hello {0}! 👋 How can I help you?</value></data>
+  <data name="Assist.NotUnderstood" xml:space="preserve"><value>Sorry, I didn't understand that 🤔</value></data>
+
+  <data name="Assist.Q.MyTasks" xml:space="preserve"><value>Where can I see my tasks?</value></data>
+  <data name="Assist.A.MyTasks" xml:space="preserve"><value>You can find all tasks assigned to you on the &lt;strong&gt;📋 My Tasks&lt;/strong&gt; page in the left menu.</value></data>
+  <data name="Assist.L.MyTasks" xml:space="preserve"><value>Go to my tasks</value></data>
+
+  <data name="Assist.Q.NewTask" xml:space="preserve"><value>How do I create a new task?</value></data>
+  <data name="Assist.A.NewTask" xml:space="preserve"><value>To create a new task, go to the &lt;strong&gt;➕ New Task&lt;/strong&gt; page in the left menu. You can only assign tasks to people on your team.</value></data>
+  <data name="Assist.L.NewTask" xml:space="preserve"><value>Create new task</value></data>
+
+  <data name="Assist.Q.AssignedByMe" xml:space="preserve"><value>How do I track the tasks I've assigned?</value></data>
+  <data name="Assist.A.AssignedByMe" xml:space="preserve"><value>You can see the tasks you've assigned on the &lt;strong&gt;📝 Tasks I Assigned&lt;/strong&gt; page.</value></data>
+  <data name="Assist.L.AssignedByMe" xml:space="preserve"><value>View tasks I assigned</value></data>
+
+  <data name="Assist.Q.Password" xml:space="preserve"><value>How do I change my password?</value></data>
+  <data name="Assist.A.Password" xml:space="preserve"><value>&lt;strong&gt;Account → My Profile → Change My Password&lt;/strong&gt;. You need to enter your current password and the new one.</value></data>
+  <data name="Assist.L.Password" xml:space="preserve"><value>Change password</value></data>
+
+  <data name="Assist.Q.Profile" xml:space="preserve"><value>How do I update my profile?</value></data>
+  <data name="Assist.A.Profile" xml:space="preserve"><value>You can update info like your phone number and accounting code from your profile. &lt;strong&gt;Account → My Profile&lt;/strong&gt;.</value></data>
+  <data name="Assist.L.Profile" xml:space="preserve"><value>Go to my profile</value></data>
+
+  <data name="Assist.Q.NewUser" xml:space="preserve"><value>How do I add a new user?</value></data>
+  <data name="Assist.A.NewUser" xml:space="preserve"><value>&lt;strong&gt;Management → Users → ➕ New User&lt;/strong&gt;. The manager field is important for the hierarchy.</value></data>
+  <data name="Assist.L.NewUser" xml:space="preserve"><value>Add new user</value></data>
+
+  <data name="Assist.Q.Roles" xml:space="preserve"><value>How are roles and authorities assigned?</value></data>
+  <data name="Assist.A.Roles" xml:space="preserve"><value>&lt;strong&gt;Management → Roles and Authorities&lt;/strong&gt;. Use the ⚡ Authorities button next to a role to assign authorities.</value></data>
+  <data name="Assist.L.Roles" xml:space="preserve"><value>Go to roles</value></data>
+
+  <data name="Assist.Q.Departments" xml:space="preserve"><value>How do I add a department?</value></data>
+  <data name="Assist.A.Departments" xml:space="preserve"><value>You can add it from &lt;strong&gt;Management → Departments → ➕ New Department&lt;/strong&gt;.</value></data>
+  <data name="Assist.L.Departments" xml:space="preserve"><value>Add new department</value></data>
+
+  <data name="Assist.Q.OrgChart" xml:space="preserve"><value>How do I view the organization chart?</value></data>
+  <data name="Assist.A.OrgChart" xml:space="preserve"><value>You can view it as a tree from &lt;strong&gt;General → Organization Chart&lt;/strong&gt;.</value></data>
+  <data name="Assist.L.OrgChart" xml:space="preserve"><value>View chart</value></data>
+
+  <data name="Assist.Q.Gmail" xml:space="preserve"><value>How do I open Gmail?</value></data>
+  <data name="Assist.A.Gmail" xml:space="preserve"><value>Click the red &lt;strong&gt;📩 Open Gmail&lt;/strong&gt; button in the top right of the home page to open your Gmail account in a new tab.</value></data>
+  <data name="Assist.L.Gmail" xml:space="preserve"><value>Open Gmail now</value></data>
+
+  <data name="Assist.Q.Propose" xml:space="preserve"><value>How do I report work?</value></data>
+  <data name="Assist.A.Propose" xml:space="preserve"><value>If there's work that needs to be done, you can report it to your manager from the &lt;strong&gt;📩 Report Work&lt;/strong&gt; page. Once approved, it will be added to your active tasks.</value></data>
+  <data name="Assist.L.Propose" xml:space="preserve"><value>Report work</value></data>
+
+  <data name="Assist.Q.Pending" xml:space="preserve"><value>How do I view pending approval items?</value></data>
+  <data name="Assist.A.Pending" xml:space="preserve"><value>You can view work reports from your team on the &lt;strong&gt;⏳ Pending Approvals&lt;/strong&gt; page. You can approve each one or reject with a reason.</value></data>
+  <data name="Assist.L.Pending" xml:space="preserve"><value>View pending approvals</value></data>
+
+  <data name="Assist.Q.Logout" xml:space="preserve"><value>How do I log out?</value></data>
+  <data name="Assist.A.Logout" xml:space="preserve"><value>Click the &lt;strong&gt;🚪 Logout&lt;/strong&gt; button in the top right to log out securely.</value></data>
+</root>

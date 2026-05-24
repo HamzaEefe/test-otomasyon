@@ -1,0 +1,10 @@
+@{
+    ViewData["Title"] = L["Access.PageTitle"].Value;
+    Layout = "_Layout";
+}
+
+<div class="alert alert-danger mt-5">
+    <h3>⛔ @L["Access.Heading"]</h3>
+    <p>@L["Access.Description"]</p>
+    <a asp-controller="Home" asp-action="Index" class="btn btn-secondary">@L["Access.BackHome"]</a>
+</div>

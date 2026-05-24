@@ -1,0 +1,331 @@
+@model List<TestOtomasyon.Models.OrgChartNode>
+
+@{
+    ViewData["Title"] = L["Org.PageTitle"].Value;
+}
+
+<style>
+    .org-wrap {
+        background: #fff;
+        border-radius: 10px;
+        padding: 0;
+    }
+
+    .org-summary-bar {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
+        margin-bottom: 18px;
+    }
+
+    .org-stat {
+        background: linear-gradient(135deg, #f8fafc 0%, #fff 100%);
+        border: 1px solid #e2e8f0;
+        border-radius: 10px;
+        padding: 14px 16px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .org-stat .icon {
+        width: 40px; height: 40px; border-radius: 10px;
+        display: flex; align-items: center; justify-content: center;
+        font-size: 1.2rem;
+    }
+
+    .org-stat.s1 .icon { background: #dbeafe; color: #1e40af; }
+    .org-stat.s2 .icon { background: #fef3c7; color: #b45309; }
+    .org-stat.s3 .icon { background: #dcfce7; color: #166534; }
+
+    .org-stat .label { color: #64748b; font-size: 0.78rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.3px; }
+    .org-stat .value { color: #0f172a; font-weight: 700; font-size: 1.15rem; }
+
+    /* Kontroller */
+    .org-controls {
+        display: flex; gap: 8px; margin-bottom: 14px;
+        flex-wrap: wrap; align-items: center;
+    }
+    .org-controls .search {
+        flex: 1; min-width: 220px; position: relative;
+    }
+    .org-controls .search input {
+        width: 100%; padding: 8px 12px 8px 36px;
+        border: 1.5px solid #e2e8f0;
+        border-radius: 8px; font-size: 0.9rem;
+        background: #f8fafc;
+        outline: none;
+        transition: all 0.15s;
+    }
+    .org-controls .search input:focus {
+        border-color: #3b82f6;
+        background: #fff;
+        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    }
+    .org-controls .search::before {
+        content: "🔍";
+        position: absolute;
+        left: 11px; top: 50%; transform: translateY(-50%);
+        font-size: 0.9rem; opacity: 0.5;
+    }
+    .org-controls .btn-ctrl {
+        padding: 8px 14px;
+        background: #fff;
+        border: 1.5px solid #e2e8f0;
+        border-radius: 8px;
+        color: #475569;
+        font-size: 0.85rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.15s;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+    }
+    .org-controls .btn-ctrl:hover {
+        border-color: #3b82f6;
+        color: #1e40af;
+        background: #eff6ff;
+    }
+
+    /* Ağaç yapısı */
+    .org-tree { font-size: 0.92rem; }
+    .org-tree details { margin: 0; }
+    .org-tree details > summary { list-style: none; cursor: pointer; }
+    .org-tree details > summary::-webkit-details-marker { display: none; }
+    .org-tree details > summary::marker { display: none; }
+
+    /* Düğüm satırı */
+    .node-row {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 8px 12px;
+        margin: 4px 0;
+        background: #fff;
+        border: 1px solid #e2e8f0;
+        border-radius: 8px;
+        border-left: 4px solid #94a3b8;
+        transition: all 0.15s;
+        position: relative;
+    }
+    .node-row:hover {
+        background: #f8fafc;
+        border-color: #cbd5e1;
+        transform: translateX(2px);
+    }
+
+    /* Sadece bu düğümün doğrudan altındaki içerik, sol hizalanır */
+    .org-tree details[open] > .children {
+        padding-left: 28px;
+        margin-left: 14px;
+        border-left: 2px dashed #cbd5e1;
+        margin-top: 2px;
+    }
+
+    /* Genişletme oku */
+    .node-arrow {
+        width: 18px; height: 18px;
+        display: inline-flex; align-items: center; justify-content: center;
+        color: #94a3b8;
+        font-size: 0.7rem;
+        transition: transform 0.15s;
+        flex-shrink: 0;
+    }
+    details[open] > summary .node-arrow {
+        transform: rotate(90deg);
+        color: #3b82f6;
+    }
+    .node-arrow.empty { visibility: hidden; }
+
+    /* Avatar */
+    .node-avatar {
+        width: 32px; height: 32px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #3b82f6, #1e40af);
+        color: #fff;
+        display: flex; align-items: center; justify-content: center;
+        font-weight: 600; font-size: 0.85rem;
+        flex-shrink: 0;
+    }
+
+    /* İçerik */
+    .node-info {
+        flex: 1;
+        min-width: 0;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: wrap;
+    }
+    .node-name {
+        font-weight: 600;
+        color: #0f172a;
+        white-space: nowrap;
+    }
+    .node-username {
+        color: #64748b;
+        font-size: 0.78rem;
+        font-family: ui-monospace, monospace;
+    }
+    .node-dept {
+        font-size: 0.72rem;
+        padding: 2px 8px;
+        background: #e0e7ff;
+        color: #3730a3;
+        border-radius: 10px;
+        font-weight: 600;
+    }
+    .node-count {
+        margin-left: auto;
+        font-size: 0.72rem;
+        color: #64748b;
+        background: #f1f5f9;
+        padding: 3px 9px;
+        border-radius: 10px;
+        font-weight: 600;
+        flex-shrink: 0;
+    }
+    .node-contact {
+        color: #94a3b8;
+        font-size: 0.78rem;
+        white-space: nowrap;
+    }
+    .node-contact .sep { margin: 0 6px; opacity: 0.5; }
+
+    /* Seviye renkleri (sol şerit) */
+    .level-0 .node-row { border-left-color: #6366f1; background: linear-gradient(90deg, #eef2ff 0%, #fff 30%); }
+    .level-0 .node-avatar { background: linear-gradient(135deg, #6366f1, #4338ca); }
+    .level-0 .node-name { color: #4338ca; font-size: 1rem; }
+
+    .level-1 .node-row { border-left-color: #3b82f6; }
+    .level-1 .node-avatar { background: linear-gradient(135deg, #3b82f6, #1e40af); }
+    .level-1 .node-name { color: #1e40af; }
+
+    .level-2 .node-row { border-left-color: #f59e0b; }
+    .level-2 .node-avatar { background: linear-gradient(135deg, #f59e0b, #b45309); }
+
+    .level-3 .node-row { border-left-color: #94a3b8; }
+    .level-3 .node-avatar { background: linear-gradient(135deg, #94a3b8, #64748b); }
+
+    /* Arama vurgulama */
+    .node-row.match {
+        background: #fef3c7 !important;
+        border-color: #f59e0b !important;
+    }
+    .node-row.dim {
+        opacity: 0.35;
+    }
+
+    /* Mobil */
+    @@media (max-width: 768px) {
+        .org-summary-bar { grid-template-columns: 1fr; }
+        .node-contact { display: none; }
+        .org-tree details[open] > .children { padding-left: 16px; margin-left: 8px; }
+    }
+</style>
+
+<div class="org-summary-bar">
+    <div class="org-stat s1">
+        <div class="icon">👥</div>
+        <div>
+            <div class="label">@L["Org.TotalEmployees"]</div>
+            <div class="value">@ViewBag.TotalUsers</div>
+        </div>
+    </div>
+    <div class="org-stat s2">
+        <div class="icon">⭐</div>
+        <div>
+            <div class="label">@L["Org.TopManagement"]</div>
+            <div class="value">@ViewBag.TopLevelCount</div>
+        </div>
+    </div>
+    <div class="org-stat s3">
+        <div class="icon">🔄</div>
+        <div>
+            <div class="label">@L["Org.ViewedAt"]</div>
+            <div class="value" style="font-size: 0.95rem;">@DateTime.Now.ToString("dd.MM.yyyy HH:mm")</div>
+        </div>
+    </div>
+</div>
+
+<div class="org-controls">
+    <div class="search">
+        <input id="org-search" type="text" placeholder="@L["Org.SearchPh"]" autocomplete="off" />
+    </div>
+    <button type="button" class="btn-ctrl" onclick="orgToggleAll(true)">⬇ @L["Org.ExpandAll"]</button>
+    <button type="button" class="btn-ctrl" onclick="orgToggleAll(false)">⬆ @L["Org.CollapseAll"]</button>
+</div>
+
+@if (!Model.Any())
+{
+    <div class="alert alert-info text-center py-4">
+        <h5>📭 @L["Org.EmptyTitle"]</h5>
+        <p class="mb-0">@L["Org.EmptyDesc"]</p>
+    </div>
+}
+else
+{
+    <div class="org-tree" id="org-tree">
+        @foreach (var node in Model)
+        {
+            @await Html.PartialAsync("_OrgNode", node)
+        }
+    </div>
+}
+
+<div class="alert alert-secondary mt-4 small">
+    <strong>💡 @L["Org.Info"]</strong> @L["Org.InfoDesc"]
+</div>
+
+<script>
+    (function () {
+        const tree = document.getElementById('org-tree');
+        if (!tree) return;
+
+        // Varsayılan: sadece ilk 2 seviye açık
+        tree.querySelectorAll('details').forEach(d => {
+            const level = parseInt(d.getAttribute('data-level') || '0', 10);
+            d.open = level < 2;
+        });
+
+        // Tümünü aç/kapat
+        window.orgToggleAll = function (open) {
+            tree.querySelectorAll('details').forEach(d => d.open = open);
+        };
+
+        // Arama: eşleşmeyenleri soluklaştır, eşleşeni vurgula ve ataları aç
+        const searchInput = document.getElementById('org-search');
+        if (searchInput) {
+            let timer;
+            searchInput.addEventListener('input', function () {
+                clearTimeout(timer);
+                timer = setTimeout(() => doSearch(searchInput.value.trim().toLowerCase()), 150);
+            });
+        }
+
+        function doSearch(q) {
+            const rows = tree.querySelectorAll('.node-row');
+            if (!q) {
+                rows.forEach(r => { r.classList.remove('match', 'dim'); });
+                return;
+            }
+            rows.forEach(r => {
+                const text = (r.getAttribute('data-search') || '').toLowerCase();
+                if (text.includes(q)) {
+                    r.classList.add('match');
+                    r.classList.remove('dim');
+                    // Tüm ataları aç
+                    let parent = r.closest('details');
+                    while (parent) {
+                        parent.open = true;
+                        parent = parent.parentElement ? parent.parentElement.closest('details') : null;
+                    }
+                } else {
+                    r.classList.add('dim');
+                    r.classList.remove('match');
+                }
+            });
+        }
+    })();
+</script>

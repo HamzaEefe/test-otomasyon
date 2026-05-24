@@ -1,0 +1,104 @@
+@model IEnumerable<TestOtomasyon.Entities.User>
+
+@{
+    ViewData["Title"] = L["User.PageTitleIndex"].Value;
+    var rolesByUser = ViewBag.RolesByUser as Dictionary<Guid, List<string>>;
+}
+
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        ✓ @TempData["Success"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+}
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        ✗ @TempData["Error"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+}
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h4>👥 @L["Menu.Users"]</h4>
+    <a asp-action="Create" class="btn btn-primary">
+        ➕ @L["User.NewUser"]
+    </a>
+</div>
+
+<div class="table-responsive">
+    <table class="table table-hover table-striped">
+        <thead class="table-dark">
+            <tr>
+                <th>@L["User.FullName"]</th>
+                <th>@L["User.UserName"]</th>
+                <th>@L["User.Phone"]</th>
+                <th>@L["User.Department"]</th>
+                <th>@L["User.Parent"]</th>
+                <th>@L["User.Roles"]</th>
+                <th style="width: 280px;">@L["Common.Actions"]</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (!Model.Any())
+            {
+                <tr>
+                    <td colspan="7" class="text-center text-muted py-4">
+                        @L["User.NoUsers"]
+                    </td>
+                </tr>
+            }
+            else
+            {
+                @foreach (var user in Model)
+                {
+                    <tr>
+                        <td><strong>@user.Name</strong></td>
+                        <td><code>@user.UserName</code></td>
+                        <td>@(user.MobilePhone ?? "-")</td>
+                        <td>@(user.DepartmentName ?? "-")</td>
+                        <td>
+                            @if (!string.IsNullOrEmpty(user.ParentName))
+                            {
+                                <span class="badge bg-secondary">@user.ParentName</span>
+                            }
+                            else
+                            {
+                                <span class="text-muted small">@L["User.NoParent"]</span>
+                            }
+                        </td>
+                        <td>
+                            @if (rolesByUser != null && rolesByUser.ContainsKey(user.Id))
+                            {
+                                @foreach (var role in rolesByUser[user.Id])
+                                {
+                                    <span class="badge bg-info text-dark me-1">@role</span>
+                                }
+                            }
+                        </td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@user.Id" class="btn btn-sm btn-outline-primary">
+                                ✏️
+                            </a>
+                            <a asp-action="ResetPassword" asp-route-id="@user.Id" class="btn btn-sm btn-outline-warning">
+                                🔑
+                            </a>
+                            <form asp-action="Delete" asp-route-id="@user.Id" method="post" style="display:inline;"
+                                  onsubmit="return confirm('@L["User.ConfirmDelete"]');">
+                                @Html.AntiForgeryToken()
+                                <button type="submit" class="btn btn-sm btn-outline-danger">
+                                    🗑️
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>
+
+<div class="text-muted small mt-3">
+    @L["Common.Total"]: <strong>@Model.Count()</strong> @L["User.Count"]
+</div>

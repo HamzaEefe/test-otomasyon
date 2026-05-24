@@ -1,0 +1,61 @@
+## .NET
+bin/
+obj/
+out/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+*.userprefs
+
+## Visual Studio
+.vs/
+*.csproj.user
+*.vbproj.user
+*.fsproj.user
+
+## Rider
+.idea/
+
+## VS Code
+.vscode/
+
+## Build / Publish
+[Dd]ebug/
+[Rr]elease/
+publish/
+*.pidb
+*.svclog
+*.scc
+
+## Logs
+*.log
+logs/
+
+## Test Results
+TestResults/
+[Tt]est[Rr]esult*/
+*.coverage
+*.coveragexml
+
+## NuGet
+*.nupkg
+packages/
+.nuget/
+project.lock.json
+
+## ASP.NET
+wwwroot/lib/
+node_modules/
+
+## ⚠️ Hassas yapılandırma — kişisel şifreler / API anahtarları
+appsettings.Development.json
+appsettings.Production.json
+appsettings.Local.json
+*.env
+secrets.json
+
+## OS
+Thumbs.db
+.DS_Store
+ehthumbs.db

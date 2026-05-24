@@ -1,0 +1,129 @@
+@model TestOtomasyon.Models.UserCreateViewModel
+
+@{
+    ViewData["Title"] = L["User.PageTitleCreate"].Value;
+    var departments = ViewBag.Departments as IEnumerable<TestOtomasyon.Entities.Department>;
+    var roles = ViewBag.Roles as IEnumerable<TestOtomasyon.Entities.Role>;
+    var parents = ViewBag.PossibleParents as IEnumerable<TestOtomasyon.Entities.User>;
+}
+
+<div class="row justify-content-center">
+    <div class="col-md-9">
+        <h4>➕ @L["User.HeadingCreate"]</h4>
+        <hr />
+
+        <form asp-action="Create" method="post">
+            @Html.AntiForgeryToken()
+            <div asp-validation-summary="All" class="text-danger mb-3"></div>
+
+            <h6 class="text-muted mt-3 mb-3">👤 @L["User.PersonalInfo"]</h6>
+
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label asp-for="FirstName" class="form-label"></label>
+                    <input asp-for="FirstName" class="form-control" autofocus required />
+                    <span asp-validation-for="FirstName" class="text-danger"></span>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label asp-for="LastName" class="form-label"></label>
+                    <input asp-for="LastName" class="form-control" required />
+                    <span asp-validation-for="LastName" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label asp-for="MobilePhone" class="form-label"></label>
+                    <input asp-for="MobilePhone" class="form-control" placeholder="5XX XXX XX XX" />
+                    <span asp-validation-for="MobilePhone" class="text-danger"></span>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label asp-for="Email" class="form-label"></label>
+                    <input asp-for="Email" type="email" class="form-control" placeholder="ornek@firma.com" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label asp-for="AccountingCode" class="form-label"></label>
+                    <input asp-for="AccountingCode" class="form-control" placeholder="MUH-001" />
+                </div>
+            </div>
+
+            <h6 class="text-muted mt-4 mb-3">🔐 @L["User.AccountInfo"]</h6>
+
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label asp-for="UserName" class="form-label"></label>
+                    <input asp-for="UserName" class="form-control" required />
+                    <span asp-validation-for="UserName" class="text-danger"></span>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label asp-for="Password" class="form-label"></label>
+                    <input asp-for="Password" class="form-control" required />
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+            </div>
+
+            <h6 class="text-muted mt-4 mb-3">🏢 @L["User.Organization"]</h6>
+
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label asp-for="DepartmentId" class="form-label"></label>
+                    <select asp-for="DepartmentId" class="form-select">
+                        <option value="">@L["User.SelectDepartment"]</option>
+                        @if (departments != null)
+                        {
+                            foreach (var d in departments)
+                            {
+                                <option value="@d.Id">@d.Name</option>
+                            }
+                        }
+                    </select>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label asp-for="ParentId" class="form-label"></label>
+                    <select asp-for="ParentId" class="form-select">
+                        <option value="">@L["User.SelectParent"]</option>
+                        @if (parents != null)
+                        {
+                            foreach (var p in parents)
+                            {
+                                <option value="@p.Id">@p.Name (@(p.DepartmentName ?? L["Common.NoDepartment"].Value))</option>
+                            }
+                        }
+                    </select>
+                    <small class="form-text text-muted">@L["User.ParentHint"]</small>
+                </div>
+            </div>
+
+            <h6 class="text-muted mt-4 mb-3">🔑 @L["User.Roles"]</h6>
+
+            <div class="row">
+                @if (roles != null)
+                {
+                    foreach (var r in roles)
+                    {
+                        <div class="col-md-6 mb-2">
+                            <div class="form-check p-2 border rounded">
+                                <input class="form-check-input"
+                                       type="checkbox"
+                                       name="SelectedRoleIds"
+                                       value="@r.Id"
+                                       id="role_@r.Id" />
+                                <label class="form-check-label" for="role_@r.Id">
+                                    @r.Name
+                                </label>
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+
+            <div class="d-flex gap-2 mt-4">
+                <button type="submit" class="btn btn-success">💾 @L["Common.Save"]</button>
+                <a asp-action="Index" class="btn btn-secondary">@L["Common.Cancel"]</a>
+            </div>
+        </form>
+    </div>
+</div>

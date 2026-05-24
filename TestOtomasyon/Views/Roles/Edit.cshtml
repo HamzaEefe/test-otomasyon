@@ -1,0 +1,37 @@
+@model TestOtomasyon.Entities.Role
+
+@{
+    ViewData["Title"] = L["Role.PageTitleEdit"].Value;
+}
+
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <h4>✏️ @L["Role.HeadingEdit"]</h4>
+        <hr />
+
+        <form asp-action="Edit" method="post">
+            @Html.AntiForgeryToken()
+            <input asp-for="Id" type="hidden" />
+            <input asp-for="OrganizationId" type="hidden" />
+            <input asp-for="CreatedOn" type="hidden" />
+            <input asp-for="Status" type="hidden" />
+
+            <div asp-validation-summary="All" class="text-danger mb-3"></div>
+
+            <div class="mb-3">
+                <label asp-for="Name" class="form-label">@L["Role.Name"]</label>
+                <input asp-for="Name" class="form-control" autofocus required />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+
+            <div class="text-muted small mb-3">
+                @L["Common.CreatedOn"]: @Model.CreatedOn.ToString("dd.MM.yyyy HH:mm")
+            </div>
+
+            <div class="d-flex gap-2 mt-4">
+                <button type="submit" class="btn btn-success">💾 @L["Common.Update"]</button>
+                <a asp-action="Index" class="btn btn-secondary">@L["Common.Cancel"]</a>
+            </div>
+        </form>
+    </div>
+</div>

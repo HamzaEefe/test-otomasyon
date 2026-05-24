@@ -1,0 +1,165 @@
+@model TestOtomasyon.Entities.Message
+
+@{
+    ViewData["Title"] = L["Contact.PageTitleRead"].Value;
+    var inboxUnread = ViewBag.InboxUnread as int? ?? 0;
+    var sentCount = ViewBag.SentCount as int? ?? 0;
+    var isRecipient = ViewBag.IsRecipient as bool? ?? false;
+    var counterpartName = isRecipient ? Model.SenderName : Model.RecipientName;
+    var counterpartInitial = (!string.IsNullOrEmpty(counterpartName) ? counterpartName.Substring(0, 1).ToUpper() : "?");
+    var culture = System.Globalization.CultureInfo.CurrentUICulture;
+}
+
+<style>
+    .mail-wrapper { max-width: 1100px; margin: 0 auto; }
+    .mail-header {
+        display: flex; align-items: center; justify-content: space-between;
+        padding: 18px 22px; background: #fff; border: 1px solid #e2e8f0;
+        border-radius: 10px 10px 0 0; border-bottom: none;
+    }
+    .mail-title { display: flex; align-items: center; gap: 10px; margin: 0; color: #1e293b; font-weight: 600; }
+    .mail-title .icon { font-size: 1.4rem; }
+    .mail-tabs {
+        display: flex; background: #fff; border: 1px solid #e2e8f0; border-top: none;
+        padding: 0 22px;
+    }
+    .mail-tab {
+        padding: 12px 18px; color: #64748b; text-decoration: none; font-weight: 500;
+        border-bottom: 3px solid transparent; transition: all 0.15s;
+        display: flex; align-items: center; gap: 8px;
+    }
+    .mail-tab:hover { color: #3b82f6; text-decoration: none; }
+    .mail-tab.active { color: #3b82f6; border-bottom-color: #3b82f6; }
+    .mail-tab .count {
+        background: #e2e8f0; color: #475569; padding: 2px 8px; border-radius: 10px;
+        font-size: 0.75rem; font-weight: 600;
+    }
+    .mail-tab .count.unread { background: #ef4444; color: #fff; }
+
+    .mail-body {
+        background: #fff; border: 1px solid #e2e8f0; border-top: none;
+        border-radius: 0 0 10px 10px; padding: 28px;
+    }
+
+    .back-link {
+        color: #64748b; text-decoration: none; font-size: 0.9rem;
+        display: inline-flex; align-items: center; gap: 6px; margin-bottom: 18px;
+    }
+    .back-link:hover { color: #3b82f6; text-decoration: none; }
+
+    .msg-subject-h {
+        font-size: 1.4rem; font-weight: 600; color: #0f172a;
+        margin-bottom: 18px; padding-bottom: 18px;
+        border-bottom: 1px solid #e2e8f0;
+    }
+
+    .msg-meta {
+        display: flex; align-items: center; gap: 14px; margin-bottom: 24px;
+    }
+    .meta-avatar {
+        width: 52px; height: 52px; border-radius: 50%;
+        background: @(isRecipient ? "#3b82f6" : "#10b981"); color: #fff;
+        display: flex; align-items: center; justify-content: center;
+        font-weight: 600; font-size: 1.2rem; flex-shrink: 0;
+    }
+    .meta-info { flex: 1; }
+    .meta-row1 { font-weight: 600; color: #0f172a; font-size: 1rem; }
+    .meta-row1 .label { color: #94a3b8; font-weight: 500; font-size: 0.85rem; margin-right: 4px; }
+    .meta-row2 { color: #64748b; font-size: 0.85rem; margin-top: 3px; }
+
+    .msg-content {
+        background: #f8fafc; padding: 22px; border-radius: 8px;
+        font-size: 0.95rem; line-height: 1.7; color: #1e293b;
+        white-space: pre-wrap; word-wrap: break-word;
+        min-height: 200px;
+    }
+
+    .msg-actions {
+        margin-top: 24px; padding-top: 18px; border-top: 1px solid #e2e8f0;
+        display: flex; gap: 10px; justify-content: space-between;
+    }
+    .msg-actions-left, .msg-actions-right { display: flex; gap: 10px; }
+
+    .btn-reply {
+        background: #3b82f6; color: #fff; border: none; padding: 10px 20px;
+        border-radius: 6px; font-weight: 600; cursor: pointer;
+        text-decoration: none; display: inline-flex; align-items: center; gap: 6px;
+    }
+    .btn-reply:hover { background: #2563eb; color: #fff; text-decoration: none; }
+
+    .btn-delete {
+        background: #fff; color: #ef4444; border: 1px solid #ef4444;
+        padding: 9px 18px; border-radius: 6px; font-weight: 500; cursor: pointer;
+        display: inline-flex; align-items: center; gap: 6px;
+    }
+    .btn-delete:hover { background: #ef4444; color: #fff; }
+</style>
+
+<div class="mail-wrapper">
+    <div class="mail-header">
+        <h4 class="mail-title"><span class="icon">📧</span> @L["Contact.Messages"]</h4>
+    </div>
+
+    <nav class="mail-tabs">
+        <a asp-action="Inbox" class="mail-tab @(isRecipient ? "active" : "")">
+            📥 @L["Contact.TabInbox"]
+            @if (inboxUnread > 0)
+            {
+                <span class="count unread">@inboxUnread</span>
+            }
+        </a>
+        <a asp-action="Sent" class="mail-tab @(isRecipient ? "" : "active")">
+            📤 @L["Contact.TabSent"]
+            @if (sentCount > 0)
+            {
+                <span class="count">@sentCount</span>
+            }
+        </a>
+        <a asp-action="Index" class="mail-tab">✏️ @L["Contact.TabNew"]</a>
+    </nav>
+
+    <div class="mail-body">
+        @if (TempData["Success"] != null)
+        {
+            <div class="alert alert-success">@TempData["Success"]</div>
+        }
+
+        <a asp-action="@(isRecipient ? "Inbox" : "Sent")" class="back-link">
+            ← @(isRecipient ? L["Contact.BackToInbox"].Value : L["Contact.BackToSent"].Value)
+        </a>
+
+        <div class="msg-subject-h">@Model.Subject</div>
+
+        <div class="msg-meta">
+            <div class="meta-avatar">@counterpartInitial</div>
+            <div class="meta-info">
+                <div class="meta-row1">
+                    <span class="label">@(isRecipient ? L["Contact.From"].Value : L["Contact.To"].Value):</span>
+                    @counterpartName
+                </div>
+                <div class="meta-row2">@Model.SentAt.ToString("dd MMMM yyyy, HH:mm", culture)</div>
+            </div>
+        </div>
+
+        <div class="msg-content">@Model.Body</div>
+
+        <div class="msg-actions">
+            <div class="msg-actions-left">
+                <a asp-action="Reply" asp-route-id="@Model.Id" class="btn-reply">
+                    ↩️ @L["Contact.Reply"]
+                </a>
+            </div>
+            <div class="msg-actions-right">
+                <form asp-action="Delete" method="post" style="margin:0;">
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" name="id" value="@Model.Id" />
+                    <input type="hidden" name="returnTo" value="@(isRecipient ? "inbox" : "sent")" />
+                    <button type="submit" class="btn-delete"
+                            onclick="return confirm('@L["Contact.ConfirmDelete"]');">
+                        🗑️ @L["Common.Delete"]
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

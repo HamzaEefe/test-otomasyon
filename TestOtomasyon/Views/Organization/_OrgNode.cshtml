@@ -1,0 +1,60 @@
+@model TestOtomasyon.Models.OrgChartNode
+
+@{
+    var initial = !string.IsNullOrEmpty(Model.User.Name)
+        ? Model.User.Name.Substring(0, 1).ToUpper()
+        : "?";
+
+    var hasChildren = Model.Children.Any();
+    var levelClass = $"level-{Math.Min(Model.Level, 3)}";
+
+    var searchText = $"{Model.User.Name} {Model.User.UserName} {Model.User.DepartmentName} {Model.User.MobilePhone} {Model.User.Email}";
+}
+
+<details data-level="@Model.Level" class="@levelClass">
+    <summary>
+        <div class="node-row" data-search="@searchText">
+            <span class="node-arrow @(hasChildren ? "" : "empty")">▶</span>
+            <div class="node-avatar">@initial</div>
+            <div class="node-info">
+                <span class="node-name">@Model.User.Name</span>
+                <span class="node-username">@Model.User.UserName</span>
+                @if (!string.IsNullOrEmpty(Model.User.DepartmentName))
+                {
+                    <span class="node-dept">@Model.User.DepartmentName</span>
+                }
+                @if (!string.IsNullOrEmpty(Model.User.MobilePhone) || !string.IsNullOrEmpty(Model.User.Email))
+                {
+                    <span class="node-contact d-none d-md-inline">
+                        @if (!string.IsNullOrEmpty(Model.User.MobilePhone))
+                        {
+                            <text>📞 @Model.User.MobilePhone</text>
+                        }
+                        @if (!string.IsNullOrEmpty(Model.User.MobilePhone) && !string.IsNullOrEmpty(Model.User.Email))
+                        {
+                            <span class="sep">·</span>
+                        }
+                        @if (!string.IsNullOrEmpty(Model.User.Email))
+                        {
+                            <text>✉️ @Model.User.Email</text>
+                        }
+                    </span>
+                }
+            </div>
+            @if (hasChildren)
+            {
+                <span class="node-count">@Model.Children.Count @L["Org.DirectReports"]</span>
+            }
+        </div>
+    </summary>
+
+    @if (hasChildren)
+    {
+        <div class="children">
+            @foreach (var child in Model.Children)
+            {
+                @await Html.PartialAsync("_OrgNode", child)
+            }
+        </div>
+    }
+</details>

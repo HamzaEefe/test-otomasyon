@@ -1,0 +1,484 @@
+﻿@{
+    var currentCulture = System.Globalization.CultureInfo.CurrentUICulture.Name;
+    var returnUrl = Context.Request.Path + Context.Request.QueryString;
+}
+<!DOCTYPE html>
+<html lang="@currentCulture.Substring(0,2)">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - @L["App.Title"]</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <style>
+        body {
+            background-color: #f1f5f9;
+            min-height: 100vh;
+        }
+
+        /* ============ SIDEBAR ============ */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 260px;
+            height: 100vh;
+            background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
+            color: #cbd5e1;
+            overflow-y: auto;
+            z-index: 100;
+            box-shadow: 2px 0 8px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Sidebar header */
+        .sidebar-header {
+            padding: 20px 18px;
+            background-color: #0f172a;
+            font-weight: 700;
+            font-size: 1.05rem;
+            color: #f8fafc;
+            border-bottom: 1px solid #334155;
+            letter-spacing: 0.3px;
+        }
+
+        /* Kullanıcı bilgisi */
+        .sidebar-user {
+            padding: 16px 18px;
+            background-color: #1e293b;
+            border-bottom: 1px solid #334155;
+        }
+
+            .sidebar-user .user-name {
+                font-weight: 600;
+                color: #f8fafc;
+                font-size: 0.95rem;
+            }
+
+            .sidebar-user .user-dept {
+                color: #94a3b8;
+                font-size: 0.8rem;
+                margin-top: 2px;
+            }
+
+        /* ============ MENÜ (FLAT YAPI) ============ */
+        .sidebar-menu {
+            list-style: none;
+            padding: 8px 0;
+            margin: 0;
+        }
+
+        /* Grup başlığı (sadece görsel ayraç) */
+        .menu-section-title {
+            padding: 18px 18px 8px 18px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: #64748b;
+            letter-spacing: 1.2px;
+        }
+
+        /* Menü linki */
+        .menu-link {
+            display: flex;
+            align-items: center;
+            padding: 10px 18px;
+            color: #ffff;
+            text-decoration: none;
+            transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+            border-left: 3px solid transparent;
+            font-size: 0.93rem;
+            font-weight: 500;
+        }
+
+            .menu-link:hover {
+                background-color: #334155;
+                color: #ffffff;
+                border-left-color: #3b82f6;
+                text-decoration: none;
+            }
+
+            .menu-link.active {
+                background-color: #3b82f6;
+                color: #ffffff;
+                border-left-color: #60a5fa;
+                font-weight: 600;
+            }
+
+                .menu-link.active:hover {
+                    background-color: #2563eb;
+                }
+
+            .menu-link .icon {
+                display: inline-block;
+                width: 22px;
+                text-align: center;
+                margin-right: 10px;
+                font-size: 1rem;
+            }
+
+        /* ============ ANA İÇERİK ============ */
+        .main-content {
+            margin-left: 260px;
+            padding: 24px 32px;
+        }
+
+        .top-bar {
+            position: relative;
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+            padding: 16px 24px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(15, 23, 42, 0.06), 0 1px 2px rgba(15, 23, 42, 0.04);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            overflow: hidden;
+            border: 1px solid rgba(226, 232, 240, 0.6);
+        }
+
+            .top-bar::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 5px;
+                height: 100%;
+                background: linear-gradient(180deg, #3b82f6 0%, #1e40af 100%);
+            }
+
+            .top-bar::after {
+                content: "";
+                position: absolute;
+                top: -40px;
+                right: -40px;
+                width: 160px;
+                height: 160px;
+                background: radial-gradient(circle, rgba(59, 130, 246, 0.08) 0%, transparent 70%);
+                pointer-events: none;
+            }
+
+            .top-bar h4 {
+                margin: 0;
+                color: #0f172a;
+                font-weight: 600;
+                position: relative;
+                z-index: 1;
+                padding-left: 6px;
+            }
+
+            .top-bar > div {
+                position: relative;
+                z-index: 1;
+            }
+
+        .logout-btn {
+            background: none;
+            border: 1px solid #ef4444;
+            color: #ef4444;
+            padding: 6px 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+            .logout-btn:hover {
+                background-color: #ef4444;
+                color: #fff;
+            }
+
+        .notification-btn {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #f1f5f9;
+            color: #475569;
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: all 0.2s;
+        }
+
+            .notification-btn:hover {
+                background-color: #e2e8f0;
+                color: #1e293b;
+            }
+
+        .notification-badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background-color: #ef4444;
+            color: white;
+            font-size: 0.7rem;
+            font-weight: bold;
+            min-width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 4px;
+        }
+
+        .content-card {
+            background-color:#ffff;
+            padding: 26px;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+        }
+
+        .lang-switch-top {
+            display: inline-flex;
+            gap: 4px;
+            background: #f1f5f9;
+            border-radius: 6px;
+            padding: 3px;
+        }
+
+        .lang-switch-top a {
+            padding: 5px 10px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #475569;
+            transition: all 0.15s;
+        }
+
+        .lang-switch-top a:hover {
+            background: #e2e8f0;
+            color: #0f172a;
+        }
+
+        .lang-switch-top a.active {
+            background: #3b82f6;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    @if (User.Identity != null && User.Identity.IsAuthenticated)
+    {
+        <!-- SOL MENÜ -->
+        <div class="sidebar">
+            <div class="sidebar-header">
+                ⚙️ @L["App.Title"]
+            </div>
+            <div class="sidebar-user">
+                <div class="user-name">@User.Identity.Name</div>
+                <div class="user-dept">@User.GetDepartmentName()</div>
+            </div>
+
+            <ul class="sidebar-menu">
+                <!-- ANASAYFA -->
+                <li>
+                    <a class="menu-link" asp-controller="Home" asp-action="Index">
+                        <span class="icon">🏠</span> @L["Menu.Home"]
+                    </a>
+                </li>
+
+                <!-- ============== YÖNETİM ============== -->
+                @if (User.HasAuthority("User-Manage") || User.HasAuthority("Role-Manage") || User.HasAuthority("Department-Manage"))
+                {
+                    <li class="menu-section-title">@L["Menu.Management"]</li>
+
+                    @if (User.HasAuthority("User-Manage"))
+                    {
+                        <li>
+                            <a class="menu-link" asp-controller="Users" asp-action="Index">
+                                <span class="icon">👥</span> @L["Menu.Users"]
+                            </a>
+                        </li>
+                    }
+                    @if (User.HasAuthority("Role-Manage"))
+                    {
+                        <li>
+                            <a class="menu-link" asp-controller="Roles" asp-action="Index">
+                                <span class="icon">🔑</span> @L["Menu.Roles"]
+                            </a>
+                        </li>
+                    }
+                    @if (User.HasAuthority("Department-Manage"))
+                    {
+                        <li>
+                            <a class="menu-link" asp-controller="Departments" asp-action="Index">
+                                <span class="icon">🏢</span> @L["Menu.Departments"]
+                            </a>
+                        </li>
+                    }
+                }
+
+                <!-- ============== GÖREVLER ============== -->
+                @if (User.HasAuthority("Task-View") || User.HasAuthority("Task-Create"))
+                {
+                    <li class="menu-section-title">@L["Menu.Tasks"]</li>
+                    @if (User.HasAuthority("Task-ViewAll"))
+                    {
+                        <li>
+                            <a class="menu-link" asp-controller="Tasks" asp-action="All">
+                                <span class="icon">📊</span> @L["Menu.AllTasks"]
+                            </a>
+                        </li>
+                    }
+
+                    @if (User.HasAuthority("Task-View"))
+                    {
+                        <li>
+                            <a class="menu-link" asp-controller="Tasks" asp-action="MyTasks">
+                                <span class="icon">📋</span> @L["Menu.MyTasks"]
+                            </a>
+                        </li>
+                    }
+                    @if (User.HasAuthority("Task-Propose"))
+                    {
+                        <li>
+                            <a class="menu-link" asp-controller="Tasks" asp-action="Propose">
+                                <span class="icon">📩</span> @L["Menu.Propose"]
+                            </a>
+                        </li>
+                    }
+                    @if (User.HasAuthority("Task-Create"))
+                    {
+                        <li>
+                            <a class="menu-link" asp-controller="Tasks" asp-action="Index">
+                                <span class="icon">📝</span> @L["Menu.AssignedByMe"]
+                            </a>
+                        </li>
+                        <li>
+                            <a class="menu-link" asp-controller="Tasks" asp-action="Create">
+                                <span class="icon">➕</span> @L["Menu.NewTask"]
+                            </a>
+                        </li>
+                    }
+                    @if (User.HasAuthority("Task-Approve"))
+                    {
+                        <li>
+                            <a class="menu-link" asp-controller="Tasks" asp-action="PendingApprovals">
+                                <span class="icon">⏳</span> @L["Menu.PendingApprovals"]
+                            </a>
+                        </li>
+                    }
+                    else if (User.HasAuthority("Task-Create"))
+                    {
+                        <li>
+                            <a class="menu-link" asp-controller="Tasks" asp-action="All">
+                                <span class="icon">👥</span> @L["Menu.TeamTasks"]
+                            </a>
+                        </li>
+                    }
+                }
+
+                <!-- ============== GENEL ============== -->
+                @if (User.HasAuthority("Organization-View"))
+                {
+                    <li class="menu-section-title">@L["Menu.General"]</li>
+                    <li>
+                        <a class="menu-link" asp-controller="Organization" asp-action="Chart">
+                            <span class="icon">🌳</span> @L["Menu.OrgChart"]
+                        </a>
+                    </li>
+                    <li>
+                        <a class="menu-link" asp-controller="Contact" asp-action="Index">
+                            <span class="icon">✉️</span> @L["Menu.Contact"]
+                        </a>
+                    </li>
+                }
+
+                <!-- ============== HESAP ============== -->
+                <li class="menu-section-title">@L["Menu.Account"]</li>
+                <li>
+                    <a class="menu-link" asp-controller="Account" asp-action="Profile">
+                        <span class="icon">👤</span> @L["Menu.Profile"]
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- ANA İÇERİK -->
+        <div class="main-content">
+            <div class="top-bar">
+                <h4>@ViewData["Title"]</h4>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                    <div class="lang-switch-top">
+                        <a href="@Url.Action("SetLanguage", "Culture", new { culture = "tr-TR", returnUrl })"
+                           class="@(currentCulture == "tr-TR" ? "active" : "")">TR</a>
+                        <a href="@Url.Action("SetLanguage", "Culture", new { culture = "en-US", returnUrl })"
+                           class="@(currentCulture == "en-US" ? "active" : "")">EN</a>
+                    </div>
+                    <a asp-controller="Contact" asp-action="Inbox" class="notification-btn" title="@L["Common.Inbox"]">
+                        🔔
+                        @if (ViewBag.UnreadCount != null && ViewBag.UnreadCount > 0)
+                        {
+                            <span class="notification-badge">@ViewBag.UnreadCount</span>
+                        }
+                    </a>
+                    <form asp-controller="Account" asp-action="Logout" method="post" style="margin: 0;">
+                        @Html.AntiForgeryToken()
+                        <button type="submit" class="logout-btn">🚪 @L["Common.Logout"]</button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="content-card">
+                @RenderBody()
+            </div>
+        </div>
+
+       <script>
+    (function () {
+        const currentPath = window.location.pathname.toLowerCase();
+
+        
+        document.querySelectorAll('.menu-link').forEach(link => {
+            link.classList.remove('active');
+        });
+
+        
+        let bestMatch = null;
+        let bestMatchLength = 0;
+
+        document.querySelectorAll('.menu-link').forEach(link => {
+            const href = (link.getAttribute('href') || '').toLowerCase();
+            if (!href) return;
+
+            
+            if (currentPath === href) {
+                if (href.length > bestMatchLength) {
+                    bestMatch = link;
+                    bestMatchLength = href.length;
+                }
+                return;
+            }
+
+            if (href !== '/' && currentPath.startsWith(href + '/')) {
+                if (href.length > bestMatchLength) {
+                    bestMatch = link;
+                    bestMatchLength = href.length;
+                }
+            }
+        });
+        
+        if (bestMatch) {
+            bestMatch.classList.add('active');
+        }
+    })();
+</script>
+    }
+    else
+    {
+        <!-- LOGIN OLMAMIŞ KULLANICI -->
+        <div class="container">
+            @RenderBody()
+        </div>
+    }
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

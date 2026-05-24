@@ -1,0 +1,91 @@
+@model IEnumerable<TestOtomasyon.Entities.WorkTask>
+@using TestOtomasyon.Helpers
+
+@{
+    var listType = ViewBag.ListType as string;
+}
+
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show">
+        ✓ @TempData["Success"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+}
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger alert-dismissible fade show">
+        ✗ @TempData["Error"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+}
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h4>
+        @if (listType == "assigned-to-me")
+        {
+            <text>📋 @L["Menu.MyTasks"]</text>
+        }
+        else if (listType == "assigned-by-me")
+        {
+            <text>📝 @L["Menu.AssignedByMe"]</text>
+        }
+        else
+        {
+            <text>📊 @L["Menu.AllTasks"]</text>
+        }
+    </h4>
+    @if (ViewBag.ScopeMessage != null)
+    {
+        <div class="alert alert-info py-2 px-3 small mb-0 mt-1">
+            ℹ️ @ViewBag.ScopeMessage
+        </div>
+    }
+    @if (User.HasAuthority("Task-Create"))
+    {
+        <a asp-action="Create" class="btn btn-primary">➕ @L["Menu.NewTask"]</a>
+    }
+</div>
+
+@if (!Model.Any())
+{
+    <div class="alert alert-info text-center">
+        @L["Task.NoTasksInCategory"]
+    </div>
+}
+else
+{
+    <div class="row">
+        @foreach (var task in Model)
+        {
+            <div class="col-md-6 mb-3">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <h5 class="card-title mb-1">@task.Title</h5>
+                            <span class="badge @TaskStatusHelper.GetBadgeClass(task.TaskStatus)">
+                                @TaskStatusHelper.GetIcon(task.TaskStatus) @TaskStatusHelper.GetName(task.TaskStatus)
+                            </span>
+                        </div>
+                        <p class="text-muted small mb-2">
+                            <strong>@L["Task.Assigner"]:</strong> @task.AssignerName <br />
+                            <strong>@L["Task.Assignee"]:</strong> @task.AssigneeName <br />
+                            <strong>@L["Common.Date"]:</strong> @task.CreatedOn.ToString("dd.MM.yyyy HH:mm")
+                        </p>
+                        @if (!string.IsNullOrEmpty(task.Description))
+                        {
+                            <p class="card-text small">@(task.Description.Length > 100 ? task.Description.Substring(0, 100) + "..." : task.Description)</p>
+                        }
+                        <a asp-action="Details" asp-route-id="@task.Id" class="btn btn-sm btn-outline-primary">
+                            🔍 @L["Common.Details"]
+                        </a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+    <div class="text-muted small mt-3">
+        @L["Common.Total"]: <strong>@Model.Count()</strong> @L["Common.Task"]
+    </div>
+}

@@ -1,0 +1,137 @@
+@model TestOtomasyon.Entities.WorkTask
+@using TestOtomasyon.Helpers
+
+@{
+    ViewData["Title"] = L["Task.PageTitleDetail"].Value;
+    var currentUserId = User.GetUserId();
+    var isAssignee = currentUserId == Model.AssigneeId.ToString();
+    var isAssigner = currentUserId == Model.AssignerId.ToString();
+}
+
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show">
+        ✓ @TempData["Success"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+}
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger alert-dismissible fade show">
+        ✗ @TempData["Error"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+}
+
+<div class="row">
+    <div class="col-md-8">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-start mb-3">
+                    <h3 class="mb-0">@Model.Title</h3>
+                    <span class="badge fs-6 @TaskStatusHelper.GetBadgeClass(Model.TaskStatus)">
+                        @TaskStatusHelper.GetIcon(Model.TaskStatus) @TaskStatusHelper.GetName(Model.TaskStatus)
+                    </span>
+                </div>
+
+                <hr />
+
+                <dl class="row mb-0">
+                    <dt class="col-sm-3">📅 @L["Common.CreatedOn"]</dt>
+                    <dd class="col-sm-9">@Model.CreatedOn.ToString("dd.MM.yyyy HH:mm")</dd>
+
+                    <dt class="col-sm-3">👤 @L["Task.Assigner"]</dt>
+                    <dd class="col-sm-9"><strong>@Model.AssignerName</strong></dd>
+
+                    <dt class="col-sm-3">🎯 @L["Task.Assignee"]</dt>
+                    <dd class="col-sm-9"><strong>@Model.AssigneeName</strong></dd>
+
+                    <dt class="col-sm-3">📝 @L["Task.Description"]</dt>
+                    <dd class="col-sm-9">
+                        @if (!string.IsNullOrEmpty(Model.Description))
+                        {
+                            <div style="white-space: pre-wrap;">@Model.Description</div>
+                        }
+                        else
+                        {
+                            <span class="text-muted">@L["Task.NoDescription"]</span>
+                        }
+                    </dd>
+                </dl>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        @if (isAssignee && Model.TaskStatus != TaskStatusHelper.IptalEdildi && Model.TaskStatus != TaskStatusHelper.Tamamlandi)
+        {
+            <div class="card shadow-sm">
+                <div class="card-header bg-primary text-white">
+                    🔧 @L["Task.UpdateStatus"]
+                </div>
+                <div class="card-body">
+                    <p class="small text-muted">@L["Task.UpdateStatusInfo"]</p>
+
+                    @if (Model.TaskStatus == TaskStatusHelper.Atandi)
+                    {
+                        <form asp-action="UpdateStatus" method="post">
+                            @Html.AntiForgeryToken()
+                            <input type="hidden" name="id" value="@Model.Id" />
+                            <input type="hidden" name="newStatus" value="@TaskStatusHelper.Basladi" />
+                            <button type="submit" class="btn btn-warning w-100 mb-2">
+                                🔄 @L["Task.Start"]
+                            </button>
+                        </form>
+                    }
+
+                    @if (Model.TaskStatus == TaskStatusHelper.Basladi)
+                    {
+                        <form asp-action="UpdateStatus" method="post">
+                            @Html.AntiForgeryToken()
+                            <input type="hidden" name="id" value="@Model.Id" />
+                            <input type="hidden" name="newStatus" value="@TaskStatusHelper.Tamamlandi" />
+                            <button type="submit" class="btn btn-success w-100 mb-2">
+                                ✅ @L["Task.Complete"]
+                            </button>
+                        </form>
+                    }
+
+                    <form asp-action="UpdateStatus" method="post"
+                          onsubmit="return confirm('@L["Task.ConfirmCancel"]');">
+                        @Html.AntiForgeryToken()
+                        <input type="hidden" name="id" value="@Model.Id" />
+                        <input type="hidden" name="newStatus" value="@TaskStatusHelper.IptalEdildi" />
+                        <button type="submit" class="btn btn-outline-danger w-100">
+                            ❌ @L["Task.CancelTask"]
+                        </button>
+                    </form>
+                </div>
+            </div>
+        }
+
+        @if (isAssigner)
+        {
+            <div class="card shadow-sm mt-3">
+                <div class="card-header bg-info text-white">
+                    ⚙️ @L["Task.Management"]
+                </div>
+                <div class="card-body">
+                    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-outline-primary w-100 mb-2">
+                        ✏️ @L["Common.Edit"]
+                    </a>
+                    <form asp-action="Delete" asp-route-id="@Model.Id" method="post"
+                          onsubmit="return confirm('@L["Task.ConfirmDelete"]');">
+                        @Html.AntiForgeryToken()
+                        <button type="submit" class="btn btn-outline-danger w-100">
+                            🗑️ @L["Common.Delete"]
+                        </button>
+                    </form>
+                </div>
+            </div>
+        }
+
+        <div class="mt-3">
+            <a asp-action="Index" class="btn btn-secondary w-100">← @L["Common.BackTo"]</a>
+        </div>
+    </div>
+</div>

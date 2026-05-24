@@ -1,0 +1,71 @@
+@model IEnumerable<TestOtomasyon.Entities.Role>
+
+@{
+    ViewData["Title"] = L["Role.PageTitleIndex"].Value;
+}
+
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        ✓ @TempData["Success"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+}
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h4>🔑 @L["Role.Heading"]</h4>
+    <a asp-action="Create" class="btn btn-primary">
+        ➕ @L["Role.NewRole"]
+    </a>
+</div>
+
+<div class="table-responsive">
+    <table class="table table-hover table-striped">
+        <thead class="table-dark">
+            <tr>
+                <th>@L["Role.Name"]</th>
+                <th>@L["Common.CreatedOn"]</th>
+                <th style="width: 350px;">@L["Common.Actions"]</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (!Model.Any())
+            {
+                <tr>
+                    <td colspan="3" class="text-center text-muted py-4">
+                        @L["Role.NoRoles"]
+                    </td>
+                </tr>
+            }
+            else
+            {
+                @foreach (var role in Model)
+                {
+                    <tr>
+                        <td><strong>@role.Name</strong></td>
+                        <td>@role.CreatedOn.ToString("dd.MM.yyyy HH:mm")</td>
+                        <td>
+                            <a asp-action="Authorities" asp-route-id="@role.Id" class="btn btn-sm btn-outline-success">
+                                ⚡ @L["Role.AuthoritiesBtn"]
+                            </a>
+                            <a asp-action="Edit" asp-route-id="@role.Id" class="btn btn-sm btn-outline-primary">
+                                ✏️ @L["Common.Edit"]
+                            </a>
+                            <form asp-action="Delete" asp-route-id="@role.Id" method="post" style="display:inline;"
+                                  onsubmit="return confirm('@L["Role.ConfirmDelete"]');">
+                                @Html.AntiForgeryToken()
+                                <button type="submit" class="btn btn-sm btn-outline-danger">
+                                    🗑️ @L["Common.Delete"]
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>
+
+<div class="text-muted small mt-3">
+    @L["Common.Total"]: <strong>@Model.Count()</strong> @L["Role.Count"]
+</div>

@@ -1,0 +1,154 @@
+@model TestOtomasyon.Models.ProfileViewModel
+@using TestOtomasyon.Helpers
+
+@{
+    ViewData["Title"] = L["Profile.PageTitle"].Value;
+}
+
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show">
+        ✓ @TempData["Success"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+}
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger alert-dismissible fade show">
+        ✗ @TempData["Error"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+}
+
+<div class="row">
+    <div class="col-md-7">
+        <div class="card shadow-sm mb-3">
+            <div class="card-header bg-primary text-white">
+                <h5 class="mb-0">👤 @L["Profile.PersonalInfo"]</h5>
+            </div>
+            <div class="card-body">
+                <form asp-action="Profile" method="post">
+                    @Html.AntiForgeryToken()
+                    <input asp-for="Id" type="hidden" />
+                    <input asp-for="FirstName" type="hidden" />
+                    <input asp-for="LastName" type="hidden" />
+                    <input asp-for="FullName" type="hidden" />
+                    <input asp-for="UserName" type="hidden" />
+
+                    <div asp-validation-summary="All" class="text-danger mb-3"></div>
+
+                    <dl class="row mb-3">
+                        <dt class="col-sm-4">@L["Profile.FullName"]</dt>
+                        <dd class="col-sm-8"><strong>@Model.FullName</strong></dd>
+
+                        <dt class="col-sm-4">@L["Profile.UserName"]</dt>
+                        <dd class="col-sm-8"><code>@Model.UserName</code></dd>
+
+                        <dt class="col-sm-4">@L["Profile.Department"]</dt>
+                        <dd class="col-sm-8">@(Model.DepartmentName ?? L["Common.None"].Value)</dd>
+
+                        <dt class="col-sm-4">@L["Profile.Parent"]</dt>
+                        <dd class="col-sm-8">@(Model.ParentName ?? L["Common.None"].Value)</dd>
+
+                        <dt class="col-sm-4">@L["Profile.StartDate"]</dt>
+                        <dd class="col-sm-8">@Model.CreatedOn.ToString("dd.MM.yyyy")</dd>
+                    </dl>
+
+                    <hr />
+
+                    <h6 class="text-muted mb-3">@L["Profile.ContactInfo"]</h6>
+
+                    <div class="mb-3">
+                        <label asp-for="MobilePhone" class="form-label"></label>
+                        <input asp-for="MobilePhone" class="form-control" placeholder="5XX XXX XX XX" />
+                        <span asp-validation-for="MobilePhone" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Email" class="form-label"></label>
+                        <input asp-for="Email" type="email" class="form-control" placeholder="ornek@firma.com" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="AccountingCode" class="form-label"></label>
+                        <input asp-for="AccountingCode" class="form-control" placeholder="MUH-001" />
+                    </div>
+
+                    <button type="submit" class="btn btn-success">
+                        💾 @L["Profile.UpdateInfo"]
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <div class="card shadow-sm">
+            <div class="card-header bg-warning">
+                <h5 class="mb-0">🔑 @L["Profile.PasswordMgmt"]</h5>
+            </div>
+            <div class="card-body">
+                <p class="text-muted mb-3">@L["Profile.PasswordHint"]</p>
+                <a asp-action="ChangePassword" class="btn btn-outline-warning">
+                    🔐 @L["Profile.ChangeMyPwd"]
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-5">
+        <div class="card shadow-sm mb-3">
+            <div class="card-header bg-info text-white">
+                <h5 class="mb-0">🎭 @L["Profile.MyRoles"]</h5>
+            </div>
+            <div class="card-body">
+                @if (Model.Roles.Any())
+                {
+                    @foreach (var role in Model.Roles)
+                    {
+                        <span class="badge bg-info text-dark fs-6 me-2 mb-2">@role</span>
+                    }
+                }
+                else
+                {
+                    <span class="text-muted">@L["Profile.NoRole"]</span>
+                }
+            </div>
+        </div>
+
+        <div class="card shadow-sm">
+            <div class="card-header bg-secondary text-white">
+                <h5 class="mb-0">⚡ @L["Profile.MyAuthorities"]</h5>
+                <small>@L["Common.Total"]: @Model.Authorities.Count</small>
+            </div>
+            <div class="card-body" style="max-height: 400px; overflow-y: auto;">
+                @if (Model.Authorities.Any())
+                {
+                    var grouped = Model.Authorities
+                        .GroupBy(a => AuthorityNameHelper.GetCategory(a))
+                        .OrderBy(g => g.Key);
+
+                    foreach (var group in grouped)
+                    {
+                        <div class="mb-3">
+                            <div class="text-muted small fw-bold text-uppercase mb-2" style="letter-spacing: 0.5px;">
+                                @group.Key
+                            </div>
+                            <ul class="list-unstyled mb-0">
+                                @foreach (var auth in group.OrderBy(a => AuthorityNameHelper.GetDisplayName(a)))
+                                {
+                                    <li class="mb-1 d-flex align-items-center">
+                                        <span class="badge bg-success me-2" style="min-width: 25px;">✓</span>
+                                        <span>@AuthorityNameHelper.GetDisplayName(auth)</span>
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                    }
+                }
+                else
+                {
+                    <span class="text-muted">@L["Profile.NoAuthority"]</span>
+                }
+            </div>
+        </div>
+    </div>
+</div>

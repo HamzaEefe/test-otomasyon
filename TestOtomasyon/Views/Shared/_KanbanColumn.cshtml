@@ -1,0 +1,74 @@
+@model TestOtomasyon.Models.KanbanColumn
+@using TestOtomasyon.Helpers
+
+<div class="kanban-column">
+    <div class="column-header" style="border-bottom-color: @Model.Color;">
+        <h5>
+            <span style="color: @Model.Color;">@Model.Icon</span>
+            @L[Model.Title]
+            <span class="column-count">@Model.Tasks.Count</span>
+        </h5>
+    </div>
+    <div class="column-body">
+        @if (!Model.Tasks.Any())
+        {
+            <div class="column-empty">
+                <span class="ico">📭</span>
+                @L["Kanban.NoTasks"]
+            </div>
+        }
+        else
+        {
+            foreach (var task in Model.Tasks)
+            {
+                var initial = !string.IsNullOrEmpty(task.AssigneeName)
+                    ? task.AssigneeName.Substring(0, 1).ToUpper()
+                    : "?";
+
+                <a href="@Url.Action("Details", "Tasks", new { id = task.Id })"
+                   class="task-card"
+                   style="border-left-color: @Model.Color;">
+
+                    <div class="task-title">@task.Title</div>
+
+                    <div class="assignee-block">
+                        <div class="assignee-avatar" style="background: @Model.Color;">@initial</div>
+                        <div class="assignee-info">
+                            <div class="assignee-name">@task.AssigneeName</div>
+                            @if (!string.IsNullOrEmpty(task.AssigneeRole))
+                            {
+                                <div class="assignee-role">@task.AssigneeRole</div>
+                            }
+                            <div class="assignee-meta">
+                                @if (!string.IsNullOrEmpty(task.AssigneeDepartment))
+                                {
+                                    <div><span class="ico">🏢</span> @task.AssigneeDepartment</div>
+                                }
+                                @if (!string.IsNullOrEmpty(task.AssigneePhone))
+                                {
+                                    <div><span class="ico">📞</span> @task.AssigneePhone</div>
+                                }
+                                @if (!string.IsNullOrEmpty(task.AssigneeEmail))
+                                {
+                                    <div><span class="ico">✉️</span> @task.AssigneeEmail</div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+
+                    @if (task.TaskStatus == TaskStatusHelper.Reddedildi && !string.IsNullOrEmpty(task.RejectReason))
+                    {
+                        <div class="reject-banner">🚫 @L["Kanban.RejectedLabel"]: @task.RejectReason</div>
+                    }
+
+                    <div class="task-date">
+                        @{
+                            var dt = task.CompletedOn ?? task.CreatedOn;
+                        }
+                        @dt.ToString("dd.MM.yyyy HH:mm")
+                    </div>
+                </a>
+            }
+        }
+    </div>
+</div>

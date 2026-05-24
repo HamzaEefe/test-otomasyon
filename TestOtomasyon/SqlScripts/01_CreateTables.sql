@@ -1,0 +1,117 @@
+﻿USE TestOtomasyonDb;
+GO
+
+-- 1. Organization
+CREATE TABLE [Organization] (
+    id UNIQUEIDENTIFIER PRIMARY KEY DEFAULT NEWID(),
+    name NVARCHAR(200) NOT NULL,
+    createdOn DATETIME NOT NULL DEFAULT GETDATE(),
+    status INT NOT NULL DEFAULT 1
+);
+GO
+
+-- 2. Department
+CREATE TABLE Department (
+    id UNIQUEIDENTIFIER PRIMARY KEY DEFAULT NEWID(),
+    organizationId UNIQUEIDENTIFIER NOT NULL,
+    name NVARCHAR(200) NOT NULL,
+    createdOn DATETIME NOT NULL DEFAULT GETDATE(),
+    status INT NOT NULL DEFAULT 1,
+    CONSTRAINT FK_Department_Organization FOREIGN KEY (organizationId) REFERENCES [Organization](id)
+);
+GO
+
+-- 3. User
+CREATE TABLE [User] (
+    id UNIQUEIDENTIFIER PRIMARY KEY DEFAULT NEWID(),
+    organizationId UNIQUEIDENTIFIER NOT NULL,
+    departmentId UNIQUEIDENTIFIER NULL,
+    firstName NVARCHAR(100) NOT NULL,
+    lastName NVARCHAR(100) NOT NULL,
+    name NVARCHAR(250) NOT NULL,
+    userName NVARCHAR(100) NOT NULL UNIQUE,
+    password NVARCHAR(500) NOT NULL,
+    createdOn DATETIME NOT NULL DEFAULT GETDATE(),
+    status INT NOT NULL DEFAULT 1,
+    CONSTRAINT FK_User_Organization FOREIGN KEY (organizationId) REFERENCES [Organization](id),
+    CONSTRAINT FK_User_Department FOREIGN KEY (departmentId) REFERENCES Department(id)
+);
+GO
+
+-- 4. Role
+CREATE TABLE [Role] (
+    id UNIQUEIDENTIFIER PRIMARY KEY DEFAULT NEWID(),
+    organizationId UNIQUEIDENTIFIER NOT NULL,
+    name NVARCHAR(200) NOT NULL,
+    createdOn DATETIME NOT NULL DEFAULT GETDATE(),
+    status INT NOT NULL DEFAULT 1,
+    CONSTRAINT FK_Role_Organization FOREIGN KEY (organizationId) REFERENCES [Organization](id)
+);
+GO
+
+-- 5. UserRole
+CREATE TABLE UserRole (
+    id UNIQUEIDENTIFIER PRIMARY KEY DEFAULT NEWID(),
+    userId UNIQUEIDENTIFIER NOT NULL,
+    roleId UNIQUEIDENTIFIER NOT NULL,
+    createdOn DATETIME NOT NULL DEFAULT GETDATE(),
+    status INT NOT NULL DEFAULT 1,
+    CONSTRAINT FK_UserRole_User FOREIGN KEY (userId) REFERENCES [User](id),
+    CONSTRAINT FK_UserRole_Role FOREIGN KEY (roleId) REFERENCES [Role](id)
+);
+GO
+
+-- 6. Authority
+CREATE TABLE Authority (
+    id UNIQUEIDENTIFIER PRIMARY KEY DEFAULT NEWID(),
+    name NVARCHAR(200) NOT NULL,
+    createdOn DATETIME NOT NULL DEFAULT GETDATE(),
+    status INT NOT NULL DEFAULT 1
+);
+GO
+
+-- 7. RoleAuthority
+CREATE TABLE RoleAuthority (
+    id UNIQUEIDENTIFIER PRIMARY KEY DEFAULT NEWID(),
+    roleId UNIQUEIDENTIFIER NOT NULL,
+    authorityId UNIQUEIDENTIFIER NOT NULL,
+    createdOn DATETIME NOT NULL DEFAULT GETDATE(),
+    status INT NOT NULL DEFAULT 1,
+    CONSTRAINT FK_RoleAuthority_Role FOREIGN KEY (roleId) REFERENCES [Role](id),
+    CONSTRAINT FK_RoleAuthority_Authority FOREIGN KEY (authorityId) REFERENCES Authority(id)
+);
+GO
+
+-- 8. WorkTask
+CREATE TABLE WorkTask (
+    id UNIQUEIDENTIFIER PRIMARY KEY DEFAULT NEWID(),
+    organizationId UNIQUEIDENTIFIER NOT NULL,
+    title NVARCHAR(300) NOT NULL,
+    description NVARCHAR(MAX) NULL,
+    assignerId UNIQUEIDENTIFIER NOT NULL,
+    assigneeId UNIQUEIDENTIFIER NOT NULL,
+    taskStatus INT NOT NULL DEFAULT 0, -- 0=Atandı, 1=Başladı, 2=Tamamlandı, 3=İptal
+    createdOn DATETIME NOT NULL DEFAULT GETDATE(),
+    status INT NOT NULL DEFAULT 1,
+    CONSTRAINT FK_WorkTask_Organization FOREIGN KEY (organizationId) REFERENCES [Organization](id),
+    CONSTRAINT FK_WorkTask_Assigner FOREIGN KEY (assignerId) REFERENCES [User](id),
+    CONSTRAINT FK_WorkTask_Assignee FOREIGN KEY (assigneeId) REFERENCES [User](id)
+);
+GO
+
+-- 9. Message (İletişim mesajları)
+CREATE TABLE [Message] (
+    Id UNIQUEIDENTIFIER PRIMARY KEY DEFAULT NEWID(),
+    SenderId UNIQUEIDENTIFIER NOT NULL,
+    RecipientId UNIQUEIDENTIFIER NOT NULL,
+    Subject NVARCHAR(300) NOT NULL,
+    Body NVARCHAR(MAX) NULL,
+    SentAt DATETIME NOT NULL DEFAULT GETDATE(),
+    IsRead BIT NOT NULL DEFAULT 0,
+    Status INT NOT NULL DEFAULT 1,
+    CONSTRAINT FK_Message_Sender FOREIGN KEY (SenderId) REFERENCES [User](Id),
+    CONSTRAINT FK_Message_Recipient FOREIGN KEY (RecipientId) REFERENCES [User](Id)
+);
+GO
+
+PRINT 'Tüm tablolar başarıyla oluşturuldu.';

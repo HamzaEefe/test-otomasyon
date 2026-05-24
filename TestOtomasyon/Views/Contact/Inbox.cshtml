@@ -1,0 +1,175 @@
+@model IEnumerable<TestOtomasyon.Entities.Message>
+
+@{
+    ViewData["Title"] = L["Contact.PageTitleInbox"].Value;
+    var inboxUnread = ViewBag.InboxUnread as int? ?? 0;
+    var sentCount = ViewBag.SentCount as int? ?? 0;
+    var culture = System.Globalization.CultureInfo.CurrentUICulture;
+}
+
+<style>
+    .mail-wrapper { max-width: 1100px; margin: 0 auto; }
+    .mail-header {
+        display: flex; align-items: center; justify-content: space-between;
+        padding: 18px 22px; background: #fff; border: 1px solid #e2e8f0;
+        border-radius: 10px 10px 0 0; border-bottom: none;
+    }
+    .mail-title { display: flex; align-items: center; gap: 10px; margin: 0; color: #1e293b; font-weight: 600; }
+    .mail-title .icon { font-size: 1.4rem; }
+    .mail-tabs {
+        display: flex; background: #fff; border: 1px solid #e2e8f0; border-top: none;
+        padding: 0 22px;
+    }
+    .mail-tab {
+        padding: 12px 18px; color: #64748b; text-decoration: none; font-weight: 500;
+        border-bottom: 3px solid transparent; transition: all 0.15s;
+        display: flex; align-items: center; gap: 8px;
+    }
+    .mail-tab:hover { color: #3b82f6; text-decoration: none; }
+    .mail-tab.active { color: #3b82f6; border-bottom-color: #3b82f6; }
+    .mail-tab .count {
+        background: #e2e8f0; color: #475569; padding: 2px 8px; border-radius: 10px;
+        font-size: 0.75rem; font-weight: 600;
+    }
+    .mail-tab.active .count { background: #dbeafe; color: #1e40af; }
+    .mail-tab .count.unread { background: #ef4444; color: #fff; }
+
+    .mail-body {
+        background: #fff; border: 1px solid #e2e8f0; border-top: none;
+        border-radius: 0 0 10px 10px; overflow: hidden;
+    }
+    .msg-row {
+        display: grid; grid-template-columns: 42px 220px 1fr 130px 50px;
+        gap: 14px; align-items: center;
+        padding: 14px 22px; border-bottom: 1px solid #f1f5f9;
+        text-decoration: none; color: #1e293b;
+        transition: background 0.12s; cursor: pointer;
+    }
+    .msg-row:hover { background: #f8fafc; text-decoration: none; color: #1e293b; }
+    .msg-row.unread { background: #fefce8; }
+    .msg-row.unread:hover { background: #fef9c3; }
+
+    .avatar {
+        width: 38px; height: 38px; border-radius: 50%;
+        background: #3b82f6; color: #fff;
+        display: flex; align-items: center; justify-content: center;
+        font-weight: 600; font-size: 0.9rem;
+    }
+    .sender-name { font-weight: 500; color: #1e293b; }
+    .msg-row.unread .sender-name { font-weight: 700; }
+    .msg-subject {
+        overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+        color: #475569;
+    }
+    .msg-row.unread .msg-subject { color: #0f172a; font-weight: 600; }
+    .msg-date { color: #94a3b8; font-size: 0.85rem; text-align: right; }
+    .msg-row.unread .msg-date { color: #64748b; font-weight: 600; }
+    .badge-new {
+        display: inline-block; background: #ef4444; color: #fff;
+        padding: 1px 7px; border-radius: 10px; font-size: 0.65rem;
+        margin-left: 6px; vertical-align: middle; font-weight: 700;
+    }
+    .delete-btn {
+        background: none; border: none; color: #94a3b8;
+        cursor: pointer; padding: 6px; border-radius: 4px;
+        transition: all 0.15s;
+    }
+    .delete-btn:hover { color: #ef4444; background: #fee2e2; }
+    .empty-state { text-align: center; padding: 60px 20px; color: #94a3b8; }
+    .empty-state .ico { font-size: 3rem; margin-bottom: 12px; }
+    .empty-state h5 { color: #475569; }
+    .toolbar {
+        padding: 12px 22px; border-bottom: 1px solid #e2e8f0;
+        background: #f8fafc; display: flex; justify-content: space-between; align-items: center;
+        font-size: 0.85rem; color: #64748b;
+    }
+</style>
+
+<div class="mail-wrapper">
+    <div class="mail-header">
+        <h4 class="mail-title"><span class="icon">📧</span> @L["Contact.Messages"]</h4>
+    </div>
+
+    <nav class="mail-tabs">
+        <a asp-action="Inbox" class="mail-tab active">
+            📥 @L["Contact.TabInbox"]
+            @if (inboxUnread > 0)
+            {
+                <span class="count unread">@inboxUnread</span>
+            }
+        </a>
+        <a asp-action="Sent" class="mail-tab">
+            📤 @L["Contact.TabSent"]
+            @if (sentCount > 0)
+            {
+                <span class="count">@sentCount</span>
+            }
+        </a>
+        <a asp-action="Index" class="mail-tab">✏️ @L["Contact.TabNew"]</a>
+    </nav>
+
+    <div class="mail-body">
+        @if (TempData["Success"] != null)
+        {
+            <div class="alert alert-success m-3">@TempData["Success"]</div>
+        }
+        @if (TempData["Error"] != null)
+        {
+            <div class="alert alert-danger m-3">@TempData["Error"]</div>
+        }
+
+        @if (!Model.Any())
+        {
+            <div class="empty-state">
+                <div class="ico">📭</div>
+                <h5>@L["Contact.EmptyInbox"]</h5>
+                <p>@L["Contact.EmptyInboxSub"]</p>
+            </div>
+        }
+        else
+        {
+            <div class="toolbar">
+                <span>@Model.Count() @L["Contact.MsgCount"] — <strong>@inboxUnread @L["Contact.Unread"]</strong></span>
+            </div>
+
+            @foreach (var msg in Model)
+            {
+                var initial = (!string.IsNullOrEmpty(msg.SenderName) ? msg.SenderName.Substring(0, 1).ToUpper() : "?");
+                <div class="msg-row @(msg.IsRead ? "" : "unread")"
+                     onclick="window.location.href='@Url.Action("Read", new { id = msg.Id })'">
+                    <div class="avatar">@initial</div>
+                    <div class="sender-name">
+                        @msg.SenderName
+                        @if (!msg.IsRead)
+                        {
+                            <span class="badge-new">@L["Contact.New"]</span>
+                        }
+                    </div>
+                    <div class="msg-subject">@msg.Subject</div>
+                    <div class="msg-date">@FormatDate(msg.SentAt, culture, L["Contact.Yesterday"].Value)</div>
+                    <div>
+                        <form asp-action="Delete" method="post" onclick="event.stopPropagation();" style="margin:0;">
+                            @Html.AntiForgeryToken()
+                            <input type="hidden" name="id" value="@msg.Id" />
+                            <button type="submit" class="delete-btn" title="@L["Contact.Delete"]"
+                                    onclick="return confirm('@L["Contact.ConfirmDelete"]');">
+                                🗑️
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+</div>
+
+@functions {
+    string FormatDate(DateTime dt, System.Globalization.CultureInfo culture, string yesterdayLabel)
+    {
+        var now = DateTime.Now;
+        if (dt.Date == now.Date) return dt.ToString("HH:mm");
+        if (dt.Date == now.Date.AddDays(-1)) return yesterdayLabel + " " + dt.ToString("HH:mm");
+        if ((now - dt).TotalDays < 7) return dt.ToString("dddd HH:mm", culture);
+        return dt.ToString("dd.MM.yyyy");
+    }
+}

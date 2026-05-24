@@ -1,0 +1,799 @@
+﻿@model TestOtomasyon.Models.DashboardViewModel
+@using TestOtomasyon.Helpers
+
+@{
+    ViewData["Title"] = L["Home.PageTitle"].Value;
+}
+
+<style>
+    .gmail-custom-btn {
+        display: inline-block;
+        padding: 10px 24px;
+        background-color: #ea4335;
+        color: #ffffff !important;
+        text-decoration: none !important;
+        border-radius: 6px;
+        font-weight: 600;
+        border: 1px solid transparent;
+        transition: all 0.2s ease-in-out;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+        .gmail-custom-btn:hover {
+            background-color: #ffffff;
+            color: #ea4335 !important;
+            border: 1px solid #ea4335;
+            box-shadow: 0 4px 12px rgba(234, 67, 53, 0.2);
+            transform: translateY(-1px);
+        }
+
+        .gmail-custom-btn:active {
+            background-color: #f1f3f4;
+            transform: translateY(0);
+            box-shadow: inset 0 3px 5px rgba(0,0,0,0.12);
+        }
+
+    /* Stat kart stili */
+    .stat-card {
+        background: white;
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+        transition: transform 0.2s, box-shadow 0.2s;
+        height: 100%;
+        border-left: 4px solid transparent;
+    }
+
+        .stat-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+        }
+
+        .stat-card .stat-label {
+            color: #64748b;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 600;
+        }
+
+        .stat-card .stat-value {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin: 8px 0;
+            line-height: 1;
+        }
+
+        .stat-card .stat-icon {
+            float: right;
+            font-size: 2rem;
+            opacity: 0.6;
+        }
+
+        .stat-card .stat-sub {
+            font-size: 0.8rem;
+            color: #94a3b8;
+        }
+
+    .stat-card-primary {
+        border-left-color: #3b82f6;
+    }
+
+        .stat-card-primary .stat-value {
+            color: #3b82f6;
+        }
+
+    .stat-card-warning {
+        border-left-color: #f59e0b;
+    }
+
+        .stat-card-warning .stat-value {
+            color: #f59e0b;
+        }
+
+    .stat-card-success {
+        border-left-color: #10b981;
+    }
+
+        .stat-card-success .stat-value {
+            color: #10b981;
+        }
+
+    .stat-card-danger {
+        border-left-color: #ef4444;
+    }
+
+        .stat-card-danger .stat-value {
+            color: #ef4444;
+        }
+
+    .stat-card-info {
+        border-left-color: #06b6d4;
+    }
+
+        .stat-card-info .stat-value {
+            color: #06b6d4;
+        }
+
+    .panel-section {
+        margin-top: 25px;
+    }
+
+    .panel-section-title {
+        color: #1e293b;
+        font-size: 1.05rem;
+        font-weight: 600;
+        margin-bottom: 12px;
+        padding-bottom: 8px;
+        border-bottom: 2px solid #e2e8f0;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .progress-row {
+        margin-bottom: 12px;
+    }
+
+    .progress-row-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 4px;
+        font-size: 0.85rem;
+    }
+
+    .progress {
+        height: 8px;
+        background-color: #e2e8f0;
+        border-radius: 4px;
+        overflow: hidden;
+    }
+</style>
+
+<div class="row align-items-center mb-3">
+    <div class="col-md-8">
+        <h2 class="mb-1">@L["Home.Welcome"], @Model.FullName 👋</h2>
+        <p class="text-muted mb-0">
+            @if (!string.IsNullOrEmpty(Model.DepartmentName))
+            {
+                <span>@Model.DepartmentName • </span>
+            }
+            @foreach (var role in Model.Roles)
+            {
+                <span class="badge bg-success me-1">@role</span>
+            }
+        </p>
+    </div>
+    <div class="col-md-4 text-end">
+        <a href="https://mail.google.com" target="_blank" class="gmail-custom-btn">
+            @L["Home.OpenGmail"] 📩
+        </a>
+    </div>
+</div>
+
+<hr />
+
+<!-- ============== PERSONEL PANELİ ============== -->
+@if (Model.ShowPersonelPanel)
+{
+    <div class="panel-section">
+        <h5 class="panel-section-title">📋 @L["Home.MyTaskSummary"]</h5>
+
+        <div class="row">
+            <div class="col-md-3 mb-3">
+                <div class="stat-card stat-card-warning">
+                    <span class="stat-icon">📌</span>
+                    <div class="stat-label">@L["Home.NewlyAssigned"]</div>
+                    <div class="stat-value">@Model.MyTaskAssigned</div>
+                    <div class="stat-sub">@L["Home.AwaitingStart"]</div>
+                </div>
+            </div>
+            <div class="col-md-3 mb-3">
+                <div class="stat-card stat-card-info">
+                    <span class="stat-icon">🔄</span>
+                    <div class="stat-label">@L["Home.InProgress"]</div>
+                    <div class="stat-value">@Model.MyTaskInProgress</div>
+                    <div class="stat-sub">@L["Home.BeingWorkedOn"]</div>
+                </div>
+            </div>
+            <div class="col-md-3 mb-3">
+                <div class="stat-card stat-card-success">
+                    <span class="stat-icon">✅</span>
+                    <div class="stat-label">@L["Home.Completed"]</div>
+                    <div class="stat-value">@Model.MyTaskCompleted</div>
+                    <div class="stat-sub">@L["Home.Successfully"]</div>
+                </div>
+            </div>
+            <div class="col-md-3 mb-3">
+                <div class="stat-card stat-card-danger">
+                    <span class="stat-icon">❌</span>
+                    <div class="stat-label">@L["Home.Cancelled"]</div>
+                    <div class="stat-value">@Model.MyTaskCancelled</div>
+                    <div class="stat-sub">@L["Home.History"]</div>
+                </div>
+            </div>
+        </div>
+
+        @if (Model.MyTaskTotal > 0)
+        {
+            <div class="card mt-2">
+                <div class="card-body">
+                    <h6 class="mb-3">📊 @L["Home.OverallProgress"]</h6>
+
+                    @{
+                        var assignedPct = Model.MyTaskTotal > 0 ? (Model.MyTaskAssigned * 100 / Model.MyTaskTotal) : 0;
+                        var progressPct = Model.MyTaskTotal > 0 ? (Model.MyTaskInProgress * 100 / Model.MyTaskTotal) : 0;
+                        var completedPct = Model.MyTaskTotal > 0 ? (Model.MyTaskCompleted * 100 / Model.MyTaskTotal) : 0;
+                        var cancelledPct = Model.MyTaskTotal > 0 ? (Model.MyTaskCancelled * 100 / Model.MyTaskTotal) : 0;
+                    }
+
+                    <div class="progress-row">
+                        <div class="progress-row-header">
+                            <span>📌 @L["Home.NewlyAssigned"]</span>
+                            <span class="text-muted">@Model.MyTaskAssigned / @Model.MyTaskTotal (%@assignedPct)</span>
+                        </div>
+                        <div class="progress">
+                            <div class="progress-bar" style="width: @assignedPct%; background-color: #f59e0b;"></div>
+                        </div>
+                    </div>
+
+                    <div class="progress-row">
+                        <div class="progress-row-header">
+                            <span>🔄 @L["Home.InProgress"]</span>
+                            <span class="text-muted">@Model.MyTaskInProgress / @Model.MyTaskTotal (%@progressPct)</span>
+                        </div>
+                        <div class="progress">
+                            <div class="progress-bar" style="width: @progressPct%; background-color: #06b6d4;"></div>
+                        </div>
+                    </div>
+
+                    <div class="progress-row">
+                        <div class="progress-row-header">
+                            <span>✅ @L["Home.Completed"]</span>
+                            <span class="text-muted">@Model.MyTaskCompleted / @Model.MyTaskTotal (%@completedPct)</span>
+                        </div>
+                        <div class="progress">
+                            <div class="progress-bar" style="width: @completedPct%; background-color: #10b981;"></div>
+                        </div>
+                    </div>
+
+                    <div class="progress-row">
+                        <div class="progress-row-header">
+                            <span>❌ @L["Home.Cancelled"]</span>
+                            <span class="text-muted">@Model.MyTaskCancelled / @Model.MyTaskTotal (%@cancelledPct)</span>
+                        </div>
+                        <div class="progress">
+                            <div class="progress-bar" style="width: @cancelledPct%; background-color: #ef4444;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="alert alert-light">📭 @L["Home.NoTasksAssigned"]</div>
+        }
+    </div>
+}
+
+<!-- ============== SAHA AMİRİ PANELİ ============== -->
+@if (Model.ShowSahaAmiriPanel)
+{
+    <div class="panel-section">
+        <h5 class="panel-section-title">👥 @L["Home.TeamManagement"]</h5>
+
+        <div class="row">
+            <div class="col-md-4 mb-3">
+                <div class="stat-card stat-card-primary">
+                    <span class="stat-icon">👥</span>
+                    <div class="stat-label">@L["Home.MyTeam"]</div>
+                    <div class="stat-value">@Model.TeamSize</div>
+                    <div class="stat-sub">@L["Home.SubordinateCount"]</div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-3">
+                <div class="stat-card stat-card-warning">
+                    <span class="stat-icon">📝</span>
+                    <div class="stat-label">@L["Home.AssignedByMe"]</div>
+                    <div class="stat-value">@Model.AssignedByMeTotal</div>
+                    <div class="stat-sub">@L["Home.TotalTask"]</div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-3">
+                <div class="stat-card stat-card-info">
+                    <span class="stat-icon">🔗</span>
+                    <div class="stat-label">@L["Home.TeamActiveTask"]</div>
+                    <div class="stat-value">@Model.TeamActiveTasks</div>
+                    <div class="stat-sub">@L["Home.Ongoing"]</div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<!-- ============== ADMIN PANELİ ============== -->
+@if (Model.ShowAdminPanel)
+{
+    <div class="panel-section">
+        <h5 class="panel-section-title">🏢 @L["Home.SystemOverview"]</h5>
+
+        <div class="row">
+            <div class="col-md-3 mb-3">
+                <div class="stat-card stat-card-primary">
+                    <span class="stat-icon">👥</span>
+                    <div class="stat-label">@L["Home.TotalUsers"]</div>
+                    <div class="stat-value">@Model.TotalUsers</div>
+                    <div class="stat-sub">@L["Home.ActiveRecord"]</div>
+                </div>
+            </div>
+            <div class="col-md-3 mb-3">
+                <div class="stat-card stat-card-info">
+                    <span class="stat-icon">🏢</span>
+                    <div class="stat-label">@L["Home.TotalDepartments"]</div>
+                    <div class="stat-value">@Model.TotalDepartments</div>
+                    <div class="stat-sub">@L["Home.OrgUnit"]</div>
+                </div>
+            </div>
+            <div class="col-md-3 mb-3">
+                <div class="stat-card stat-card-warning">
+                    <span class="stat-icon">📋</span>
+                    <div class="stat-label">@L["Home.TotalTasks"]</div>
+                    <div class="stat-value">@Model.TotalTasks</div>
+                    <div class="stat-sub">@L["Home.InSystem"]</div>
+                </div>
+            </div>
+            <div class="col-md-3 mb-3">
+                <div class="stat-card stat-card-success">
+                    <span class="stat-icon">⚡</span>
+                    <div class="stat-label">@L["Home.Authorities"]</div>
+                    <div class="stat-value">@Model.AuthorityCount</div>
+                    <div class="stat-sub">@L["Home.ActiveAuthority"]</div>
+                </div>
+            </div>
+        </div>
+
+        @if (Model.TotalTasks > 0)
+        {
+            <div class="card">
+                <div class="card-body">
+                    <h6 class="mb-3">📊 @L["Home.SystemTaskDistribution"]</h6>
+
+                    @{
+                        var statusNames = new Dictionary<int, (string Name, string Color, string Icon)>
+                        {
+                            { 0, (L["Status.Assigned"].Value, "#f59e0b", "📌") },
+                            { 1, (L["Status.InProgress"].Value, "#06b6d4", "🔄") },
+                            { 2, (L["Status.Completed"].Value, "#10b981", "✅") },
+                            { 3, (L["Status.Cancelled"].Value, "#ef4444", "❌") }
+                        };
+                    }
+
+                    @foreach (var s in statusNames)
+                    {
+                        var count = Model.SystemTaskBreakdown.ContainsKey(s.Key) ? Model.SystemTaskBreakdown[s.Key] : 0;
+                        var pct = Model.TotalTasks > 0 ? (count * 100 / Model.TotalTasks) : 0;
+
+                        <div class="progress-row">
+                            <div class="progress-row-header">
+                                <span>@s.Value.Icon @s.Value.Name</span>
+                                <span class="text-muted">@count @L["Common.Task"] (%@pct)</span>
+                            </div>
+                            <div class="progress">
+                                <div class="progress-bar" style="width: @pct%; background-color: @s.Value.Color;"></div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        }
+    </div>
+}
+
+<!-- Personel paneli yoksa (yetkisiz biri) basit bilgilendirme -->
+@if (!Model.ShowPersonelPanel && !Model.ShowSahaAmiriPanel && !Model.ShowAdminPanel)
+{
+    <div class="alert alert-info">
+        💡 @L["Home.NoPermissionInfo"]
+    </div>
+}
+
+<div class="alert alert-light mt-3 small">
+    💡 @L["Home.Tip"]
+</div>
+
+<!-- ============== ASİSTAN (önceki adımdan korunuyor) ============== -->
+
+<button id="assistant-toggle" class="assistant-toggle-btn" type="button" aria-label="@L["Home.AssistantName"]">
+    <span class="assistant-toggle-icon">🤖</span>
+</button>
+
+<div id="assistant-window" class="assistant-window">
+    <div class="assistant-header">
+        <div class="assistant-header-info">
+            <span class="assistant-avatar">🤖</span>
+            <div>
+                <div class="assistant-name">@L["Home.AssistantName"]</div>
+                <div class="assistant-status">● @L["Home.AssistantOnline"]</div>
+            </div>
+        </div>
+        <button id="assistant-close" class="assistant-close-btn" type="button" aria-label="×">×</button>
+    </div>
+
+    <div id="assistant-messages" class="assistant-messages"></div>
+    <div id="assistant-suggestions" class="assistant-suggestions"></div>
+
+    <div class="assistant-input-area">
+        <input type="text" id="assistant-input" class="assistant-input" placeholder="@L["Home.AssistantPlaceholder"]" />
+        <button id="assistant-send" class="assistant-send-btn" type="button" aria-label="➤">➤</button>
+    </div>
+</div>
+
+<style>
+    .assistant-toggle-btn {
+        position: fixed;
+        bottom: 25px;
+        right: 25px;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #3b82f6, #1e40af);
+        color: white;
+        border: none;
+        box-shadow: 0 4px 20px rgba(59, 130, 246, 0.4);
+        cursor: pointer;
+        font-size: 1.8rem;
+        z-index: 9999;
+        transition: transform 0.2s, box-shadow 0.2s;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+        .assistant-toggle-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 25px rgba(59, 130, 246, 0.6);
+        }
+
+        .assistant-toggle-btn.hidden {
+            display: none;
+        }
+
+    .assistant-toggle-icon {
+        animation: assistantBounce 2s infinite;
+    }
+
+    @@keyframes assistantBounce {
+        0%, 100% {
+            transform: translateY(0);
+        }
+
+        50% {
+            transform: translateY(-3px);
+        }
+    }
+
+    .assistant-window {
+        position: fixed;
+        bottom: 25px;
+        right: 25px;
+        width: 380px;
+        height: 550px;
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+        z-index: 9999;
+        display: none;
+        flex-direction: column;
+        overflow: hidden;
+    }
+
+        .assistant-window.open {
+            display: flex;
+            animation: assistantSlideUp 0.3s ease-out;
+        }
+
+    @@keyframes assistantSlideUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .assistant-header {
+        background: linear-gradient(135deg, #3b82f6, #1e40af);
+        color: white;
+        padding: 15px 18px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .assistant-header-info {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .assistant-avatar {
+        font-size: 1.8rem;
+        background: rgba(255,255,255,0.2);
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .assistant-name {
+        font-weight: 600;
+        font-size: 1rem;
+    }
+
+    .assistant-status {
+        font-size: 0.75rem;
+        opacity: 0.9;
+    }
+
+    .assistant-close-btn {
+        background: rgba(255,255,255,0.2);
+        border: none;
+        color: white;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        font-size: 1.3rem;
+        cursor: pointer;
+        line-height: 1;
+        transition: background 0.2s;
+    }
+
+        .assistant-close-btn:hover {
+            background: rgba(255,255,255,0.35);
+        }
+
+    .assistant-messages {
+        flex: 1;
+        overflow-y: auto;
+        padding: 18px;
+        background: #f8fafc;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .message {
+        max-width: 80%;
+        padding: 10px 14px;
+        border-radius: 12px;
+        font-size: 0.9rem;
+        line-height: 1.4;
+        word-wrap: break-word;
+    }
+
+    .message-bot {
+        background: white;
+        color: #1e293b;
+        align-self: flex-start;
+        border-bottom-left-radius: 4px;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+    }
+
+    .message-user {
+        background: #3b82f6;
+        color: white;
+        align-self: flex-end;
+        border-bottom-right-radius: 4px;
+    }
+
+    .message a {
+        color: #3b82f6;
+        font-weight: 600;
+        text-decoration: none;
+    }
+
+    .message-user a {
+        color: white;
+        text-decoration: underline;
+    }
+
+    .assistant-suggestions {
+        padding: 10px 15px;
+        background: #f1f5f9;
+        border-top: 1px solid #e2e8f0;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        max-height: 180px;
+        overflow-y: auto;
+    }
+
+    .suggestion-chip {
+        background: white;
+        border: 1px solid #cbd5e1;
+        color: #475569;
+        padding: 7px 12px;
+        border-radius: 16px;
+        cursor: pointer;
+        font-size: 0.8rem;
+        transition: all 0.15s;
+    }
+
+        .suggestion-chip:hover {
+            background: #3b82f6;
+            color: white;
+            border-color: #3b82f6;
+        }
+
+    .assistant-input-area {
+        padding: 12px;
+        background: white;
+        border-top: 1px solid #e2e8f0;
+        display: flex;
+        gap: 8px;
+    }
+
+    .assistant-input {
+        flex: 1;
+        padding: 10px 14px;
+        border: 1px solid #cbd5e1;
+        border-radius: 20px;
+        outline: none;
+        font-size: 0.9rem;
+        transition: border-color 0.2s;
+    }
+
+        .assistant-input:focus {
+            border-color: #3b82f6;
+        }
+
+    .assistant-send-btn {
+        background: #3b82f6;
+        color: white;
+        border: none;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        cursor: pointer;
+        font-size: 1rem;
+        transition: background 0.2s;
+    }
+
+        .assistant-send-btn:hover {
+            background: #1e40af;
+        }
+
+    @@media (max-width: 480px) {
+        .assistant-window {
+            width: calc(100% - 20px);
+            right: 10px;
+            bottom: 10px;
+            height: 80vh;
+        }
+    }
+</style>
+
+<script>
+    (function () {
+        const userAuthorities = [
+            @{
+                    var userAuths = User.Claims
+                            .Where(c => c.Type == "Authority")
+                            .Select(c => "'" + c.Value + "'");
+                    @Html.Raw(string.Join(", ", userAuths))
+            }
+        ];
+
+        const userName = '@(User.Identity?.Name ?? "")'.split(' ')[0] || '@L["Assist.Hello"]';
+
+        const knowledgeBase = [
+            { question: @Html.Raw(Json.Serialize(L["Assist.Q.MyTasks"].Value)), trigger: ["görev", "görevlerim", "tasks", "task", "my task", "assigned"], answer: @Html.Raw(Json.Serialize(L["Assist.A.MyTasks"].Value)), link: "/Tasks/MyTasks", linkText: @Html.Raw(Json.Serialize(L["Assist.L.MyTasks"].Value)), requiresAuth: "Task-View" },
+            { question: @Html.Raw(Json.Serialize(L["Assist.Q.NewTask"].Value)), trigger: ["yeni görev", "görev oluştur", "görev ekle", "atama", "new task", "create task"], answer: @Html.Raw(Json.Serialize(L["Assist.A.NewTask"].Value)), link: "/Tasks/Create", linkText: @Html.Raw(Json.Serialize(L["Assist.L.NewTask"].Value)), requiresAuth: "Task-Create" },
+            { question: @Html.Raw(Json.Serialize(L["Assist.Q.AssignedByMe"].Value)), trigger: ["atadığım", "verdiğim", "takip", "assigned by me", "i assigned"], answer: @Html.Raw(Json.Serialize(L["Assist.A.AssignedByMe"].Value)), link: "/Tasks/Index", linkText: @Html.Raw(Json.Serialize(L["Assist.L.AssignedByMe"].Value)), requiresAuth: "Task-Create" },
+            { question: @Html.Raw(Json.Serialize(L["Assist.Q.Password"].Value)), trigger: ["şifre", "parola", "password"], answer: @Html.Raw(Json.Serialize(L["Assist.A.Password"].Value)), link: "/Account/ChangePassword", linkText: @Html.Raw(Json.Serialize(L["Assist.L.Password"].Value)) },
+            { question: @Html.Raw(Json.Serialize(L["Assist.Q.Profile"].Value)), trigger: ["profil", "profile", "telefon", "phone", "iletişim", "contact"], answer: @Html.Raw(Json.Serialize(L["Assist.A.Profile"].Value)), link: "/Account/Profile", linkText: @Html.Raw(Json.Serialize(L["Assist.L.Profile"].Value)) },
+            { question: @Html.Raw(Json.Serialize(L["Assist.Q.NewUser"].Value)), trigger: ["kullanıcı ekle", "personel", "user", "new user"], answer: @Html.Raw(Json.Serialize(L["Assist.A.NewUser"].Value)), link: "/Users/Create", linkText: @Html.Raw(Json.Serialize(L["Assist.L.NewUser"].Value)), requiresAuth: "User-Manage" },
+            { question: @Html.Raw(Json.Serialize(L["Assist.Q.Roles"].Value)), trigger: ["rol", "role", "yetki", "authority", "izin", "permission"], answer: @Html.Raw(Json.Serialize(L["Assist.A.Roles"].Value)), link: "/Roles", linkText: @Html.Raw(Json.Serialize(L["Assist.L.Roles"].Value)), requiresAuth: "Role-Manage" },
+            { question: @Html.Raw(Json.Serialize(L["Assist.Q.Departments"].Value)), trigger: ["departman", "department", "birim", "bölüm"], answer: @Html.Raw(Json.Serialize(L["Assist.A.Departments"].Value)), link: "/Departments/Create", linkText: @Html.Raw(Json.Serialize(L["Assist.L.Departments"].Value)), requiresAuth: "Department-Manage" },
+            { question: @Html.Raw(Json.Serialize(L["Assist.Q.OrgChart"].Value)), trigger: ["organizasyon", "organization", "şema", "chart", "hiyerarşi", "hierarchy"], answer: @Html.Raw(Json.Serialize(L["Assist.A.OrgChart"].Value)), link: "/Organization/Chart", linkText: @Html.Raw(Json.Serialize(L["Assist.L.OrgChart"].Value)), requiresAuth: "Organization-View" },
+            { question: @Html.Raw(Json.Serialize(L["Assist.Q.Gmail"].Value)), trigger: ["gmail", "mail", "e-posta", "eposta", "email", "posta"], answer: @Html.Raw(Json.Serialize(L["Assist.A.Gmail"].Value)), link: "https://mail.google.com", linkText: @Html.Raw(Json.Serialize(L["Assist.L.Gmail"].Value)) },
+            { question: @Html.Raw(Json.Serialize(L["Assist.Q.Propose"].Value)), trigger: ["iş bildir", "bildirim", "talep", "report work", "propose"], answer: @Html.Raw(Json.Serialize(L["Assist.A.Propose"].Value)), link: "/Tasks/Propose", linkText: @Html.Raw(Json.Serialize(L["Assist.L.Propose"].Value)), requiresAuth: "Task-Propose" },
+            { question: @Html.Raw(Json.Serialize(L["Assist.Q.Pending"].Value)), trigger: ["onay bekleyen", "onay", "pending", "approval", "approve"], answer: @Html.Raw(Json.Serialize(L["Assist.A.Pending"].Value)), link: "/Tasks/PendingApprovals", linkText: @Html.Raw(Json.Serialize(L["Assist.L.Pending"].Value)), requiresAuth: "Task-Approve" },
+            { question: @Html.Raw(Json.Serialize(L["Assist.Q.Logout"].Value)), trigger: ["çıkış", "logout", "oturum kapat", "sign out"], answer: @Html.Raw(Json.Serialize(L["Assist.A.Logout"].Value)), link: null }
+        ];
+
+        const availableKnowledge = knowledgeBase.filter(function (item) {
+            if (!item.requiresAuth) return true;
+            return userAuthorities.indexOf(item.requiresAuth) !== -1;
+        });
+
+        const toggleBtn = document.getElementById('assistant-toggle');
+        const closeBtn = document.getElementById('assistant-close');
+        const chatWindow = document.getElementById('assistant-window');
+        const messagesEl = document.getElementById('assistant-messages');
+        const suggestionsEl = document.getElementById('assistant-suggestions');
+        const inputEl = document.getElementById('assistant-input');
+        const sendBtn = document.getElementById('assistant-send');
+
+        if (!toggleBtn || !chatWindow) return;
+
+        function openChat() {
+            chatWindow.classList.add('open');
+            toggleBtn.classList.add('hidden');
+            inputEl.focus();
+            if (messagesEl.children.length === 0) {
+                var greeting = @Html.Raw(Json.Serialize(L["Assist.Greeting"].Value));
+                addBotMessage(greeting.replace('{0}', userName));
+                renderSuggestions();
+            }
+        }
+        function closeChat() {
+            chatWindow.classList.remove('open');
+            toggleBtn.classList.remove('hidden');
+        }
+        function addBotMessage(text) {
+            const div = document.createElement('div');
+            div.className = 'message message-bot';
+            div.innerHTML = text;
+            messagesEl.appendChild(div);
+            messagesEl.scrollTop = messagesEl.scrollHeight;
+        }
+        function addUserMessage(text) {
+            const div = document.createElement('div');
+            div.className = 'message message-user';
+            div.textContent = text;
+            messagesEl.appendChild(div);
+            messagesEl.scrollTop = messagesEl.scrollHeight;
+        }
+        function buildAnswerWithLink(item) {
+            let answer = item.answer;
+            if (item.link && item.linkText) {
+                const isExternal = item.link.indexOf('http') === 0;
+                const target = isExternal ? ' target="_blank" rel="noopener"' : '';
+                answer += '<br><br><a href="' + item.link + '"' + target + '>➜ ' + item.linkText + '</a>';
+            }
+            return answer;
+        }
+        function renderSuggestions() {
+            suggestionsEl.innerHTML = '';
+            availableKnowledge.slice(0, 6).forEach(function (item) {
+                const chip = document.createElement('button');
+                chip.className = 'suggestion-chip';
+                chip.type = 'button';
+                chip.textContent = item.question;
+                chip.addEventListener('click', function () { handleQuestion(item); });
+                suggestionsEl.appendChild(chip);
+            });
+        }
+        function handleQuestion(item) {
+            addUserMessage(item.question);
+            setTimeout(function () { addBotMessage(buildAnswerWithLink(item)); }, 400);
+        }
+        function handleFreeText(text) {
+            const lowerText = (text || '').toLowerCase().trim();
+            if (!lowerText) return;
+            addUserMessage(text);
+            inputEl.value = '';
+            const match = availableKnowledge.find(function (item) {
+                return item.trigger.some(function (t) { return lowerText.indexOf(t.toLowerCase()) !== -1; });
+            });
+            setTimeout(function () {
+                if (match) addBotMessage(buildAnswerWithLink(match));
+                else addBotMessage(@Html.Raw(Json.Serialize(L["Assist.NotUnderstood"].Value)));
+            }, 400);
+        }
+
+        toggleBtn.addEventListener('click', openChat);
+        closeBtn.addEventListener('click', closeChat);
+        sendBtn.addEventListener('click', function () { handleFreeText(inputEl.value); });
+        inputEl.addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') handleFreeText(inputEl.value);
+        });
+    })();
+</script>

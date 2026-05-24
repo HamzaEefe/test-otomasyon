@@ -1,0 +1,144 @@
+@{
+    ViewData["Title"] = L["Contact.PageTitleIndex"].Value;
+    var inboxUnread = ViewBag.InboxUnread as int? ?? 0;
+    var sentCount = ViewBag.SentCount as int? ?? 0;
+    var prefillRecipientId = ViewBag.PrefillRecipientId as Guid?;
+    var prefillSubject = ViewBag.PrefillSubject as string;
+    var prefillBody = ViewBag.PrefillBody as string;
+}
+
+<style>
+    .mail-wrapper { max-width: 1100px; margin: 0 auto; }
+    .mail-header {
+        display: flex; align-items: center; justify-content: space-between;
+        padding: 18px 22px; background: #fff; border: 1px solid #e2e8f0;
+        border-radius: 10px 10px 0 0; border-bottom: none;
+    }
+    .mail-title { display: flex; align-items: center; gap: 10px; margin: 0; color: #1e293b; font-weight: 600; }
+    .mail-title .icon { font-size: 1.4rem; }
+    .mail-tabs {
+        display: flex; background: #fff; border: 1px solid #e2e8f0; border-top: none;
+        padding: 0 22px;
+    }
+    .mail-tab {
+        padding: 12px 18px; color: #64748b; text-decoration: none; font-weight: 500;
+        border-bottom: 3px solid transparent; transition: all 0.15s;
+        display: flex; align-items: center; gap: 8px;
+    }
+    .mail-tab:hover { color: #3b82f6; text-decoration: none; }
+    .mail-tab.active { color: #3b82f6; border-bottom-color: #3b82f6; }
+    .mail-tab .count {
+        background: #e2e8f0; color: #475569; padding: 2px 8px; border-radius: 10px;
+        font-size: 0.75rem; font-weight: 600;
+    }
+    .mail-tab.active .count { background: #dbeafe; color: #1e40af; }
+    .mail-tab .count.unread { background: #ef4444; color: #fff; }
+
+    .mail-body {
+        background: #fff; border: 1px solid #e2e8f0; border-top: none;
+        border-radius: 0 0 10px 10px; padding: 24px;
+    }
+
+    .compose-row {
+        display: grid; grid-template-columns: 90px 1fr; align-items: center;
+        padding: 14px 0; border-bottom: 1px solid #f1f5f9;
+    }
+    .compose-row label { color: #64748b; font-size: 0.9rem; font-weight: 500; margin: 0; }
+    .compose-row .field { padding: 0; }
+    .compose-row input, .compose-row select {
+        width: 100%; border: none; outline: none; font-size: 0.95rem;
+        padding: 6px 0; background: transparent;
+    }
+    .compose-row input:focus, .compose-row select:focus { background: #f8fafc; padding-left: 8px; }
+    .compose-body {
+        padding: 18px 0; min-height: 280px;
+    }
+    .compose-body textarea {
+        width: 100%; border: none; outline: none; resize: vertical;
+        font-size: 0.95rem; font-family: inherit; min-height: 280px;
+        padding: 8px; background: #f8fafc; border-radius: 6px;
+    }
+    .compose-actions {
+        display: flex; justify-content: space-between; align-items: center;
+        padding-top: 16px; border-top: 1px solid #e2e8f0;
+    }
+    .btn-send {
+        background: #3b82f6; color: #fff; border: none; padding: 10px 24px;
+        border-radius: 6px; font-weight: 600; cursor: pointer;
+        transition: background 0.15s; display: inline-flex; align-items: center; gap: 8px;
+    }
+    .btn-send:hover { background: #2563eb; }
+</style>
+
+<div class="mail-wrapper">
+    <div class="mail-header">
+        <h4 class="mail-title"><span class="icon">📧</span> @L["Contact.Messages"]</h4>
+    </div>
+
+    <nav class="mail-tabs">
+        <a asp-action="Inbox" class="mail-tab">
+            📥 @L["Contact.TabInbox"]
+            @if (inboxUnread > 0)
+            {
+                <span class="count unread">@inboxUnread</span>
+            }
+        </a>
+        <a asp-action="Sent" class="mail-tab">
+            📤 @L["Contact.TabSent"]
+            @if (sentCount > 0)
+            {
+                <span class="count">@sentCount</span>
+            }
+        </a>
+        <a asp-action="Index" class="mail-tab active">✏️ @L["Contact.TabNew"]</a>
+    </nav>
+
+    <div class="mail-body">
+        @if (TempData["Success"] != null)
+        {
+            <div class="alert alert-success">@TempData["Success"]</div>
+        }
+        @if (TempData["Error"] != null)
+        {
+            <div class="alert alert-danger">@TempData["Error"]</div>
+        }
+
+        <form asp-action="SendEmail" method="post">
+            @Html.AntiForgeryToken()
+
+            <div class="compose-row">
+                <label>@L["Contact.Recipient"]</label>
+                <div class="field">
+                    <select name="recipientId" required>
+                        <option value="">@L["Contact.SelectRecipient"]</option>
+                        @if (ViewBag.Users != null)
+                        {
+                            foreach (var user in ViewBag.Users)
+                            {
+                                <option value="@user.Id" selected="@(prefillRecipientId.HasValue && prefillRecipientId.Value == user.Id)">
+                                    @user.Name @(string.IsNullOrEmpty(user.Email) ? "" : "— " + user.Email)
+                                </option>
+                            }
+                        }
+                    </select>
+                </div>
+            </div>
+
+            <div class="compose-row">
+                <label>@L["Contact.Subject"]</label>
+                <div class="field">
+                    <input type="text" name="subject" required placeholder="@L["Contact.SubjectPh"]" value="@prefillSubject" />
+                </div>
+            </div>
+
+            <div class="compose-body">
+                <textarea name="message" required placeholder="@L["Contact.MessagePh"]">@prefillBody</textarea>
+            </div>
+
+            <div class="compose-actions">
+                <a asp-action="Inbox" class="btn btn-outline-secondary">@L["Common.Cancel"]</a>
+                <button type="submit" class="btn-send">📤 @L["Contact.Send"]</button>
+            </div>
+        </form>
+    </div>
+</div>

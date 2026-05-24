@@ -1,0 +1,50 @@
+@model TestOtomasyon.Models.TaskCreateViewModel
+
+@{
+    ViewData["Title"] = L["Task.PageTitleCreate"].Value;
+    var users = ViewBag.Users as IEnumerable<TestOtomasyon.Entities.User>;
+}
+
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <h4>➕ @L["Task.HeadingCreate"]</h4>
+        <hr />
+
+        <form asp-action="Create" method="post">
+            @Html.AntiForgeryToken()
+            <div asp-validation-summary="All" class="text-danger mb-3"></div>
+
+            <div class="mb-3">
+                <label asp-for="Title" class="form-label"></label>
+                <input asp-for="Title" class="form-control" autofocus required />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Description" class="form-label"></label>
+                <textarea asp-for="Description" class="form-control" rows="4"></textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="AssigneeId" class="form-label"></label>
+                <select asp-for="AssigneeId" class="form-select" required>
+                    <option value="">@L["Task.SelectStaff"]</option>
+                    @if (users != null)
+                    {
+                        foreach (var u in users)
+                        {
+                            <option value="@u.Id">@u.Name (@(u.DepartmentName ?? L["Common.NoDepartment"].Value))</option>
+                        }
+                    }
+                </select>
+                <span asp-validation-for="AssigneeId" class="text-danger"></span>
+            </div>
+
+            <div class="d-flex gap-2 mt-4">
+                <button type="submit" class="btn btn-success">💾 @L["Task.CreateButton"]</button>
+                <a asp-action="Index" class="btn btn-secondary">@L["Common.Cancel"]</a>
+            </div>
+        </form>
+    </div>
+</div>
